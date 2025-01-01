@@ -67,7 +67,12 @@ void form::on_pushButton_clicked()
     }
 
     form::globalEmail = email;
-}
+    emit sendCredentials(email, password, name, address, phone);
 
+}
+void form::displayServerResponse(const QString &response)
+{
+    ui->textEdit->setText(response);
+}
 
 
