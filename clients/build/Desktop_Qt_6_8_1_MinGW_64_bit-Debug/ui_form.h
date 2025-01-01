@@ -60,7 +60,7 @@ public:
         centralwidget->setStyleSheet(QString::fromUtf8("background-color:#212121"));
         lineEditName = new QLineEdit(centralwidget);
         lineEditName->setObjectName("lineEditName");
-        lineEditName->setGeometry(QRect(750, 230, 201, 31));
+        lineEditName->setGeometry(QRect(750, 240, 201, 31));
         lineEditName->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
@@ -69,14 +69,14 @@ public:
 ""));
         label_phone = new QLabel(centralwidget);
         label_phone->setObjectName("label_phone");
-        label_phone->setGeometry(QRect(620, 350, 61, 20));
+        label_phone->setGeometry(QRect(620, 360, 61, 20));
         label_phone->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
         pushButton->setEnabled(true);
-        pushButton->setGeometry(QRect(770, 470, 161, 41));
+        pushButton->setGeometry(QRect(770, 480, 161, 41));
         pushButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton->setStyleSheet(QString::fromUtf8("          background-color: #BF360C;\n"
 "            color: white;\n"
@@ -85,7 +85,7 @@ public:
 "           border: none;  "));
         label_address = new QLabel(centralwidget);
         label_address->setObjectName("label_address");
-        label_address->setGeometry(QRect(610, 290, 71, 20));
+        label_address->setGeometry(QRect(610, 300, 71, 20));
         label_address->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
@@ -97,7 +97,7 @@ public:
 ""));
         lineEditEmail = new QLineEdit(centralwidget);
         lineEditEmail->setObjectName("lineEditEmail");
-        lineEditEmail->setGeometry(QRect(750, 130, 201, 28));
+        lineEditEmail->setGeometry(QRect(750, 120, 201, 28));
         lineEditEmail->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
@@ -108,20 +108,20 @@ public:
         lineEdit_2 = new QLineEdit(centralwidget);
         lineEdit_2->setObjectName("lineEdit_2");
         lineEdit_2->setEnabled(false);
-        lineEdit_2->setGeometry(QRect(800, 10, 101, 41));
+        lineEdit_2->setGeometry(QRect(800, -10, 101, 41));
         lineEdit_2->setStyleSheet(QString::fromUtf8("            color: white;\n"
 "            border-radius: 10px;\n"
 "            font-size: 26px;\n"
 "           border: none;  "));
         label_invitationcode = new QLabel(centralwidget);
         label_invitationcode->setObjectName("label_invitationcode");
-        label_invitationcode->setGeometry(QRect(560, 410, 121, 20));
+        label_invitationcode->setGeometry(QRect(560, 420, 121, 20));
         label_invitationcode->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
         pushButton_gosignin = new QPushButton(centralwidget);
         pushButton_gosignin->setObjectName("pushButton_gosignin");
-        pushButton_gosignin->setGeometry(QRect(900, 70, 61, 31));
+        pushButton_gosignin->setGeometry(QRect(900, 60, 61, 31));
         pushButton_gosignin->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 170, 0);\n"
 "            color: white;\n"
 "            border-radius: 10px;\n"
@@ -129,13 +129,13 @@ public:
 "           border: none;  "));
         label_email = new QLabel(centralwidget);
         label_email->setObjectName("label_email");
-        label_email->setGeometry(QRect(620, 130, 61, 20));
+        label_email->setGeometry(QRect(620, 120, 61, 20));
         label_email->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
         lineEdit = new QLineEdit(centralwidget);
         lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(700, 70, 191, 28));
+        lineEdit->setGeometry(QRect(700, 60, 191, 28));
         lineEdit->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(255, 255, 255);\n"
 "    font-size: 14px;\n"
@@ -143,7 +143,7 @@ public:
 ""));
         lineEditPhone = new QLineEdit(centralwidget);
         lineEditPhone->setObjectName("lineEditPhone");
-        lineEditPhone->setGeometry(QRect(750, 350, 201, 31));
+        lineEditPhone->setGeometry(QRect(750, 360, 201, 31));
         lineEditPhone->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
@@ -152,11 +152,11 @@ public:
 ""));
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(550, 470, 181, 41));
+        textEdit->setGeometry(QRect(550, 480, 181, 41));
         textEdit->setStyleSheet(QString::fromUtf8("border:none;"));
         lineEditAddress = new QLineEdit(centralwidget);
         lineEditAddress->setObjectName("lineEditAddress");
-        lineEditAddress->setGeometry(QRect(750, 290, 201, 28));
+        lineEditAddress->setGeometry(QRect(750, 300, 201, 28));
         lineEditAddress->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
@@ -165,7 +165,7 @@ public:
 ""));
         label_name = new QLabel(centralwidget);
         label_name->setObjectName("label_name");
-        label_name->setGeometry(QRect(620, 230, 61, 20));
+        label_name->setGeometry(QRect(620, 240, 61, 20));
         label_name->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
@@ -180,7 +180,7 @@ public:
 ""));
         invitationcode = new QLineEdit(centralwidget);
         invitationcode->setObjectName("invitationcode");
-        invitationcode->setGeometry(QRect(750, 410, 201, 31));
+        invitationcode->setGeometry(QRect(750, 420, 201, 31));
         invitationcode->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"

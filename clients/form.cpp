@@ -11,6 +11,11 @@ form::form(QWidget *parent)
     , ui(new Ui::form)
 {
     ui->setupUi(this);
+    client = new Client(this);
+    connect(client, &Client::registrationSuccessful, this, &form::onRegistrationSuccessful);
+
+
+
 
 
 }
@@ -68,11 +73,17 @@ void form::on_pushButton_clicked()
 
     form::globalEmail = email;
     emit sendCredentials(email, password, name, address, phone);
-
 }
+
 void form::displayServerResponse(const QString &response)
 {
     ui->textEdit->setText(response);
+}
+void form::onRegistrationSuccessful() {
+    qDebug() << "Registration was successful!";
+
+    //this->close();
+
 }
 
 

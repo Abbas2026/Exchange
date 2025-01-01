@@ -18,13 +18,16 @@ public:
 
     static QString globalEmail;
     ~form();
-signals:
 
+signals:
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
+
 public slots:
     void displayServerResponse(const QString &response);
+    void onRegistrationSuccessful();
 private slots:
     void on_pushButton_clicked();
+
 
 
 private:

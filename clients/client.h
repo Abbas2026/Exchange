@@ -15,10 +15,12 @@ public:
 
 signals:
     void receivedMessage(const QString &message);
+    void registrationSuccessful();
 
 public slots:
     void sendMessage(const QString &message);
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
+    void requestUserData(const QString &email);
 
 
 private slots:

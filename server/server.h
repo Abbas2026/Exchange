@@ -5,7 +5,10 @@
 #include <QTcpSocket>
 #include <QList>
 #include <QDebug>
-
+#include <QFile>
+#include <QStringList>
+#include <QJsonObject>
+#include <QJsonArray>
 class Server : public QObject
 {
     Q_OBJECT
@@ -19,15 +22,18 @@ private slots:
     void readClientMessage();
     void clientDisconnected();
 
-
+public slots:
+    void getUserDataByEmail(const QString &email, QTcpSocket *client);
 
 private:
     QTcpServer *server;
     QList<QTcpSocket*> clientSockets;
 
+    bool isEmailRegistered(const QString &email);
+    void saveCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
+    QJsonObject loadUserData(const QString &email);
+    void sendUserData(QTcpSocket *client, const QString &email);
 };
 
-#endif
-
-
+#endif // SERVER_H
 
