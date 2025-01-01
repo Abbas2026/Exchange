@@ -54,10 +54,10 @@ public:
         form->resize(1000, 600);
         form->setMinimumSize(QSize(1000, 600));
         form->setMaximumSize(QSize(10000, 600));
-        form->setStyleSheet(QString::fromUtf8("background-color:#212121"));
+        form->setStyleSheet(QString::fromUtf8("background-color:#0A0C0E  ;"));
         centralwidget = new QWidget(form);
         centralwidget->setObjectName("centralwidget");
-        centralwidget->setStyleSheet(QString::fromUtf8("background-color:#212121"));
+        centralwidget->setStyleSheet(QString::fromUtf8("background-color:#0A0C0E  ;"));
         lineEditName = new QLineEdit(centralwidget);
         lineEditName->setObjectName("lineEditName");
         lineEditName->setGeometry(QRect(750, 240, 201, 31));
@@ -108,7 +108,7 @@ public:
         lineEdit_2 = new QLineEdit(centralwidget);
         lineEdit_2->setObjectName("lineEdit_2");
         lineEdit_2->setEnabled(false);
-        lineEdit_2->setGeometry(QRect(800, -10, 101, 41));
+        lineEdit_2->setGeometry(QRect(800, 10, 101, 41));
         lineEdit_2->setStyleSheet(QString::fromUtf8("            color: white;\n"
 "            border-radius: 10px;\n"
 "            font-size: 26px;\n"
@@ -152,6 +152,7 @@ public:
 ""));
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
+        textEdit->setEnabled(false);
         textEdit->setGeometry(QRect(550, 480, 181, 41));
         textEdit->setStyleSheet(QString::fromUtf8("border:none;"));
         lineEditAddress = new QLineEdit(centralwidget);
@@ -165,7 +166,7 @@ public:
 ""));
         label_name = new QLabel(centralwidget);
         label_name->setObjectName("label_name");
-        label_name->setGeometry(QRect(620, 240, 61, 20));
+        label_name->setGeometry(QRect(590, 240, 91, 20));
         label_name->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
@@ -224,7 +225,7 @@ public:
         lineEdit->setText(QCoreApplication::translate("form", "Have an account? Sign in now.", nullptr));
         lineEditPhone->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
         lineEditAddress->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
-        label_name->setText(QCoreApplication::translate("form", "name:", nullptr));
+        label_name->setText(QCoreApplication::translate("form", "user name:", nullptr));
         invitationcode->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
         label_6->setText(QString());
     } // retranslateUi

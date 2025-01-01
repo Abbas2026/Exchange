@@ -41,7 +41,10 @@ static constexpr auto qt_meta_stringdata_ZN6ClientE = QtMocHelpers::stringData(
     "receivedMessage",
     "",
     "message",
+    "receivedMessagetodash",
+    "receivedMessagetosign",
     "registrationSuccessful",
+    "loginSuccessful",
     "sendMessage",
     "sendCredentials",
     "email",
@@ -50,6 +53,7 @@ static constexpr auto qt_meta_stringdata_ZN6ClientE = QtMocHelpers::stringData(
     "address",
     "phone",
     "requestUserData",
+    "sendservertologin",
     "readServerResponse"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -62,31 +66,39 @@ Q_CONSTINIT static const uint qt_meta_data_ZN6ClientE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x06,    1 /* Public */,
-       4,    0,   53,    2, 0x06,    3 /* Public */,
+       1,    1,   74,    2, 0x06,    1 /* Public */,
+       4,    1,   77,    2, 0x06,    3 /* Public */,
+       5,    1,   80,    2, 0x06,    5 /* Public */,
+       6,    0,   83,    2, 0x06,    7 /* Public */,
+       7,    0,   84,    2, 0x06,    8 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    1,   54,    2, 0x0a,    4 /* Public */,
-       6,    5,   57,    2, 0x0a,    6 /* Public */,
-      12,    1,   68,    2, 0x0a,   12 /* Public */,
-      13,    0,   71,    2, 0x08,   14 /* Private */,
+       8,    1,   85,    2, 0x0a,    9 /* Public */,
+       9,    5,   88,    2, 0x0a,   11 /* Public */,
+      15,    1,   99,    2, 0x0a,   17 /* Public */,
+      16,    2,  102,    2, 0x0a,   19 /* Public */,
+      17,    0,  107,    2, 0x08,   22 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void,
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    7,    8,    9,   10,   11,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   10,   11,   12,   13,   14,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   10,   11,
     QMetaType::Void,
 
        0        // eod
@@ -104,7 +116,15 @@ Q_CONSTINIT const QMetaObject Client::staticMetaObject = { {
         // method 'receivedMessage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'receivedMessagetodash'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'receivedMessagetosign'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'registrationSuccessful'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'loginSuccessful'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'sendMessage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -119,6 +139,10 @@ Q_CONSTINIT const QMetaObject Client::staticMetaObject = { {
         // method 'requestUserData'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'sendservertologin'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'readServerResponse'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -131,11 +155,15 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->receivedMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 1: _t->registrationSuccessful(); break;
-        case 2: _t->sendMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 3: _t->sendCredentials((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5]))); break;
-        case 4: _t->requestUserData((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 5: _t->readServerResponse(); break;
+        case 1: _t->receivedMessagetodash((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 2: _t->receivedMessagetosign((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 3: _t->registrationSuccessful(); break;
+        case 4: _t->loginSuccessful(); break;
+        case 5: _t->sendMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: _t->sendCredentials((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5]))); break;
+        case 7: _t->requestUserData((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->sendservertologin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 9: _t->readServerResponse(); break;
         default: ;
         }
     }
@@ -149,9 +177,30 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
             }
         }
         {
+            using _q_method_type = void (Client::*)(const QString & );
+            if (_q_method_type _q_method = &Client::receivedMessagetodash; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (Client::*)(const QString & );
+            if (_q_method_type _q_method = &Client::receivedMessagetosign; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
             using _q_method_type = void (Client::*)();
             if (_q_method_type _q_method = &Client::registrationSuccessful; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
-                *result = 1;
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (Client::*)();
+            if (_q_method_type _q_method = &Client::loginSuccessful; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 4;
                 return;
             }
         }
@@ -177,14 +226,14 @@ int Client::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 10;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 10;
     }
     return _id;
 }
@@ -197,8 +246,28 @@ void Client::receivedMessage(const QString & _t1)
 }
 
 // SIGNAL 1
+void Client::receivedMessagetodash(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void Client::receivedMessagetosign(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
 void Client::registrationSuccessful()
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void Client::loginSuccessful()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP

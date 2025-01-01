@@ -12,15 +12,22 @@ public:
     explicit Client(QObject *parent = nullptr);
     void connectToServer(const QString &host, quint16 port);
     void onConnected();
+    void sendForgotPasswordRequest(const QString &email, const QString &username);
+
 
 signals:
     void receivedMessage(const QString &message);
+    void receivedMessagetodash(const QString &message);
+    void receivedMessagetosign(const QString &message);
+
     void registrationSuccessful();
+    void loginSuccessful();
 
 public slots:
     void sendMessage(const QString &message);
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
     void requestUserData(const QString &email);
+    void sendservertologin(const QString &email, const QString &password);
 
 
 private slots:

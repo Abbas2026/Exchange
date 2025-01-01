@@ -33,6 +33,8 @@ private:
     void saveCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
     QJsonObject loadUserData(const QString &email);
     void sendUserData(QTcpSocket *client, const QString &email);
+    bool isValidCredentials(const QString &email, const QString &password);
+    bool isNameRegistered(const QString &name);
 };
 
 #endif // SERVER_H

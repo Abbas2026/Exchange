@@ -25,10 +25,13 @@ signals:
 public slots:
     void displayServerResponse(const QString &response);
     void onRegistrationSuccessful();
+    void loginSuccessful();
 private slots:
     void on_pushButton_clicked();
 
 
+
+    void on_pushButton_gosignin_clicked();
 
 private:
     Ui::form *ui;

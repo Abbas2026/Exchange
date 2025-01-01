@@ -26,11 +26,11 @@
    <string>form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:#212121</string>
+   <string notr="true">background-color:#0A0C0E  ;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">background-color:#212121</string>
+    <string notr="true">background-color:#0A0C0E  ;</string>
    </property>
    <widget class="QLineEdit" name="lineEditName">
     <property name="geometry">
@@ -159,7 +159,7 @@
     <property name="geometry">
      <rect>
       <x>800</x>
-      <y>-10</y>
+      <y>10</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -272,6 +272,9 @@ color: rgb(255, 255, 255);
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -308,9 +311,9 @@ color: rgb(255, 255, 255);
    <widget class="QLabel" name="label_name">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>590</x>
       <y>240</y>
-      <width>61</width>
+      <width>91</width>
       <height>20</height>
      </rect>
     </property>
@@ -320,7 +323,7 @@ color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>name:</string>
+     <string>user name:</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditPassword">

@@ -10,15 +10,21 @@ CONFIG += c++17
 
 SOURCES += \
     client.cpp \
+    dashboard.cpp \
     main.cpp \
-    form.cpp
+    form.cpp \
+    signin.cpp
 
 HEADERS += \
     client.h \
-    form.h
+    dashboard.h \
+    form.h \
+    signin.h
 
 FORMS += \
-    form.ui
+    dashboard.ui \
+    form.ui \
+    signin.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
