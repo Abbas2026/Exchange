@@ -65,6 +65,7 @@ void signin::on_forgot_password_clicked()
     ui->label_email_sign_2->setVisible(true);
     ui->label_name_sign->setVisible(true);
     ui->forgotbtnsend->setVisible(true);
+
 }
 
 
@@ -80,5 +81,7 @@ void signin::on_forgotbtnsend_clicked()
     extern Client client;
     client.sendForgotPasswordRequest(email, username);
 }
-
+void signin:: closewindow(){
+    this->close();
+}
 

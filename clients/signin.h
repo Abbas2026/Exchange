@@ -14,8 +14,10 @@ class signin : public QWidget
 public:
     explicit signin(QWidget *parent = nullptr);
     ~signin();
+
 public slots :
     void Responsetosignin(const QString &response);
+    void closewindow();
 
 private slots:
     void on_pushButton_gosignin_clicked();
@@ -23,13 +25,13 @@ private slots:
     void on_forgot_password_clicked();
     void on_forgotbtnsend_clicked();
 
+
 private:
     Ui::signin *ui;
 signals:
 
     void sendservertologin(const QString &email, const QString &password);
     void backToFormRequested();
-
 };
 
 #endif

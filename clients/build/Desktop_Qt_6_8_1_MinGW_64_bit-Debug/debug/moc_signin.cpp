@@ -45,6 +45,7 @@ static constexpr auto qt_meta_stringdata_ZN6signinE = QtMocHelpers::stringData(
     "backToFormRequested",
     "Responsetosignin",
     "response",
+    "closewindow",
     "on_pushButton_gosignin_clicked",
     "on_login_button_clicked",
     "on_forgot_password_clicked",
@@ -60,7 +61,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN6signinE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,15 +69,16 @@ Q_CONSTINIT static const uint qt_meta_data_ZN6signinE[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   56,    2, 0x06,    1 /* Public */,
-       5,    0,   61,    2, 0x06,    4 /* Public */,
+       1,    2,   62,    2, 0x06,    1 /* Public */,
+       5,    0,   67,    2, 0x06,    4 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       6,    1,   62,    2, 0x0a,    5 /* Public */,
-       8,    0,   65,    2, 0x08,    7 /* Private */,
-       9,    0,   66,    2, 0x08,    8 /* Private */,
-      10,    0,   67,    2, 0x08,    9 /* Private */,
-      11,    0,   68,    2, 0x08,   10 /* Private */,
+       6,    1,   68,    2, 0x0a,    5 /* Public */,
+       8,    0,   71,    2, 0x0a,    7 /* Public */,
+       9,    0,   72,    2, 0x08,    8 /* Private */,
+      10,    0,   73,    2, 0x08,    9 /* Private */,
+      11,    0,   74,    2, 0x08,   10 /* Private */,
+      12,    0,   75,    2, 0x08,   11 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
@@ -84,6 +86,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN6signinE[] = {
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -110,6 +113,8 @@ Q_CONSTINIT const QMetaObject signin::staticMetaObject = { {
         // method 'Responsetosignin'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'closewindow'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_gosignin_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_login_button_clicked'
@@ -130,10 +135,11 @@ void signin::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 0: _t->sendservertologin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 1: _t->backToFormRequested(); break;
         case 2: _t->Responsetosignin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 3: _t->on_pushButton_gosignin_clicked(); break;
-        case 4: _t->on_login_button_clicked(); break;
-        case 5: _t->on_forgot_password_clicked(); break;
-        case 6: _t->on_forgotbtnsend_clicked(); break;
+        case 3: _t->closewindow(); break;
+        case 4: _t->on_pushButton_gosignin_clicked(); break;
+        case 5: _t->on_login_button_clicked(); break;
+        case 6: _t->on_forgot_password_clicked(); break;
+        case 7: _t->on_forgotbtnsend_clicked(); break;
         default: ;
         }
     }
@@ -175,14 +181,14 @@ int signin::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

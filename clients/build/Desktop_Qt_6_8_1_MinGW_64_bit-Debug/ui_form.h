@@ -91,7 +91,7 @@ public:
 ""));
         label_password = new QLabel(centralwidget);
         label_password->setObjectName("label_password");
-        label_password->setGeometry(QRect(590, 180, 91, 20));
+        label_password->setGeometry(QRect(590, 180, 111, 20));
         label_password->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
@@ -129,7 +129,7 @@ public:
 "           border: none;  "));
         label_email = new QLabel(centralwidget);
         label_email->setObjectName("label_email");
-        label_email->setGeometry(QRect(620, 120, 61, 20));
+        label_email->setGeometry(QRect(620, 120, 81, 20));
         label_email->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
@@ -166,7 +166,7 @@ public:
 ""));
         label_name = new QLabel(centralwidget);
         label_name->setObjectName("label_name");
-        label_name->setGeometry(QRect(590, 240, 91, 20));
+        label_name->setGeometry(QRect(590, 240, 111, 20));
         label_name->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
@@ -213,19 +213,19 @@ public:
     void retranslateUi(QMainWindow *form)
     {
         form->setWindowTitle(QCoreApplication::translate("form", "form", nullptr));
-        lineEditName->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
+        lineEditName->setPlaceholderText(QString());
         label_phone->setText(QCoreApplication::translate("form", "phone:", nullptr));
         pushButton->setText(QCoreApplication::translate("form", "register", nullptr));
         label_address->setText(QCoreApplication::translate("form", "address:", nullptr));
-        label_password->setText(QCoreApplication::translate("form", "password :", nullptr));
+        label_password->setText(QCoreApplication::translate("form", "password :  *", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("form", "Sign up", nullptr));
         label_invitationcode->setText(QCoreApplication::translate("form", "invitationcode:", nullptr));
         pushButton_gosignin->setText(QCoreApplication::translate("form", "Sign in", nullptr));
-        label_email->setText(QCoreApplication::translate("form", "email :", nullptr));
+        label_email->setText(QCoreApplication::translate("form", "email :  *", nullptr));
         lineEdit->setText(QCoreApplication::translate("form", "Have an account? Sign in now.", nullptr));
         lineEditPhone->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
         lineEditAddress->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
-        label_name->setText(QCoreApplication::translate("form", "user name:", nullptr));
+        label_name->setText(QCoreApplication::translate("form", "user name:  *", nullptr));
         invitationcode->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
         label_6->setText(QString());
     } // retranslateUi

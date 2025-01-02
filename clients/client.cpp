@@ -4,6 +4,7 @@
 #include "form.h"
 #include "dashboard.h"
 #include <QMessageBox>
+#include "signin.h"
 Client::Client(QObject *parent) : QObject(parent)
 {
     socket = new QTcpSocket(this);
@@ -108,14 +109,15 @@ void Client::readServerResponse()
             emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
         }
 
-        if(responseStr == "Login successful"){
+        else if(responseStr == "Login successful"){
             qDebug() << "Login successful";
+            emit triggerSigninSlot();
             emit loginSuccessful();
-
         }
 
-       else if(responseStr =="Password forgotten confirmed"){
+        else if(responseStr =="Password forgotten confirmed"){
             qDebug() << "فراموشی رمز تایید شد";
+            emit triggerSigninSlot();
             emit loginSuccessful();
         }
         else {

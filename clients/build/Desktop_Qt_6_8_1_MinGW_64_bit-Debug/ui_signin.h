@@ -50,7 +50,7 @@ public:
         label->setScaledContents(true);
         pushButton_gosignin = new QPushButton(signin);
         pushButton_gosignin->setObjectName("pushButton_gosignin");
-        pushButton_gosignin->setGeometry(QRect(860, 170, 61, 31));
+        pushButton_gosignin->setGeometry(QRect(860, 130, 61, 31));
         pushButton_gosignin->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_gosignin->setStyleSheet(QString::fromUtf8("          background-color: #BF360C;\n"
 "            color: white;\n"
@@ -59,7 +59,7 @@ public:
 "           border: none;  "));
         forgot_password = new QPushButton(signin);
         forgot_password->setObjectName("forgot_password");
-        forgot_password->setGeometry(QRect(700, 340, 231, 31));
+        forgot_password->setGeometry(QRect(700, 290, 231, 31));
         forgot_password->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         forgot_password->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
@@ -68,28 +68,28 @@ public:
         label_email_sign_2 = new QLabel(signin);
         label_email_sign_2->setObjectName("label_email_sign_2");
         label_email_sign_2->setEnabled(false);
-        label_email_sign_2->setGeometry(QRect(650, 450, 51, 20));
+        label_email_sign_2->setGeometry(QRect(650, 430, 51, 20));
         label_email_sign_2->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
         label_email_sign = new QLabel(signin);
         label_email_sign->setObjectName("label_email_sign");
         label_email_sign->setEnabled(false);
-        label_email_sign->setGeometry(QRect(650, 240, 51, 20));
+        label_email_sign->setGeometry(QRect(650, 190, 51, 20));
         label_email_sign->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
         lineEdit_2 = new QLineEdit(signin);
         lineEdit_2->setObjectName("lineEdit_2");
         lineEdit_2->setEnabled(false);
-        lineEdit_2->setGeometry(QRect(770, 90, 101, 41));
+        lineEdit_2->setGeometry(QRect(770, 50, 101, 41));
         lineEdit_2->setStyleSheet(QString::fromUtf8("            color: white;\n"
 "            border-radius: 10px;\n"
 "            font-size: 26px;\n"
 "           border: none;  "));
         lineEdit = new QLineEdit(signin);
         lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(540, 170, 311, 28));
+        lineEdit->setGeometry(QRect(540, 130, 311, 28));
         lineEdit->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(255, 255, 255);\n"
 "\n"
@@ -99,7 +99,7 @@ public:
 ""));
         lineEditEmail_sign_2 = new QLineEdit(signin);
         lineEditEmail_sign_2->setObjectName("lineEditEmail_sign_2");
-        lineEditEmail_sign_2->setGeometry(QRect(720, 450, 201, 28));
+        lineEditEmail_sign_2->setGeometry(QRect(720, 430, 201, 28));
         lineEditEmail_sign_2->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "  \n"
@@ -111,7 +111,7 @@ public:
 ""));
         lineEditName_sign = new QLineEdit(signin);
         lineEditName_sign->setObjectName("lineEditName_sign");
-        lineEditName_sign->setGeometry(QRect(720, 490, 201, 28));
+        lineEditName_sign->setGeometry(QRect(720, 480, 201, 28));
         lineEditName_sign->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "background-color: rgb(85, 255, 255);\n"
@@ -122,7 +122,7 @@ public:
         login_button = new QPushButton(signin);
         login_button->setObjectName("login_button");
         login_button->setEnabled(true);
-        login_button->setGeometry(QRect(740, 390, 161, 41));
+        login_button->setGeometry(QRect(740, 330, 161, 41));
         login_button->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         login_button->setStyleSheet(QString::fromUtf8("          background-color: #27AE60 ;\n"
 "            color: white;\n"
@@ -131,7 +131,7 @@ public:
 "           border: none;  "));
         lineEditPassword_sign = new QLineEdit(signin);
         lineEditPassword_sign->setObjectName("lineEditPassword_sign");
-        lineEditPassword_sign->setGeometry(QRect(720, 300, 201, 28));
+        lineEditPassword_sign->setGeometry(QRect(720, 250, 201, 28));
         lineEditPassword_sign->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #16A085   ; \n"
@@ -152,7 +152,7 @@ public:
 "           border: none;  "));
         lineEditEmail_sign = new QLineEdit(signin);
         lineEditEmail_sign->setObjectName("lineEditEmail_sign");
-        lineEditEmail_sign->setGeometry(QRect(720, 240, 201, 28));
+        lineEditEmail_sign->setGeometry(QRect(720, 190, 201, 28));
         lineEditEmail_sign->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #16A085   ; \n"
@@ -163,14 +163,14 @@ public:
         label_password_sign = new QLabel(signin);
         label_password_sign->setObjectName("label_password_sign");
         label_password_sign->setEnabled(false);
-        label_password_sign->setGeometry(QRect(620, 300, 81, 20));
+        label_password_sign->setGeometry(QRect(620, 250, 81, 20));
         label_password_sign->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));
         label_name_sign = new QLabel(signin);
         label_name_sign->setObjectName("label_name_sign");
         label_name_sign->setEnabled(false);
-        label_name_sign->setGeometry(QRect(610, 490, 91, 20));
+        label_name_sign->setGeometry(QRect(610, 480, 91, 20));
         label_name_sign->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
 ""));

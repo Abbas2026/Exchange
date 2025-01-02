@@ -50,7 +50,7 @@
 </string>
     </property>
     <property name="placeholderText">
-     <string>اختیاری</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_phone">
@@ -120,7 +120,7 @@
      <rect>
       <x>590</x>
       <y>180</y>
-      <width>91</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -130,7 +130,7 @@
 </string>
     </property>
     <property name="text">
-     <string>password :</string>
+     <string>password :  *</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditEmail">
@@ -217,7 +217,7 @@
      <rect>
       <x>620</x>
       <y>120</y>
-      <width>61</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -227,7 +227,7 @@
 </string>
     </property>
     <property name="text">
-     <string>email :</string>
+     <string>email :  *</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
@@ -313,7 +313,7 @@ color: rgb(255, 255, 255);
      <rect>
       <x>590</x>
       <y>240</y>
-      <width>91</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -323,7 +323,7 @@ color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>user name:</string>
+     <string>user name:  *</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditPassword">

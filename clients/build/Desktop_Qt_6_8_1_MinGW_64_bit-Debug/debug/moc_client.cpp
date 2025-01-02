@@ -45,6 +45,7 @@ static constexpr auto qt_meta_stringdata_ZN6ClientE = QtMocHelpers::stringData(
     "receivedMessagetosign",
     "registrationSuccessful",
     "loginSuccessful",
+    "triggerSigninSlot",
     "sendMessage",
     "sendCredentials",
     "email",
@@ -66,26 +67,27 @@ Q_CONSTINIT static const uint qt_meta_data_ZN6ClientE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       5,       // signalCount
+       6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   74,    2, 0x06,    1 /* Public */,
-       4,    1,   77,    2, 0x06,    3 /* Public */,
-       5,    1,   80,    2, 0x06,    5 /* Public */,
-       6,    0,   83,    2, 0x06,    7 /* Public */,
-       7,    0,   84,    2, 0x06,    8 /* Public */,
+       1,    1,   80,    2, 0x06,    1 /* Public */,
+       4,    1,   83,    2, 0x06,    3 /* Public */,
+       5,    1,   86,    2, 0x06,    5 /* Public */,
+       6,    0,   89,    2, 0x06,    7 /* Public */,
+       7,    0,   90,    2, 0x06,    8 /* Public */,
+       8,    0,   91,    2, 0x06,    9 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    1,   85,    2, 0x0a,    9 /* Public */,
-       9,    5,   88,    2, 0x0a,   11 /* Public */,
-      15,    1,   99,    2, 0x0a,   17 /* Public */,
-      16,    2,  102,    2, 0x0a,   19 /* Public */,
-      17,    0,  107,    2, 0x08,   22 /* Private */,
+       9,    1,   92,    2, 0x0a,   10 /* Public */,
+      10,    5,   95,    2, 0x0a,   12 /* Public */,
+      16,    1,  106,    2, 0x0a,   18 /* Public */,
+      17,    2,  109,    2, 0x0a,   20 /* Public */,
+      18,    0,  114,    2, 0x08,   23 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -93,12 +95,13 @@ Q_CONSTINIT static const uint qt_meta_data_ZN6ClientE[] = {
     QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   10,   11,   12,   13,   14,
-    QMetaType::Void, QMetaType::QString,   10,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   10,   11,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   11,   12,   13,   14,   15,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   11,   12,
     QMetaType::Void,
 
        0        // eod
@@ -125,6 +128,8 @@ Q_CONSTINIT const QMetaObject Client::staticMetaObject = { {
         // method 'registrationSuccessful'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'loginSuccessful'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'triggerSigninSlot'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'sendMessage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -159,11 +164,12 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 2: _t->receivedMessagetosign((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->registrationSuccessful(); break;
         case 4: _t->loginSuccessful(); break;
-        case 5: _t->sendMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->sendCredentials((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5]))); break;
-        case 7: _t->requestUserData((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 8: _t->sendservertologin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 9: _t->readServerResponse(); break;
+        case 5: _t->triggerSigninSlot(); break;
+        case 6: _t->sendMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->sendCredentials((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5]))); break;
+        case 8: _t->requestUserData((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->sendservertologin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 10: _t->readServerResponse(); break;
         default: ;
         }
     }
@@ -204,6 +210,13 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
                 return;
             }
         }
+        {
+            using _q_method_type = void (Client::*)();
+            if (_q_method_type _q_method = &Client::triggerSigninSlot; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 5;
+                return;
+            }
+        }
     }
 }
 
@@ -226,14 +239,14 @@ int Client::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }
@@ -269,5 +282,11 @@ void Client::registrationSuccessful()
 void Client::loginSuccessful()
 {
     QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
+}
+
+// SIGNAL 5
+void Client::triggerSigninSlot()
+{
+    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
 }
 QT_WARNING_POP

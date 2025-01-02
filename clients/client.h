@@ -22,6 +22,7 @@ signals:
 
     void registrationSuccessful();
     void loginSuccessful();
+    void triggerSigninSlot();
 
 public slots:
     void sendMessage(const QString &message);

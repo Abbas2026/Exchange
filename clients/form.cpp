@@ -100,7 +100,6 @@ void form::onRegistrationSuccessful() {
 }
 void form::loginSuccessful() {
     this->hide();
-
     dashboard *da = new dashboard();
     da->setEmail(form::globalEmail);
     da->setAttribute(Qt::WA_DeleteOnClose);
@@ -129,6 +128,7 @@ void form::on_pushButton_gosignin_clicked()
     });
     extern Client client;
     connect(&client, &Client::receivedMessagetosign, sign, &signin::Responsetosignin);
+    connect(&client, &Client::triggerSigninSlot, sign, &signin::closewindow);
 
     sign->show();
 }
