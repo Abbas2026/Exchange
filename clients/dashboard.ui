@@ -6,51 +6,353 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>1278</width>
+    <height>904</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1278</width>
+    <height>904</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1278</width>
+    <height>904</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="backButton">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#d9d8d4  ;</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>516</y>
-     <width>161</width>
-     <height>41</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1261</width>
+     <height>904</height>
     </rect>
    </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">          background-color: #BF360C;
+   <widget class="QPushButton" name="currentprice_btn">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>710</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string>Current price</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Mywallets_btn">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>310</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string>My wallets</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Dashboard_btn">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>230</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+font: 28pt &quot;Bangers&quot;;
+color: #c97940;
+
+</string>
+    </property>
+    <property name="text">
+     <string>Dashboard</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="market_btn">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>470</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string>market</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1021</width>
+      <height>921</height>
+     </rect>
+    </property>
+    <property name="accessibleDescription">
+     <string/>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>E:/Downloads/طرح لوگو برای صرافی به اسم heliacal.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="indent">
+     <number>-1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>140</y>
+      <width>251</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">           border: none;  
+color: #344b90;
+background-color: #d9d8d4;
+font: 22pt &quot;Rubik Wet Paint&quot;;
+letter-spacing: -2px;
+word-spacing: 3px;
+</string>
+    </property>
+    <property name="text">
+     <string>helical exchange</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>0</y>
+      <width>251</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>E:/Downloads/logo for a currency exchange named heliacal (1).png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="indent">
+     <number>-6</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="easyexchange_btn">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>550</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: -1px;</string>
+    </property>
+    <property name="text">
+     <string>Easy exchange</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>790</y>
+      <width>104</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Transmission_btn">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>630</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string>Transmission</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Profile_btn">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>390</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string>Profile</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Authentication_btn">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>790</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: #4fee93;
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: -1px;</string>
+    </property>
+    <property name="text">
+     <string>Authentication</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>810</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">          background-color: #BF360C;
             color: white;
             border-radius: 10px;
             font-size: 16px;
            border: none;  </string>
-   </property>
-   <property name="text">
-    <string>log out</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>510</y>
-     <width>104</width>
-     <height>51</height>
-    </rect>
-   </property>
+    </property>
+    <property name="text">
+     <string>log out</string>
+    </property>
+   </widget>
+   <zorder>textEdit</zorder>
+   <zorder>currentprice_btn</zorder>
+   <zorder>Mywallets_btn</zorder>
+   <zorder>Dashboard_btn</zorder>
+   <zorder>market_btn</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>easyexchange_btn</zorder>
+   <zorder>label</zorder>
+   <zorder>Transmission_btn</zorder>
+   <zorder>Profile_btn</zorder>
+   <zorder>Authentication_btn</zorder>
+   <zorder>backButton</zorder>
   </widget>
  </widget>
  <resources/>
