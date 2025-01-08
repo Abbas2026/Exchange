@@ -1,0 +1,11 @@
+release/client.o
+release/dashboard.o
+release/main.o
+release/form.o
+release/mywallet.o
+release/signin.o
+release/moc_client.o
+release/moc_dashboard.o
+release/moc_form.o
+release/moc_mywallet.o
+release/moc_signin.o

@@ -13,17 +13,20 @@ SOURCES += \
     dashboard.cpp \
     main.cpp \
     form.cpp \
+    mywallet.cpp \
     signin.cpp
 
 HEADERS += \
     client.h \
     dashboard.h \
     form.h \
+    mywallet.h \
     signin.h
 
 FORMS += \
     dashboard.ui \
     form.ui \
+    mywallet.ui \
     signin.ui
 
 # Default rules for deployment.

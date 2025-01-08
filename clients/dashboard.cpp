@@ -1,7 +1,7 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include <QMessageBox>
-
+#include "mywallet.h"
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
@@ -53,25 +53,18 @@ void dashboard::applyStyles()
                                         "QPushButton:hover { color: #c97940  }");
     ui->Authentication_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
                                           "QPushButton:hover { color: #c97940  }");
+    ui->Settings_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
+                                          "QPushButton:hover { color: #c97940  }");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 void dashboard::on_Mywallets_btn_clicked()
 {
+    this->hide();
 
+    mywallet *wallets = new mywallet();
+    wallets->setAttribute(Qt::WA_DeleteOnClose);
+     wallets->show();
 }
 
 
@@ -106,6 +99,12 @@ void dashboard::on_currentprice_btn_clicked()
 
 
 void dashboard::on_Authentication_btn_clicked()
+{
+
+}
+
+
+void dashboard::on_Settings_btn_clicked()
 {
 
 }

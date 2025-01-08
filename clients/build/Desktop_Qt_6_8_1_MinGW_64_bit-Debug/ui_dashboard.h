@@ -35,6 +35,7 @@ public:
     QPushButton *Profile_btn;
     QPushButton *Authentication_btn;
     QPushButton *backButton;
+    QPushButton *Settings_btn;
 
     void setupUi(QWidget *dashboard)
     {
@@ -46,10 +47,13 @@ public:
         dashboard->setStyleSheet(QString::fromUtf8("background-color:#d9d8d4  ;"));
         widget = new QWidget(dashboard);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 0, 1261, 904));
+        widget->setGeometry(QRect(0, 0, 1278, 904));
+        widget->setMinimumSize(QSize(1278, 904));
+        widget->setMaximumSize(QSize(1278, 904));
+        widget->setStyleSheet(QString::fromUtf8("background-color:#d9d8d4  ;"));
         currentprice_btn = new QPushButton(widget);
         currentprice_btn->setObjectName("currentprice_btn");
-        currentprice_btn->setGeometry(QRect(1030, 710, 221, 41));
+        currentprice_btn->setGeometry(QRect(1030, 690, 221, 41));
         currentprice_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         currentprice_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -57,7 +61,7 @@ public:
 "letter-spacing: 1px;"));
         Mywallets_btn = new QPushButton(widget);
         Mywallets_btn->setObjectName("Mywallets_btn");
-        Mywallets_btn->setGeometry(QRect(1050, 310, 171, 41));
+        Mywallets_btn->setGeometry(QRect(1050, 290, 171, 41));
         Mywallets_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Mywallets_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -65,7 +69,7 @@ public:
 "letter-spacing: 1px;"));
         Dashboard_btn = new QPushButton(widget);
         Dashboard_btn->setObjectName("Dashboard_btn");
-        Dashboard_btn->setGeometry(QRect(1040, 230, 191, 41));
+        Dashboard_btn->setGeometry(QRect(1040, 210, 191, 41));
         Dashboard_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Dashboard_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "font: 28pt \"Bangers\";\n"
@@ -74,7 +78,7 @@ public:
 ""));
         market_btn = new QPushButton(widget);
         market_btn->setObjectName("market_btn");
-        market_btn->setGeometry(QRect(1050, 470, 171, 41));
+        market_btn->setGeometry(QRect(1050, 450, 171, 41));
         market_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         market_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -92,7 +96,7 @@ public:
         label_2 = new QLabel(widget);
         label_2->setObjectName("label_2");
         label_2->setEnabled(false);
-        label_2->setGeometry(QRect(1020, 140, 251, 71));
+        label_2->setGeometry(QRect(1020, 130, 251, 71));
         label_2->setStyleSheet(QString::fromUtf8("           border: none;  \n"
 "color: #344b90;\n"
 "background-color: #d9d8d4;\n"
@@ -110,7 +114,7 @@ public:
         label_3->setIndent(-6);
         easyexchange_btn = new QPushButton(widget);
         easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(1040, 550, 211, 41));
+        easyexchange_btn->setGeometry(QRect(1040, 530, 211, 41));
         easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -122,7 +126,7 @@ public:
         textEdit->setGeometry(QRect(60, 790, 104, 51));
         Transmission_btn = new QPushButton(widget);
         Transmission_btn->setObjectName("Transmission_btn");
-        Transmission_btn->setGeometry(QRect(1030, 630, 221, 41));
+        Transmission_btn->setGeometry(QRect(1030, 610, 221, 41));
         Transmission_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Transmission_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -130,7 +134,7 @@ public:
 "letter-spacing: 1px;"));
         Profile_btn = new QPushButton(widget);
         Profile_btn->setObjectName("Profile_btn");
-        Profile_btn->setGeometry(QRect(1030, 390, 211, 41));
+        Profile_btn->setGeometry(QRect(1030, 370, 211, 41));
         Profile_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Profile_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -138,7 +142,7 @@ public:
 "letter-spacing: 1px;"));
         Authentication_btn = new QPushButton(widget);
         Authentication_btn->setObjectName("Authentication_btn");
-        Authentication_btn->setGeometry(QRect(1030, 790, 231, 41));
+        Authentication_btn->setGeometry(QRect(1030, 770, 231, 41));
         Authentication_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Authentication_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: #4fee93;\n"
@@ -147,13 +151,21 @@ public:
         backButton = new QPushButton(widget);
         backButton->setObjectName("backButton");
         backButton->setEnabled(true);
-        backButton->setGeometry(QRect(30, 810, 161, 41));
+        backButton->setGeometry(QRect(30, 820, 161, 41));
         backButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         backButton->setStyleSheet(QString::fromUtf8("          background-color: #BF360C;\n"
 "            color: white;\n"
 "            border-radius: 10px;\n"
 "            font-size: 16px;\n"
 "           border: none;  "));
+        Settings_btn = new QPushButton(widget);
+        Settings_btn->setObjectName("Settings_btn");
+        Settings_btn->setGeometry(QRect(1060, 850, 171, 41));
+        Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: 1px;"));
         textEdit->raise();
         currentprice_btn->raise();
         Mywallets_btn->raise();
@@ -167,6 +179,7 @@ public:
         Profile_btn->raise();
         Authentication_btn->raise();
         backButton->raise();
+        Settings_btn->raise();
 
         retranslateUi(dashboard);
 
@@ -184,13 +197,14 @@ public:
         label->setAccessibleDescription(QString());
 #endif // QT_CONFIG(accessibility)
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("dashboard", "helical exchange", nullptr));
+        label_2->setText(QCoreApplication::translate("dashboard", "heliacal exchange", nullptr));
         label_3->setText(QString());
         easyexchange_btn->setText(QCoreApplication::translate("dashboard", "Easy exchange", nullptr));
         Transmission_btn->setText(QCoreApplication::translate("dashboard", "Transmission", nullptr));
         Profile_btn->setText(QCoreApplication::translate("dashboard", "Profile", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("dashboard", "Authentication", nullptr));
         backButton->setText(QCoreApplication::translate("dashboard", "log out", nullptr));
+        Settings_btn->setText(QCoreApplication::translate("dashboard", "Settings", nullptr));
     } // retranslateUi
 
 };
