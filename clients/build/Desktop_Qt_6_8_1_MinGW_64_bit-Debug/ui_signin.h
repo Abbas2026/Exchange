@@ -139,6 +139,7 @@ public:
 "    font-size: 12px;\n"
 "\n"
 ""));
+        lineEditPassword_sign->setEchoMode(QLineEdit::EchoMode::Password);
         forgotbtnsend = new QPushButton(signin);
         forgotbtnsend->setObjectName("forgotbtnsend");
         forgotbtnsend->setEnabled(true);

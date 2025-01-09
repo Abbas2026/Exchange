@@ -250,6 +250,9 @@ color: rgb(255, 255, 255);
 
 </string>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::Password</enum>
+   </property>
   </widget>
   <widget class="QPushButton" name="forgotbtnsend">
    <property name="enabled">

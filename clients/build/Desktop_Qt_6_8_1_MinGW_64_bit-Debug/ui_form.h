@@ -179,6 +179,7 @@ public:
 "    color: #333333; \n"
 "    font-size: 12px;\n"
 ""));
+        lineEditPassword->setEchoMode(QLineEdit::EchoMode::Password);
         invitationcode = new QLineEdit(centralwidget);
         invitationcode->setObjectName("invitationcode");
         invitationcode->setGeometry(QRect(750, 420, 201, 31));
@@ -199,7 +200,7 @@ public:
         form->setCentralWidget(centralwidget);
         menubar = new QMenuBar(form);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1000, 25));
+        menubar->setGeometry(QRect(0, 0, 1000, 21));
         form->setMenuBar(menubar);
         statusbar = new QStatusBar(form);
         statusbar->setObjectName("statusbar");

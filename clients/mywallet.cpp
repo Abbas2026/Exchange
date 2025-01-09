@@ -2,12 +2,15 @@
 #include "ui_mywallet.h"
 #include <QPushButton>
 #include <QTableWidgetItem>
+#include "dashboard.h"
+#include <QMessageBox>
+
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
 {
     ui->setupUi(this);
-     applyStyles();
+    applyStyles();
     populateTable();
 }
 
@@ -35,12 +38,9 @@ void mywallet::applyStyles()
                                           "QPushButton:hover { color: #c97940  }");
     ui->Settings_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
                                     "QPushButton:hover { color: #c97940  }");
-
-
-
      ui->tableWidget->setStyleSheet(
         "QTableWidget {"
-        "    background-color: #2c3e50;"
+        "    background-color: #1d2633;"
         "    color: white;"
         "    font-family: Arial, sans-serif;"
         "    font-size: 14px;"
@@ -56,20 +56,19 @@ void mywallet::applyStyles()
         "    border: none;"
         "}"
         "QTableWidget::item {"
-        "    background-color: #34495e;"
+        "    background-color: #2980b9;"
         "    border: none;"
         "    padding: 10px;"
         "    border-radius: 5px;"
         "    font-size: 14px;"
         "}"
         "QTableWidget::item:selected {"
-        "    background-color: #2980b9;"
         "    color: white;"
         "    border: none;"
         "}"
         "QPushButton {"
-        "    background-color: #3498db;"
-        "    color: white;"
+        "    background-color: #85fe87;"
+        "    color: black;"
         "    border: none;"
         "    padding: 8px 6px;"
         "    border-radius: 5px;"
@@ -77,48 +76,113 @@ void mywallet::applyStyles()
         "    margin: 0px 56px;"
         "}"
          "QPushButton:hover {"
-         "    background-color: #2980b9;"
+         "    background-color: #70e16d;"
          "}"
          );
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // تمام عرض جدول را پر کند
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(50); // ارتفاع هر ردیف
 }
-
-
 void mywallet::populateTable()
 {
-
-    ui->tableWidget->setRowCount(3);
-
+    ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(4);
     ui->tableWidget->verticalHeader()->hide();
-    QStringList headers = {"Name","	Address", "Total Balance", "View details"};
+    QStringList headers = {"Name","	Address", "Total Balance $", "View details"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
-    for (int row = 0; row < 3; ++row) {
-        QTableWidgetItem *nameItem = new QTableWidgetItem(QString("ali %1").arg(row + 1));
-        ui->tableWidget->setItem(row, 0, nameItem);
-        nameItem->setTextAlignment(Qt::AlignCenter);
-        nameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-        QTableWidgetItem *addresItem = new QTableWidgetItem(QString("fsfs %1").arg(row + 1));
-        ui->tableWidget->setItem(row, 1, addresItem);
-        addresItem->setTextAlignment(Qt::AlignCenter);
-        addresItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-        QTableWidgetItem *numberItem = new QTableWidgetItem(QString::number((row + 1) * 10));
-        numberItem->setTextAlignment(Qt::AlignCenter);
-        ui->tableWidget->setItem(row, 2, numberItem);
-        numberItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    ui->createwallet_widget->hide();
+    ui->textEdit_2->setText("Write down these 6 words in the order given below and store them in a secret,safe place.");
+    ui->textEdit_14->setText("Your recovery pharse");
+    ui->createwallet_widget_2->hide();
+    ui->textEdit_30->setText("Name your wallet");
+    ui->textEdit_24->setText("Name your wallet to easily identify it while using the wallets.");
 
 
-        QPushButton *button = new QPushButton("View");
-        connect(button, &QPushButton::clicked, [=]() {
-            qDebug() << "Button clicked for row" << row;
-        });
-        ui->tableWidget->setCellWidget(row, 3, button);
-    }
 
+
+}
+void mywallet::addtotable(const QString &name1, const QString &address1, double balance1) {
+    int rowCount = ui->tableWidget->rowCount();
+    ui->tableWidget->insertRow(rowCount);
+    QString name = name1;
+    QString address = address1;
+    double balance = balance1;
+
+    QTableWidgetItem *nameItem = new QTableWidgetItem(name);
+    nameItem->setTextAlignment(Qt::AlignCenter);
+    nameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    ui->tableWidget->setItem(rowCount, 0, nameItem);
+
+    QTableWidgetItem *addresItem = new QTableWidgetItem(address);
+    addresItem->setTextAlignment(Qt::AlignCenter);
+    addresItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    ui->tableWidget->setItem(rowCount, 1, addresItem);
+
+    QTableWidgetItem *numberItem = new QTableWidgetItem(QString::number(balance));
+    numberItem->setTextAlignment(Qt::AlignCenter);
+    numberItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    ui->tableWidget->setItem(rowCount, 2, numberItem );
+
+
+    QPushButton *button = new QPushButton("View");
+    connect(button, &QPushButton::clicked, [=]() {
+        QString currentName = ui->tableWidget->item(rowCount, 0)->text();
+        QString currentAddress = ui->tableWidget->item(rowCount, 1)->text();
+        double currentBalance = ui->tableWidget->item(rowCount, 2)->text().toDouble();
+
+        processRowData(rowCount,currentName, currentAddress, currentBalance);
+    });
+    ui->tableWidget->setCellWidget(rowCount, 3, button);
+}
+void mywallet::on_creatwallet_btn_clicked() {
+
+
+    ui->createwallet_widget->show();
+}
+void mywallet::on_Dashboard_btn_clicked()
+{
+    this->hide();
+    dashboard *da = new dashboard();
+    da->show();
+}
+
+
+void mywallet::processRowData(int row,const QString &name, const QString &address, double balance) {
+
+    QString savedName = name;
+    QString savedAddress = address;
+    //double savedBalance = balance;
+
+    ui->tableWidget->item(row, 0)->setText("0");
+    ui->tableWidget->item(row, 1)->setText("0");
+    ui->tableWidget->item(row, 2)->setText("0");
+}
+
+
+
+
+
+
+void mywallet::on_continue_btn_clicked()
+{
+    ui->createwallet_widget_2->show();
+
+}
+
+
+void mywallet::on_save_wallet_btn_clicked()
+{
+    QString name=  ui->namewalllet_lineedit->text();
+
+    if(name.isEmpty()){ QMessageBox::warning(this, "warning", "Choose a name for the wallet.");return;}
+
+    ui->createwallet_widget_2->close();
+    ui->createwallet_widget->close();
+    ui->namewalllet_lineedit->clear();
+
+    QString address="jkkjg";
+    double balance=0;
+    addtotable(name, address, balance);
 
 }
 
