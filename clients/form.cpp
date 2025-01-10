@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include "signin.h"
 #include "dashboard.h"
-QString form::globalEmail = "";
+QString form::globalEmail = "jkdsjhdsj@gmail.com";
 form::form(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::form)

@@ -1,0 +1,33 @@
+{
+    "wallets": [
+        {
+            "email": "jkdsjhdsj@gmail.com",
+            "words": [
+                {
+                    "index": 1,
+                    "word": "umbrella"
+                },
+                {
+                    "index": 2,
+                    "word": "xylophone"
+                },
+                {
+                    "index": 3,
+                    "word": "horizon"
+                },
+                {
+                    "index": 4,
+                    "word": "sky"
+                },
+                {
+                    "index": 5,
+                    "word": "stone"
+                },
+                {
+                    "index": 6,
+                    "word": "star"
+                }
+            ]
+        }
+    ]
+}

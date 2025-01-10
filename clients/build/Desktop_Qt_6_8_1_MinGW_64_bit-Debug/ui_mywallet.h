@@ -43,17 +43,17 @@ public:
     QPushButton *continue_btn;
     QLabel *label_1;
     QLabel *label_4;
-    QTextEdit *textEdit;
+    QTextEdit *textEdit_rand1;
     QLabel *label_5;
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_8;
     QTextEdit *textEdit_2;
-    QTextEdit *textEdit_3;
-    QTextEdit *textEdit_4;
-    QTextEdit *textEdit_5;
-    QTextEdit *textEdit_6;
-    QTextEdit *textEdit_13;
+    QTextEdit *textEdit_rand3;
+    QTextEdit *textEdit_rand4;
+    QTextEdit *textEdit_rand5;
+    QTextEdit *textEdit_rand6;
+    QTextEdit *textEdit_rand2;
     QTextEdit *textEdit_14;
     QWidget *createwallet_widget_2;
     QWidget *widget_3;
@@ -219,16 +219,16 @@ public:
         label_4->setStyleSheet(QString::fromUtf8("color: #6f7988;\n"
 ""));
         label_4->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        textEdit = new QTextEdit(widget_2);
-        textEdit->setObjectName("textEdit");
-        textEdit->setEnabled(false);
-        textEdit->setGeometry(QRect(100, 180, 141, 40));
-        textEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        textEdit_rand1 = new QTextEdit(widget_2);
+        textEdit_rand1->setObjectName("textEdit_rand1");
+        textEdit_rand1->setEnabled(false);
+        textEdit_rand1->setGeometry(QRect(100, 180, 141, 40));
+        textEdit_rand1->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "font-size: 22px;\n"
 "padding-left:10px;\n"
 ""));
-        textEdit->setReadOnly(true);
+        textEdit_rand1->setReadOnly(true);
         label_5 = new QLabel(widget_2);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(60, 270, 41, 41));
@@ -264,56 +264,56 @@ public:
         textEdit_2->setLineWrapColumnOrWidth(10);
         textEdit_2->setReadOnly(true);
         textEdit_2->setOverwriteMode(true);
-        textEdit_3 = new QTextEdit(widget_2);
-        textEdit_3->setObjectName("textEdit_3");
-        textEdit_3->setEnabled(false);
-        textEdit_3->setGeometry(QRect(100, 270, 141, 40));
-        textEdit_3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        textEdit_rand3 = new QTextEdit(widget_2);
+        textEdit_rand3->setObjectName("textEdit_rand3");
+        textEdit_rand3->setEnabled(false);
+        textEdit_rand3->setGeometry(QRect(100, 270, 141, 40));
+        textEdit_rand3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "font-size: 22px;\n"
 "padding-left:10px;\n"
 ""));
-        textEdit_3->setReadOnly(true);
-        textEdit_4 = new QTextEdit(widget_2);
-        textEdit_4->setObjectName("textEdit_4");
-        textEdit_4->setEnabled(false);
-        textEdit_4->setGeometry(QRect(390, 270, 141, 40));
-        textEdit_4->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        textEdit_rand3->setReadOnly(true);
+        textEdit_rand4 = new QTextEdit(widget_2);
+        textEdit_rand4->setObjectName("textEdit_rand4");
+        textEdit_rand4->setEnabled(false);
+        textEdit_rand4->setGeometry(QRect(390, 270, 141, 40));
+        textEdit_rand4->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "font-size: 22px;\n"
 "padding-left:10px;\n"
 ""));
-        textEdit_4->setReadOnly(true);
-        textEdit_5 = new QTextEdit(widget_2);
-        textEdit_5->setObjectName("textEdit_5");
-        textEdit_5->setEnabled(false);
-        textEdit_5->setGeometry(QRect(100, 360, 141, 40));
-        textEdit_5->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        textEdit_rand4->setReadOnly(true);
+        textEdit_rand5 = new QTextEdit(widget_2);
+        textEdit_rand5->setObjectName("textEdit_rand5");
+        textEdit_rand5->setEnabled(false);
+        textEdit_rand5->setGeometry(QRect(100, 360, 141, 40));
+        textEdit_rand5->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "font-size: 22px;\n"
 "padding-left:10px;\n"
 ""));
-        textEdit_5->setReadOnly(true);
-        textEdit_6 = new QTextEdit(widget_2);
-        textEdit_6->setObjectName("textEdit_6");
-        textEdit_6->setEnabled(false);
-        textEdit_6->setGeometry(QRect(390, 360, 141, 40));
-        textEdit_6->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        textEdit_rand5->setReadOnly(true);
+        textEdit_rand6 = new QTextEdit(widget_2);
+        textEdit_rand6->setObjectName("textEdit_rand6");
+        textEdit_rand6->setEnabled(false);
+        textEdit_rand6->setGeometry(QRect(390, 360, 141, 40));
+        textEdit_rand6->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "font-size: 22px;\n"
 "padding-left:10px;\n"
 ""));
-        textEdit_6->setReadOnly(true);
-        textEdit_13 = new QTextEdit(widget_2);
-        textEdit_13->setObjectName("textEdit_13");
-        textEdit_13->setEnabled(false);
-        textEdit_13->setGeometry(QRect(390, 180, 141, 40));
-        textEdit_13->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        textEdit_rand6->setReadOnly(true);
+        textEdit_rand2 = new QTextEdit(widget_2);
+        textEdit_rand2->setObjectName("textEdit_rand2");
+        textEdit_rand2->setEnabled(false);
+        textEdit_rand2->setGeometry(QRect(390, 180, 141, 40));
+        textEdit_rand2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "font-size: 22px;\n"
 "padding-left:10px;\n"
 ""));
-        textEdit_13->setReadOnly(true);
+        textEdit_rand2->setReadOnly(true);
         textEdit_14 = new QTextEdit(widget_2);
         textEdit_14->setObjectName("textEdit_14");
         textEdit_14->setEnabled(false);
@@ -389,6 +389,11 @@ public:
         namewalllet_lineedit->raise();
         label_20->raise();
         label_21->raise();
+        widget->raise();
+        creatwallet_btn->raise();
+        tableWidget->raise();
+        createwallet_widget_2->raise();
+        createwallet_widget->raise();
 
         retranslateUi(mywallet);
 

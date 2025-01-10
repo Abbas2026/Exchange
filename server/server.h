@@ -35,6 +35,10 @@ private:
     void sendUserData(QTcpSocket *client, const QString &email);
     bool isValidCredentials(const QString &email, const QString &password);
     bool isNameRegistered(const QString &name);
+    void saveWalletData(const QString &email, const QJsonArray &words);
+    void handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket);
+
+
 };
 
 #endif // SERVER_H

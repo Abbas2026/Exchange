@@ -435,7 +435,7 @@ background-color: rgb(16, 16, 16);</string>
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="textEdit_rand1">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -571,7 +571,7 @@ padding-left:10px;
       <string/>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_3">
+    <widget class="QTextEdit" name="textEdit_rand3">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -594,7 +594,7 @@ padding-left:10px;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_4">
+    <widget class="QTextEdit" name="textEdit_rand4">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -617,7 +617,7 @@ padding-left:10px;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_5">
+    <widget class="QTextEdit" name="textEdit_rand5">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -640,7 +640,7 @@ padding-left:10px;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_6">
+    <widget class="QTextEdit" name="textEdit_rand6">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -663,7 +663,7 @@ padding-left:10px;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_13">
+    <widget class="QTextEdit" name="textEdit_rand2">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -902,6 +902,11 @@ background-color: rgb(29, 38, 51);</string>
     <zorder>label_21</zorder>
    </widget>
   </widget>
+  <zorder>widget</zorder>
+  <zorder>creatwallet_btn</zorder>
+  <zorder>tableWidget</zorder>
+  <zorder>createwallet_widget_2</zorder>
+  <zorder>createwallet_widget</zorder>
  </widget>
  <resources/>
  <connections/>

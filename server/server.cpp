@@ -61,6 +61,7 @@ void Server::readClientMessage()
     qDebug() << "Received name:" << name;
     qDebug() << "Received address:" << address;
     qDebug() << "Received phone:" << phone;
+
     if (json["type"].toString() == "forgot_password") {
         QString email = json["email"].toString();
         QString username = json["username"].toString();
@@ -73,7 +74,27 @@ void Server::readClientMessage()
         }
         return;
     }
+    else if (json["type"] == "createwallet") {
+        qDebug()<< json["type"];
 
+        QString email = json["email"].toString();
+        QJsonArray words = json["words"].toArray();
+
+        if (email.isEmpty() || words.isEmpty()) {
+            senderClient->write("Missing data");
+            return;
+        }
+
+        // ذخیره اطلاعات در فایل
+        saveWalletData(email, words);
+
+        senderClient->write("Wallet created successfully");
+        return;
+    }
+    else if (json["type"]  == "RecoveryRequest") {
+        handleRecoveryRequest(json, senderClient);
+        return;
+    }
 
     if (!email.isEmpty() && !password.isEmpty()) {
         if (name.isEmpty() && address.isEmpty() && phone.isEmpty()) {
@@ -324,4 +345,124 @@ bool Server::isNameRegistered(const QString &name) {
         }
     }
     return false;
+}
+void Server::saveWalletData(const QString &email, const QJsonArray &words) {
+    QFile file("wallets.json");
+
+    QJsonDocument doc;
+    QJsonObject rootObject;
+
+    if (file.exists()) {
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QByteArray fileData = file.readAll();
+            doc = QJsonDocument::fromJson(fileData);
+            rootObject = doc.object();
+            file.close();
+        }
+    }
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << "Unable to open wallets file for writing.";
+        return;
+    }
+
+    QJsonArray walletsArray = rootObject["wallets"].toArray();
+
+    QJsonObject newWallet;
+    newWallet["email"] = email;
+    newWallet["words"] = words;
+    walletsArray.append(newWallet);
+
+    rootObject["wallets"] = walletsArray;
+    doc.setObject(rootObject);
+
+    file.resize(0);
+    QTextStream out(&file);
+    out << doc.toJson(QJsonDocument::Indented);
+    file.close();
+
+    qDebug() << "Wallet data saved.";
+}
+void handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket)
+{
+    QString email = request["email"].toString();
+    QFile file("wallets.json");
+
+    if (file.open(QIODevice::ReadOnly)) {
+        QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+        file.close();
+
+        if (doc.isObject()) {
+            QJsonObject wallets = doc.object();
+            if (wallets.contains(email)) {
+                QJsonObject wallet = wallets[email].toObject();
+                QJsonArray words = wallet["words"].toArray();
+                QJsonArray indexes = wallet["indexes"].toArray();
+
+                QJsonObject response;
+                response["type"] = "recoverywallet";
+                response["words"] = words;
+                response["indexes"] = indexes;
+
+                QJsonDocument responseDoc(response);
+                clientSocket->write(responseDoc.toJson());
+                return;
+            }
+        }
+    }
+
+    // اگر ایمیل یافت نشد
+    QJsonObject response;
+    response["type"] = "RecoveryRequest";
+    response["error"] = "Email not found";
+    QJsonDocument responseDoc(response);
+    clientSocket->write(responseDoc.toJson());
+}
+void Server::handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket)
+{
+    QString email = request["email"].toString();
+    QFile file("wallets.json");
+
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray fileData = file.readAll();
+        qDebug() << "File contents:" << fileData;
+        QJsonDocument doc = QJsonDocument::fromJson(fileData);
+        file.close();
+
+        if (doc.isObject()) {
+            QJsonArray walletsArray = doc.object()["wallets"].toArray();
+            for (const QJsonValue &walletValue : walletsArray) {
+                QJsonObject walletObj = walletValue.toObject();
+                if (walletObj["email"].toString() == email) {
+                    // ایمیل پیدا شد، کلمات و ایندکس‌ها را ارسال می‌کنیم
+                    QJsonArray wordsArray = walletObj["words"].toArray();
+
+                    QJsonArray words;
+                    QJsonArray indexes;
+
+                    for (const QJsonValue &wordValue : wordsArray) {
+                        QJsonObject wordObj = wordValue.toObject();
+                        words.append(wordObj["word"].toString());
+                        indexes.append(wordObj["index"].toInt());
+                    }
+
+                    QJsonObject response;
+                    response["type"] = "RecoveryRequest";
+                    response["words"] = words;
+                    response["indexes"] = indexes;
+
+                    QJsonDocument responseDoc(response);
+                    clientSocket->write(responseDoc.toJson());
+                    return;
+                }
+            }
+        }
+    }
+
+    // اگر ایمیل پیدا نشد
+    QJsonObject response;
+    response["type"] = "recoverywallet";
+    response["error"] = "Email not found";
+    QJsonDocument responseDoc(response);
+    clientSocket->write(responseDoc.toJson());
 }

@@ -1,6 +1,7 @@
 #include "client.h"
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include "form.h"
 #include "dashboard.h"
 #include <QMessageBox>
@@ -73,10 +74,29 @@ void Client::readServerResponse()
     QByteArray data = socket->readAll();
     QString responseStr = QString::fromUtf8(data);
     QJsonDocument doc = QJsonDocument::fromJson(data);
+
     if (doc.isObject()) {
         QJsonObject response = doc.object();
         QString status = response["status"].toString();
+        QString type = response["type"].toString();
+        if (type == "RecoveryRequest") {
+            QJsonArray wordsArray = response["words"].toArray();
+            QJsonArray indexesArray = response["indexes"].toArray();
 
+            QMap<int, QString> recoveryMap;
+
+            for (int i = 0; i < wordsArray.size(); ++i) {
+                recoveryMap[indexesArray[i].toInt()] = wordsArray[i].toString();
+            }
+
+            qDebug() << "Recovered words and indexes in map:";
+            for (auto it = recoveryMap.begin(); it != recoveryMap.end(); ++it) {
+                qDebug() << "Index:" << it.key() << "Word:" << it.value();
+            }
+        }
+        //||
+        // ذخیره یا نمایش داده‌ها
+        //emit walletRecovered(words, indexes);  // در صورت نیاز به ارسال سیگنال
         if (status == "success") {
             QString email = response["email"].toString();
             QString name = response["name"].toString();
@@ -151,5 +171,45 @@ void Client::sendForgotPasswordRequest(const QString &email, const QString &user
 
         QJsonDocument doc(json);
         socket->write(doc.toJson());
+    }
+}
+void Client::sendWallet(const QStringList &words)
+{
+
+
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        json["type"] = "createwallet";
+        json["email"] = "jkdsjhdsj@gmail.com";
+        qDebug() <<form::globalEmail;
+        QJsonArray jsonWords;
+        for (int i = 0; i < words.size(); ++i) {
+            QJsonObject wordObj;
+            wordObj["index"] = i + 1;
+            wordObj["word"] = words[i];
+            jsonWords.append(wordObj);
+        }
+
+        json["words"] = jsonWords;
+
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+
+    }
+}
+void Client::sendRecoveryRequest()
+{
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        json["type"] = "RecoveryRequest";
+        json["email"] = "jkdsjhdsj@gmail.com";
+
+        QJsonDocument doc(json);
+        //QByteArray data = doc.toJson();
+qDebug() << "Sending data:" << doc.toJson();
+        socket->write(doc.toJson());
+        qDebug() << "Recovery request sent for email:" << json["email"] ;
+    } else {
+        qDebug() << "Socket is not connected.";
     }
 }

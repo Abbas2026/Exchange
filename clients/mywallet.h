@@ -18,6 +18,8 @@ public:
     void populateTable();
     void addtotable(const QString &name1, const QString &address1, double balance1);
     void processRowData(int row,const QString &name, const QString &address, double balance);
+    void sendWalletToServer(const QStringList &words);
+
 private slots:
     void on_Dashboard_btn_clicked();
 
