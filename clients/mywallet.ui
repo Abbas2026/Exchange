@@ -296,8 +296,8 @@ letter-spacing: 1px;</string>
   <widget class="QPushButton" name="creatwallet_btn">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>20</y>
+     <x>420</x>
+     <y>10</y>
      <width>201</width>
      <height>41</height>
     </rect>
@@ -310,7 +310,7 @@ letter-spacing: 1px;</string>
 color:rgb(255, 255, 255);
 font: 18pt &quot;Rubik Vinyl&quot;;
  border-radius: 10px;
-background-color: rgb(16, 16, 16);</string>
+background-color: #10161f;</string>
    </property>
    <property name="text">
     <string>Create a wallet</string>
@@ -323,9 +323,9 @@ background-color: rgb(16, 16, 16);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>60</y>
      <width>1011</width>
-     <height>771</height>
+     <height>851</height>
     </rect>
    </property>
    <property name="layoutDirection">
@@ -716,6 +716,32 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="close_btn">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #10161f;
+color: #6f7988;
+            border-radius: 10px;
+            font-size: 30px;
+           border: none;  </string>
+     </property>
+     <property name="text">
+      <string>×</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QWidget" name="createwallet_widget_2" native="true">
@@ -855,7 +881,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="namewalllet_lineedit">
+    <widget class="QLineEdit" name="namewallet_lineedit">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -894,19 +920,73 @@ background-color: rgb(29, 38, 51);</string>
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="backtowords_btn">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>20</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #10161f;
+color: #6f7988;
+            border-radius: 10px;
+            font-size: 30px;
+           border: none;  </string>
+     </property>
+     <property name="text">
+      <string>←</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="close_btn_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #10161f;
+color: #6f7988;
+            border-radius: 10px;
+            font-size: 30px;
+           border: none;  </string>
+     </property>
+     <property name="text">
+      <string>×</string>
+     </property>
+    </widget>
     <zorder>save_wallet_btn</zorder>
     <zorder>textEdit_24</zorder>
     <zorder>textEdit_30</zorder>
-    <zorder>namewalllet_lineedit</zorder>
+    <zorder>namewallet_lineedit</zorder>
     <zorder>label_20</zorder>
     <zorder>label_21</zorder>
+    <zorder>backtowords_btn</zorder>
+    <zorder>close_btn_2</zorder>
    </widget>
   </widget>
-  <zorder>widget</zorder>
   <zorder>creatwallet_btn</zorder>
   <zorder>tableWidget</zorder>
-  <zorder>createwallet_widget_2</zorder>
   <zorder>createwallet_widget</zorder>
+  <zorder>createwallet_widget_2</zorder>
+  <zorder>widget</zorder>
  </widget>
  <resources/>
  <connections/>

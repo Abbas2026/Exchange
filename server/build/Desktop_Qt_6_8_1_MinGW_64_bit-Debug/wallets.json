@@ -1,33 +1,182 @@
 {
-    "wallets": [
-        {
-            "email": "jkdsjhdsj@gmail.com",
-            "words": [
-                {
-                    "index": 1,
-                    "word": "umbrella"
-                },
-                {
-                    "index": 2,
-                    "word": "xylophone"
-                },
-                {
-                    "index": 3,
-                    "word": "horizon"
-                },
-                {
-                    "index": 4,
-                    "word": "sky"
-                },
-                {
-                    "index": 5,
-                    "word": "stone"
-                },
-                {
-                    "index": 6,
-                    "word": "star"
-                }
-            ]
-        }
-    ]
+    "wallets": {
+        "jpdnsjhhdsj@gmail.com": [
+            {
+                "walletName": "name1",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "lab"
+                    },
+                    {
+                        "index": 2,
+                        "word": "xylophone"
+                    },
+                    {
+                        "index": 3,
+                        "word": "umbrella"
+                    },
+                    {
+                        "index": 4,
+                        "word": "volcano"
+                    },
+                    {
+                        "index": 5,
+                        "word": "quartz"
+                    },
+                    {
+                        "index": 6,
+                        "word": "jungle"
+                    }
+                ]
+            },
+            {
+                "walletName": "fff",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "desk"
+                    },
+                    {
+                        "index": 2,
+                        "word": "ball"
+                    },
+                    {
+                        "index": 3,
+                        "word": "whale"
+                    },
+                    {
+                        "index": 4,
+                        "word": "hill"
+                    },
+                    {
+                        "index": 5,
+                        "word": "ant"
+                    },
+                    {
+                        "index": 6,
+                        "word": "jar"
+                    }
+                ]
+            },
+            {
+                "walletName": "cc",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "nest"
+                    },
+                    {
+                        "index": 2,
+                        "word": "jar"
+                    },
+                    {
+                        "index": 3,
+                        "word": "monkey"
+                    },
+                    {
+                        "index": 4,
+                        "word": "orbit"
+                    },
+                    {
+                        "index": 5,
+                        "word": "parrot"
+                    },
+                    {
+                        "index": 6,
+                        "word": "jungle"
+                    }
+                ]
+            },
+            {
+                "walletName": "tt",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "quasar"
+                    },
+                    {
+                        "index": 2,
+                        "word": "ant"
+                    },
+                    {
+                        "index": 3,
+                        "word": "ocean"
+                    },
+                    {
+                        "index": 4,
+                        "word": "fish"
+                    },
+                    {
+                        "index": 5,
+                        "word": "yard"
+                    },
+                    {
+                        "index": 6,
+                        "word": "violin"
+                    }
+                ]
+            }
+        ],
+        "jpdsjhhdsj@gmail.com": [
+            {
+                "walletName": "name2",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "crown"
+                    },
+                    {
+                        "index": 2,
+                        "word": "jewel"
+                    },
+                    {
+                        "index": 3,
+                        "word": "ink"
+                    },
+                    {
+                        "index": 4,
+                        "word": "magic"
+                    },
+                    {
+                        "index": 5,
+                        "word": "parrot"
+                    },
+                    {
+                        "index": 6,
+                        "word": "rain"
+                    }
+                ]
+            },
+            {
+                "walletName": "name1",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "island"
+                    },
+                    {
+                        "index": 2,
+                        "word": "quartz"
+                    },
+                    {
+                        "index": 3,
+                        "word": "ant"
+                    },
+                    {
+                        "index": 4,
+                        "word": "king"
+                    },
+                    {
+                        "index": 5,
+                        "word": "yacht"
+                    },
+                    {
+                        "index": 6,
+                        "word": "cherry"
+                    }
+                ]
+            }
+        ]
+    }
 }

@@ -13,7 +13,7 @@ public:
     void connectToServer(const QString &host, quint16 port);
     void onConnected();
     void sendForgotPasswordRequest(const QString &email, const QString &username);
-    void sendWallet(const QStringList &words);
+    void sendWallet(const QStringList &words, const QString &name);
     void sendRecoveryRequest();
 
 

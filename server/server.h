@@ -35,11 +35,12 @@ private:
     void sendUserData(QTcpSocket *client, const QString &email);
     bool isValidCredentials(const QString &email, const QString &password);
     bool isNameRegistered(const QString &name);
-    void saveWalletData(const QString &email, const QJsonArray &words);
+    void saveWalletData(const QString &email, const QString &walletName, const QJsonArray &words, QTcpSocket *clientSocket);
     void handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket);
+    void checkWalletWords(const QJsonObject &request, QTcpSocket *clientSocket);
+
 
 
 };
 
 #endif // SERVER_H
-

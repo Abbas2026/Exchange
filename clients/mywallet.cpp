@@ -7,6 +7,7 @@
 #include <qfile.h>
 #include <QTime>
 #include <QtGlobal>
+#include <string>
 #include <random>
 #include <QDebug>
 #include "client.h"
@@ -141,24 +142,19 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
     ui->tableWidget->setCellWidget(rowCount, 3, button);
 }
 void mywallet::on_creatwallet_btn_clicked() {
-  qDebug() << "1";
     QStringList words;
     QFile file("words.txt");
     if (file.open(QIODevice::ReadOnly)) {
-        qDebug() << "2";
         while (!file.atEnd()) {
             words << file.readLine().trimmed();
         }
-        qDebug() << "3";
 
         file.close();
     }
-    qDebug() << "4";
     QList<QString> selectedWords;
     QSet<int> usedIndexes;
 
     srand(QTime::currentTime().msec());
-qDebug() << "5";
     while (selectedWords.size() < 6) {
         int randomIndex = rand() % words.size();
         if (!usedIndexes.contains(randomIndex)) {
@@ -173,7 +169,6 @@ qDebug() << "5";
     ui->textEdit_rand5->setText(selectedWords[4]);
     ui->textEdit_rand6->setText(selectedWords[5]);
 
-     sendWalletToServer(selectedWords);
 
     ui->createwallet_widget->show();
 }
@@ -203,32 +198,79 @@ void mywallet::processRowData(int row,const QString &name, const QString &addres
 
 void mywallet::on_continue_btn_clicked()
 {
+    ui->createwallet_widget->hide();
     ui->createwallet_widget_2->show();
+
     extern Client client;
 
-    client.sendRecoveryRequest();
+    //client.sendRecoveryRequest();
 
 }
 
 
 void mywallet::on_save_wallet_btn_clicked()
 {
-    QString name=  ui->namewalllet_lineedit->text();
+    QString name=  ui->namewallet_lineedit->text();
 
     if(name.isEmpty()){ QMessageBox::warning(this, "warning", "Choose a name for the wallet.");return;}
 
+    QList<QString> selectedWords;
+
+    selectedWords.append(ui->textEdit_rand1->toPlainText());
+    selectedWords.append(ui->textEdit_rand2->toPlainText());
+    selectedWords.append(ui->textEdit_rand3->toPlainText());
+    selectedWords.append(ui->textEdit_rand4->toPlainText());
+    selectedWords.append(ui->textEdit_rand5->toPlainText());
+    selectedWords.append(ui->textEdit_rand6->toPlainText());
+
     ui->createwallet_widget_2->close();
     ui->createwallet_widget->close();
-    ui->namewalllet_lineedit->clear();
+    ui->namewallet_lineedit->clear();
 
-    QString address="jkkjg";
+    const QString characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<> distribution(0, characters.size() - 1);
+
+    QString randomString;
+    for (int i = 0; i < 20; ++i) {
+        randomString += characters[distribution(generator)];
+    }
+
+
+    QString address=randomString;
+    qDebug()<<address;
     double balance=0;
     addtotable(name, address, balance);
+    sendWalletToServer(selectedWords,name,address);
+
 
 }
-void mywallet::sendWalletToServer(const QStringList &words)
+void mywallet::sendWalletToServer(const QStringList &words,const QString namewallet, const QString addresswallet)
 {
     extern Client client;
-
-        client.sendWallet(words);
+    QString name=namewallet;
+    QString address= addresswallet;
+    qDebug()<< name;
+        client.sendWallet(words,name);
 }
+
+void mywallet::on_backtowords_btn_clicked()
+{
+    ui->createwallet_widget_2->hide();
+    ui->createwallet_widget->show();
+
+
+
+}
+void mywallet::on_close_btn_clicked()
+{
+    ui->createwallet_widget_2->close();
+    ui->createwallet_widget->close();
+}
+void mywallet::on_close_btn_2_clicked()
+{
+    ui->createwallet_widget_2->close();
+    ui->createwallet_widget->close();
+}
+

@@ -55,14 +55,17 @@ public:
     QTextEdit *textEdit_rand6;
     QTextEdit *textEdit_rand2;
     QTextEdit *textEdit_14;
+    QPushButton *close_btn;
     QWidget *createwallet_widget_2;
     QWidget *widget_3;
     QPushButton *save_wallet_btn;
     QLabel *label_20;
     QTextEdit *textEdit_24;
     QTextEdit *textEdit_30;
-    QLineEdit *namewalllet_lineedit;
+    QLineEdit *namewallet_lineedit;
     QLabel *label_21;
+    QPushButton *backtowords_btn;
+    QPushButton *close_btn_2;
 
     void setupUi(QWidget *mywallet)
     {
@@ -170,17 +173,17 @@ public:
 "letter-spacing: 1px;"));
         creatwallet_btn = new QPushButton(mywallet);
         creatwallet_btn->setObjectName("creatwallet_btn");
-        creatwallet_btn->setGeometry(QRect(820, 20, 201, 41));
+        creatwallet_btn->setGeometry(QRect(420, 10, 201, 41));
         creatwallet_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         creatwallet_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color:rgb(255, 255, 255);\n"
 "font: 18pt \"Rubik Vinyl\";\n"
 " border-radius: 10px;\n"
-"background-color: rgb(16, 16, 16);"));
+"background-color: #10161f;"));
         tableWidget = new QTableWidget(mywallet);
         tableWidget->setObjectName("tableWidget");
         tableWidget->setEnabled(true);
-        tableWidget->setGeometry(QRect(10, 140, 1011, 771));
+        tableWidget->setGeometry(QRect(10, 60, 1011, 851));
         tableWidget->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
         tableWidget->setDragEnabled(false);
         tableWidget->setCornerButtonEnabled(true);
@@ -321,6 +324,16 @@ public:
         textEdit_14->setStyleSheet(QString::fromUtf8("padding-left:10px;\n"
 "color: rgb(255, 255, 255);"));
         textEdit_14->setReadOnly(true);
+        close_btn = new QPushButton(widget_2);
+        close_btn->setObjectName("close_btn");
+        close_btn->setEnabled(true);
+        close_btn->setGeometry(QRect(560, 10, 31, 21));
+        close_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        close_btn->setStyleSheet(QString::fromUtf8("background-color: #10161f;\n"
+"color: #6f7988;\n"
+"            border-radius: 10px;\n"
+"            font-size: 30px;\n"
+"           border: none;  "));
         createwallet_widget_2 = new QWidget(mywallet);
         createwallet_widget_2->setObjectName("createwallet_widget_2");
         createwallet_widget_2->setGeometry(QRect(0, 0, 1031, 911));
@@ -367,10 +380,10 @@ public:
         textEdit_30->setStyleSheet(QString::fromUtf8("padding-left:10px;\n"
 "color: rgb(255, 255, 255);"));
         textEdit_30->setReadOnly(true);
-        namewalllet_lineedit = new QLineEdit(widget_3);
-        namewalllet_lineedit->setObjectName("namewalllet_lineedit");
-        namewalllet_lineedit->setGeometry(QRect(130, 180, 371, 41));
-        namewalllet_lineedit->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
+        namewallet_lineedit = new QLineEdit(widget_3);
+        namewallet_lineedit->setObjectName("namewallet_lineedit");
+        namewallet_lineedit->setGeometry(QRect(130, 180, 371, 41));
+        namewallet_lineedit->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 20px; \n"
 "    background-color: #1d2633   ; \n"
 "color: rgb(255, 255, 255);\n"
@@ -383,17 +396,39 @@ public:
         label_21->setStyleSheet(QString::fromUtf8("color: #6f7988;\n"
 "background-color: rgb(29, 38, 51);"));
         label_21->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        backtowords_btn = new QPushButton(widget_3);
+        backtowords_btn->setObjectName("backtowords_btn");
+        backtowords_btn->setEnabled(true);
+        backtowords_btn->setGeometry(QRect(20, 10, 20, 21));
+        backtowords_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        backtowords_btn->setStyleSheet(QString::fromUtf8("background-color: #10161f;\n"
+"color: #6f7988;\n"
+"            border-radius: 10px;\n"
+"            font-size: 30px;\n"
+"           border: none;  "));
+        close_btn_2 = new QPushButton(widget_3);
+        close_btn_2->setObjectName("close_btn_2");
+        close_btn_2->setEnabled(true);
+        close_btn_2->setGeometry(QRect(560, 10, 31, 21));
+        close_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        close_btn_2->setStyleSheet(QString::fromUtf8("background-color: #10161f;\n"
+"color: #6f7988;\n"
+"            border-radius: 10px;\n"
+"            font-size: 30px;\n"
+"           border: none;  "));
         save_wallet_btn->raise();
         textEdit_24->raise();
         textEdit_30->raise();
-        namewalllet_lineedit->raise();
+        namewallet_lineedit->raise();
         label_20->raise();
         label_21->raise();
-        widget->raise();
+        backtowords_btn->raise();
+        close_btn_2->raise();
         creatwallet_btn->raise();
         tableWidget->raise();
-        createwallet_widget_2->raise();
         createwallet_widget->raise();
+        createwallet_widget_2->raise();
+        widget->raise();
 
         retranslateUi(mywallet);
 
@@ -431,6 +466,7 @@ public:
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:16px; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+        close_btn->setText(QCoreApplication::translate("mywallet", "\303\227", nullptr));
         save_wallet_btn->setText(QCoreApplication::translate("mywallet", "Save", nullptr));
         label_20->setText(QCoreApplication::translate("mywallet", "Wallet name", nullptr));
         textEdit_24->setPlaceholderText(QString());
@@ -443,6 +479,8 @@ public:
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:16px; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         label_21->setText(QString());
+        backtowords_btn->setText(QCoreApplication::translate("mywallet", "\342\206\220", nullptr));
+        close_btn_2->setText(QCoreApplication::translate("mywallet", "\303\227", nullptr));
     } // retranslateUi
 
 };
