@@ -13,8 +13,9 @@ public:
     void connectToServer(const QString &host, quint16 port);
     void onConnected();
     void sendForgotPasswordRequest(const QString &email, const QString &username);
-    void sendWallet(const QStringList &words, const QString &name);
+    void sendWallet(const QStringList &words, const QString &name  , const QString &address);
     void sendRecoveryRequest();
+    void walletsdata(const QString &address);
 
 
 
@@ -26,7 +27,7 @@ signals:
     void registrationSuccessful();
     void loginSuccessful();
     void triggerSigninSlot();
-
+     void sendWalletToMywallet(const QString &name, const QString &address, double balance);
 public slots:
     void sendMessage(const QString &message);
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);

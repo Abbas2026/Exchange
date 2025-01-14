@@ -163,7 +163,7 @@ letter-spacing: 1px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>E:/Downloads/طرح لوگو برای صرافی به اسم heliacal.png</pixmap>
+     <pixmap>image/طرح لوگو برای صرافی به اسم heliacal.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

@@ -985,8 +985,8 @@ color: #6f7988;
   <zorder>creatwallet_btn</zorder>
   <zorder>tableWidget</zorder>
   <zorder>createwallet_widget</zorder>
-  <zorder>createwallet_widget_2</zorder>
   <zorder>widget</zorder>
+  <zorder>createwallet_widget_2</zorder>
  </widget>
  <resources/>
  <connections/>

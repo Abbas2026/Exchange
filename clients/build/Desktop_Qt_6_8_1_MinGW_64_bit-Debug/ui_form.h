@@ -195,7 +195,7 @@ public:
         label_6->setAutoFillBackground(false);
         label_6->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "border:none;"));
-        label_6->setPixmap(QPixmap(QString::fromUtf8("E:/Downloads/Jowhareh_galleries_poster_b232edcc-d05d-4849-9fd0-e503d64710f0.jpeg")));
+        label_6->setPixmap(QPixmap(QString::fromUtf8("image/Jowhareh_galleries_poster_b232edcc-d05d-4849-9fd0-e503d64710f0.jpeg")));
         label_6->setScaledContents(true);
         form->setCentralWidget(centralwidget);
         menubar = new QMenuBar(form);

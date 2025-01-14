@@ -2,6 +2,7 @@
 #include "ui_dashboard.h"
 #include <QMessageBox>
 #include "mywallet.h"
+#include "client.h"
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
@@ -60,11 +61,16 @@ void dashboard::applyStyles()
 
 void dashboard::on_Mywallets_btn_clicked()
 {
-    this->hide();
+    this->close();
 
     mywallet *wallets = new mywallet();
     wallets->setAttribute(Qt::WA_DeleteOnClose);
-     wallets->show();
+
+      extern Client client;
+        QObject::connect(&client, &Client::sendWalletToMywallet, wallets, &mywallet::addWalletToTable);
+
+      client.walletsdata(form::globalEmail);
+             wallets->show();
 }
 
 

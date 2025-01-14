@@ -28,16 +28,19 @@ public slots:
 private:
     QTcpServer *server;
     QList<QTcpSocket*> clientSockets;
-
     bool isEmailRegistered(const QString &email);
     void saveCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
     QJsonObject loadUserData(const QString &email);
     void sendUserData(QTcpSocket *client, const QString &email);
     bool isValidCredentials(const QString &email, const QString &password);
     bool isNameRegistered(const QString &name);
-    void saveWalletData(const QString &email, const QString &walletName, const QJsonArray &words, QTcpSocket *clientSocket);
+    void saveWalletData(const QString &email, const QString &walletName,const QString &address, const QJsonArray &words,  QTcpSocket *clientSocket);
     void handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket);
     void checkWalletWords(const QJsonObject &request, QTcpSocket *clientSocket);
+    void SaveWalletCurrencies(const QString &email, const QString &name, const QString &address);
+    void sendWalletsToClient(const QString &email, QTcpSocket *clientSocket);
+
+
 
 
 

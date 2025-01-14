@@ -46,7 +46,7 @@ public:
         label = new QLabel(signin);
         label->setObjectName("label");
         label->setGeometry(QRect(40, 80, 471, 461));
-        label->setPixmap(QPixmap(QString::fromUtf8("E:/Downloads/Jowhareh_galleries_8_poster_7cf4646d-dfc0-4736-9780-c4c43bb850eb.jpeg")));
+        label->setPixmap(QPixmap(QString::fromUtf8("image/Jowhareh_galleries_8_poster_7cf4646d-dfc0-4736-9780-c4c43bb850eb.jpeg")));
         label->setScaledContents(true);
         pushButton_gosignin = new QPushButton(signin);
         pushButton_gosignin->setObjectName("pushButton_gosignin");

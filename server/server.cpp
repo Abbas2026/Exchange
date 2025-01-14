@@ -53,10 +53,10 @@ void Server::readClientMessage()
     QString email = json["email"].toString();
     QString password = json["password"].toString();
     QString name = json["name"].toString();
-    QString address = json["address"].toString();
     QString phone = json["phone"].toString();
     QString walletName= json["walletName"].toString() ;
     QString type =json["type"].toString() ;
+    QString address = json["walletaddress"].toString() ;
     qDebug() << "Received email:" << email;
     qDebug() << "Received password:" << password;
     qDebug() << "Received name:" << name;
@@ -64,10 +64,10 @@ void Server::readClientMessage()
     qDebug() << "Received phone:" << phone;
     qDebug() << "walletName"<< walletName;
     qDebug() << "type" << type;
+    qDebug() << "address"<< address;
     if (json["type"].toString() == "forgot_password") {
         QString email = json["email"].toString();
         QString username = json["username"].toString();
-
         QJsonObject user = loadUserData(email);
         if (user["name"].toString() == username) {
             senderClient->write("Password forgotten confirmed");
@@ -81,18 +81,23 @@ void Server::readClientMessage()
 
         QString email = json["email"].toString();
         QString walletName= json["walletName"].toString() ;
-
+        QString address =json["walletaddress"].toString();
         QJsonArray words = json["words"].toArray();
 
-        if (email.isEmpty() || words.isEmpty() || walletName.isEmpty()) {
+        if (email.isEmpty() || words.isEmpty() || walletName.isEmpty() || address.isEmpty()) {
             senderClient->write("Missing data");
             return;
         }
 
-        // ذخیره اطلاعات در فایل
-        saveWalletData(email,walletName, words,senderClient);
+
+        saveWalletData(email,walletName,address, words,senderClient);
 
         return;
+    }
+    else if(json["type"].toString() =="Walletdata"){
+        QString email = json["email"].toString();
+        sendWalletsToClient(email,senderClient);
+         return;
     }
     else if (json["type"]  == "RecoveryRequest") {
         handleRecoveryRequest(json, senderClient);
@@ -145,7 +150,6 @@ void Server::clientDisconnected()
 
     qDebug() << "Client disconnected. Remaining clients:" << clientSockets.size();
 }
-
 bool Server::isEmailRegistered(const QString &email)
 {
     QFile file("users.json");
@@ -183,7 +187,6 @@ bool Server::isEmailRegistered(const QString &email)
     }
     return false;
 }
-
 void Server::saveCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone)
 {
     QFile file("users.json");
@@ -220,7 +223,6 @@ void Server::saveCredentials(const QString &email, const QString &password, cons
 
     qDebug() << "User credentials saved to file.";
 }
-
 QJsonObject Server::loadUserData(const QString &email)
 {
     QFile file("users.json");
@@ -261,8 +263,6 @@ QJsonObject Server::loadUserData(const QString &email)
     qDebug() << "User with email" << email << "not found.";
     return QJsonObject();
 }
-
-
 void Server::sendUserData(QTcpSocket *client, const QString &email)
 {
     QJsonObject userData = loadUserData(email);
@@ -283,7 +283,6 @@ void Server::sendUserData(QTcpSocket *client, const QString &email)
     client->write(doc.toJson());
     qDebug() << "User data sent to client.";
 }
-
 void Server::getUserDataByEmail(const QString &email, QTcpSocket *client)
 {
     QJsonObject userData = loadUserData(email);
@@ -353,12 +352,12 @@ bool Server::isNameRegistered(const QString &name) {
     }
     return false;
 }
-void Server::saveWalletData(const QString &email, const QString &walletName, const QJsonArray &words, QTcpSocket *clientSocket) {
+void Server::saveWalletData(const QString &email, const QString &walletName, const QString &address, const QJsonArray &words, QTcpSocket *clientSocket) {
     QFile file("wallets.json");
     QJsonDocument doc;
     QJsonObject rootObject;
 
-    // اگر فایل وجود دارد، داده‌های آن را می‌خوانیم
+
     if (file.exists()) {
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QByteArray fileData = file.readAll();
@@ -368,7 +367,7 @@ void Server::saveWalletData(const QString &email, const QString &walletName, con
         }
     }
 
-    // فایل را برای نوشتن باز می‌کنیم
+
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         qDebug() << "Unable to open wallets file for writing.";
         return;
@@ -376,7 +375,7 @@ void Server::saveWalletData(const QString &email, const QString &walletName, con
 
     QJsonObject wallets = rootObject["wallets"].toObject();
 
-    // بررسی ایمیل و سپس وجود کیف پول
+
     if (wallets.contains(email)) {
         QJsonArray walletsArray = wallets[email].toArray();
 
@@ -390,11 +389,11 @@ void Server::saveWalletData(const QString &email, const QString &walletName, con
                 QJsonDocument responseDoc(response);
                 clientSocket->write(responseDoc.toJson());
                 file.close();
-                return; // خروج از تابع اگر کیف پول موجود است
+                return;
             }
         }
 
-        // اگر کیف پول موجود نیست، آن را اضافه می‌کنیم
+
         QJsonObject newWallet;
         newWallet["walletName"] = walletName;
         newWallet["words"] = words;
@@ -402,22 +401,22 @@ void Server::saveWalletData(const QString &email, const QString &walletName, con
         wallets[email] = walletsArray;
 
     } else {
-        // اگر ایمیل موجود نیست، یک آرایه جدید برای کیف پول ایجاد می‌کنیم
+
         QJsonObject newWallet;
         newWallet["walletName"] = walletName;
         newWallet["words"] = words;
-
+        //newWallet["walletaddress"]=address;
         QJsonArray newWalletArray;
         newWalletArray.append(newWallet);
 
         wallets[email] = newWalletArray;
     }
 
-    // افزودن یا به‌روزرسانی داده‌ها
+
     rootObject["wallets"] = wallets;
     doc.setObject(rootObject);
 
-    // نوشتن داده‌های جدید به فایل
+
     file.resize(0);
     QTextStream out(&file);
     out << doc.toJson(QJsonDocument::Indented);
@@ -428,6 +427,7 @@ void Server::saveWalletData(const QString &email, const QString &walletName, con
 
     clientSocket->write(responseDoc.toJson());
 
+    SaveWalletCurrencies(email,walletName,address);
     qDebug() << "Wallet data saved.";
 }
 void Server::handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket)
@@ -550,7 +550,7 @@ void Server::checkWalletWords(const QJsonObject &request, QTcpSocket *clientSock
                 }
             }
 
-            // اگر تمام کلمات با کلمات موجود در کیف پول مطابقت داشتند، اطلاعات کیف پول را ارسال می‌کنیم
+
             if (matchFound) {
                 QJsonObject response;
                 response["type"] = "WordsMatched";
@@ -563,11 +563,154 @@ void Server::checkWalletWords(const QJsonObject &request, QTcpSocket *clientSock
         }
     }
 
-    // اگر هیچ کیف پولی پیدا نشد که کلمات مطابقت داشته باشد
+
     QJsonObject response;
     response["type"] = "WordsNotMatched";
     response["error"] = "No matching words found in wallet.";
     QJsonDocument responseDoc(response);
     clientSocket->write(responseDoc.toJson());
     qDebug() << "No matching words found.";
+}
+void Server:: SaveWalletCurrencies(const QString &email, const QString &name, const QString &address) {
+
+    QFile file("walletsdata.json");
+
+
+    if (!file.open(QIODevice::ReadWrite)) {
+        qDebug() << "Failed to open file for reading and writing";
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    file.seek(0);
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject jsonObj;
+
+
+    if (doc.isNull()) {
+        jsonObj = QJsonObject();
+    } else {
+        jsonObj = doc.object();
+    }
+
+
+    if (!jsonObj.contains(email)) {
+
+        QJsonObject emailObj;
+        QJsonArray walletsArray;
+
+
+        QJsonObject wallet;
+        wallet["name"] = name;
+        wallet["address"] = address;
+
+        QJsonObject currencies;
+        currencies["Tether"] = 0.0;
+        currencies["Bitcoin"] = 0.0;
+        currencies["Ethereum"] = 0.0;
+        currencies["Ton"] = 0.0;
+        currencies["Toman"] = 0.0;
+
+        wallet["currencies"] = currencies;
+
+        walletsArray.append(wallet);
+        emailObj["wallets"] = walletsArray;
+
+        jsonObj[email] = emailObj;
+    } else {
+
+        QJsonObject emailObj = jsonObj[email].toObject();
+        QJsonArray walletsArray = emailObj["wallets"].toArray();
+
+
+        QJsonObject wallet;
+        wallet["name"] = name;
+        wallet["address"] = address;
+
+        QJsonObject currencies;
+        currencies["Tether"] = 0.0;
+        currencies["Bitcoin"] = 0.0;
+        currencies["Ethereum"] = 0.0;
+        currencies["Ton"] = 0.0;
+        currencies["Toman"] = 0.0;
+
+        wallet["currencies"] = currencies;
+
+        walletsArray.append(wallet);
+        emailObj["wallets"] = walletsArray;
+
+        jsonObj[email] = emailObj;
+    }
+
+    QJsonDocument updatedDoc(jsonObj);
+    file.write(updatedDoc.toJson());
+    file.close();
+
+    qDebug() << "Wallet saved successfully for email: " << email;
+}
+
+
+
+void Server::sendWalletsToClient(const QString &email, QTcpSocket *clientSocket) {
+    QFile file("walletsdata.json");
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "Failed to open file for reading";
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (doc.isNull() || !doc.isObject()) {
+        qDebug() << "Invalid JSON data";
+        return;
+    }
+
+    QJsonObject jsonObj = doc.object();
+
+    if (!jsonObj.contains(email)) {
+        qDebug() << "Email not found in the file.";
+        return;
+    }
+
+    QJsonObject emailObj = jsonObj[email].toObject();
+    QJsonArray walletsArray = emailObj["wallets"].toArray();
+
+    for (int i = 0; i < walletsArray.size(); ++i) {
+        QJsonObject wallet = walletsArray[i].toObject();
+
+
+        QJsonObject response;
+        response["type"] = "walletData";
+        response["name"] = wallet["name"].toString();
+        response["address"] = wallet["address"].toString();
+
+
+        QJsonObject currencies = wallet["currencies"].toObject();
+        QJsonObject currenciesResponse;
+        for (const QString &currency : currencies.keys()) {
+            currenciesResponse[currency] = currencies[currency].toInt();
+        }
+
+        response["currencies"] = currenciesResponse;
+
+
+        QJsonDocument responseDoc(response);
+        QByteArray responseData = responseDoc.toJson();
+        QByteArray lengthHeader = QByteArray::number(responseData.size()) + "\r\n";
+        clientSocket->write(lengthHeader + responseData);
+        clientSocket->flush();
+
+        qDebug() << "Wallet data sent: " << responseData;
+    }
+
+
+    QByteArray endMessage = "{\"type\": \"end\"}\n";
+    QByteArray lengthEndMessage = QByteArray::number(endMessage.size()) + "\r\n";
+    clientSocket->write(lengthEndMessage + endMessage);
+    clientSocket->flush();
+    qDebug() << "All wallets sent to client.";
 }

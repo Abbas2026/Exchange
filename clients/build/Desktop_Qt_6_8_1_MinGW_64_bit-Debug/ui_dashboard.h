@@ -89,7 +89,7 @@ public:
         label->setEnabled(true);
         label->setGeometry(QRect(0, 0, 1021, 921));
         label->setStyleSheet(QString::fromUtf8(""));
-        label->setPixmap(QPixmap(QString::fromUtf8("E:/Downloads/\330\267\330\261\330\255 \331\204\331\210\332\257\331\210 \330\250\330\261\330\247\333\214 \330\265\330\261\330\247\331\201\333\214 \330\250\331\207 \330\247\330\263\331\205 heliacal.png")));
+        label->setPixmap(QPixmap(QString::fromUtf8("image/\330\267\330\261\330\255 \331\204\331\210\332\257\331\210 \330\250\330\261\330\247\333\214 \330\265\330\261\330\247\331\201\333\214 \330\250\331\207 \330\247\330\263\331\205 heliacal.png")));
         label->setScaledContents(true);
         label->setWordWrap(false);
         label->setIndent(-1);

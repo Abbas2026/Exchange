@@ -388,7 +388,7 @@ border:none;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>E:/Downloads/Jowhareh_galleries_poster_b232edcc-d05d-4849-9fd0-e503d64710f0.jpeg</pixmap>
+     <pixmap>image/Jowhareh_galleries_poster_b232edcc-d05d-4849-9fd0-e503d64710f0.jpeg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

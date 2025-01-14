@@ -29,7 +29,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>E:/Downloads/Jowhareh_galleries_8_poster_7cf4646d-dfc0-4736-9780-c4c43bb850eb.jpeg</pixmap>
+    <pixmap>image/Jowhareh_galleries_8_poster_7cf4646d-dfc0-4736-9780-c4c43bb850eb.jpeg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>

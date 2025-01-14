@@ -2,6 +2,8 @@
 #include "ui_mywallet.h"
 #include <QPushButton>
 #include <QTableWidgetItem>
+#include <QClipboard>
+#include <QTableWidget>
 #include "dashboard.h"
 #include <QMessageBox>
 #include <qfile.h>
@@ -12,6 +14,7 @@
 #include <QDebug>
 #include "client.h"
 #include "form.h"
+#include <QIcon>
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -19,6 +22,7 @@ mywallet::mywallet(QWidget *parent)
     ui->setupUi(this);
     applyStyles();
     populateTable();
+
 }
 
 mywallet::~mywallet()
@@ -45,6 +49,7 @@ void mywallet::applyStyles()
                                           "QPushButton:hover { color: #c97940  }");
     ui->Settings_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
                                     "QPushButton:hover { color: #c97940  }");
+
      ui->tableWidget->setStyleSheet(
         "QTableWidget {"
         "    background-color: #1d2633;"
@@ -86,6 +91,9 @@ void mywallet::applyStyles()
          "    background-color: #70e16d;"
          "}"
          );
+
+
+
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // تمام عرض جدول را پر کند
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(50); // ارتفاع هر ردیف
 }
@@ -120,10 +128,13 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
     nameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     ui->tableWidget->setItem(rowCount, 0, nameItem);
 
-    QTableWidgetItem *addresItem = new QTableWidgetItem(address);
-    addresItem->setTextAlignment(Qt::AlignCenter);
+        QIcon copyIcon("./copy1.png");
+
+    QTableWidgetItem *addresItem = new QTableWidgetItem(copyIcon, address);
+    //addresItem->setTextAlignment(Qt::AlignCenter);
+       addresItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     addresItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-    ui->tableWidget->setItem(rowCount, 1, addresItem);
+    ui->tableWidget->setItem(rowCount, 1, addresItem );
 
     QTableWidgetItem *numberItem = new QTableWidgetItem(QString::number(balance));
     numberItem->setTextAlignment(Qt::AlignCenter);
@@ -140,6 +151,8 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
         processRowData(rowCount,currentName, currentAddress, currentBalance);
     });
     ui->tableWidget->setCellWidget(rowCount, 3, button);
+     ui->tableWidget->viewport()->setCursor(Qt::PointingHandCursor);
+
 }
 void mywallet::on_creatwallet_btn_clicked() {
     QStringList words;
@@ -174,7 +187,7 @@ void mywallet::on_creatwallet_btn_clicked() {
 }
 void mywallet::on_Dashboard_btn_clicked()
 {
-    this->hide();
+    this->close();
     dashboard *da = new dashboard();
     da->show();
 }
@@ -205,6 +218,8 @@ void mywallet::on_continue_btn_clicked()
 
     //client.sendRecoveryRequest();
 
+
+    //client.walletsdata(form::globalEmail);
 }
 
 
@@ -233,26 +248,23 @@ void mywallet::on_save_wallet_btn_clicked()
     std::uniform_int_distribution<> distribution(0, characters.size() - 1);
 
     QString randomString;
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 25; ++i) {
         randomString += characters[distribution(generator)];
     }
-
-
     QString address=randomString;
     qDebug()<<address;
     double balance=0;
     addtotable(name, address, balance);
     sendWalletToServer(selectedWords,name,address);
-
-
 }
+
 void mywallet::sendWalletToServer(const QStringList &words,const QString namewallet, const QString addresswallet)
 {
     extern Client client;
     QString name=namewallet;
     QString address= addresswallet;
     qDebug()<< name;
-        client.sendWallet(words,name);
+        client.sendWallet(words,name,address);
 }
 
 void mywallet::on_backtowords_btn_clicked()
@@ -273,4 +285,18 @@ void mywallet::on_close_btn_2_clicked()
     ui->createwallet_widget_2->close();
     ui->createwallet_widget->close();
 }
+
+
+void mywallet::on_tableWidget_cellClicked(int row, int column)
+{
+    if (column == 1) {
+        QString text = ui->tableWidget->item(row, column)->text();
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(text);
+    }
+}
+void mywallet::addWalletToTable(const QString &name, const QString &address, double balance) {
+    addtotable(name, address, balance);
+}
+
 
