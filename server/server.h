@@ -38,7 +38,9 @@ private:
     void handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket);
     void checkWalletWords(const QJsonObject &request, QTcpSocket *clientSocket);
     void SaveWalletCurrencies(const QString &email, const QString &name, const QString &address);
-    void sendWalletsToClient(const QString &email, QTcpSocket *clientSocket);
+    void sendWalletInfoToClient(const QString &email, QTcpSocket *clientSocket);
+    void sendWalletCurrenciesToClient(const QString &email, const QString &walletName, QTcpSocket *clientSocket);
+
 
 
 

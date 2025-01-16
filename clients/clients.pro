@@ -1,5 +1,10 @@
 QT       += core gui
 QT += core gui network
+QT += svg
+QT += concurrent
+QT += core network
+
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -14,20 +19,25 @@ SOURCES += \
     main.cpp \
     form.cpp \
     mywallet.cpp \
-    signin.cpp
+    priceupdater.cpp \
+    signin.cpp \
+    walldetails.cpp
 
 HEADERS += \
     client.h \
     dashboard.h \
     form.h \
     mywallet.h \
-    signin.h
+    priceupdater.h \
+    signin.h \
+    walldetails.h
 
 FORMS += \
     dashboard.ui \
     form.ui \
     mywallet.ui \
-    signin.ui
+    signin.ui \
+    walldetails.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

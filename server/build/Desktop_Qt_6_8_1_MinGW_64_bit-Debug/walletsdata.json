@@ -1,0 +1,39 @@
+{
+    "jpdnsjhhdsj@gmail.com": {
+        "wallets": [
+            {
+                "address": "vqqgb83nhk78g55uzxs2ee2a4",
+                "currencies": {
+                    "Bitcoin": 1e-04,
+                    "Ethereum": 0.005,
+                    "Tether": 30,
+                    "Toman": 4000000,
+                    "Tron": 50
+                },
+                "name": "ali"
+            },
+            {
+                "address": "guxee00b1s150pefsun57aqw9",
+                "currencies": {
+                    "Bitcoin": 0,
+                    "Ethereum": 0,
+                    "Tether": 20,
+                    "Toman": 10,
+                    "Tron": 40
+                },
+                "name": "g"
+            },
+            {
+                "address": "jae2ej401kdove78wqtbem76l",
+                "currencies": {
+                    "Bitcoin": 0,
+                    "Ethereum": 0,
+                    "Tether": 0,
+                    "Toman": 0,
+                    "Tron": 0
+                },
+                "name": "h"
+            }
+        ]
+    }
+}

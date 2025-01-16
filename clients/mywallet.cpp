@@ -15,6 +15,9 @@
 #include "client.h"
 #include "form.h"
 #include <QIcon>
+#include "walldetails.h"
+#include "client.h"
+#include "priceupdater.h"
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -31,28 +34,25 @@ mywallet::~mywallet()
 }
 void mywallet::applyStyles()
 {
-    ui->Dashboard_btn->setStyleSheet("QPushButton { color:black ;border:none;font: 28pt 'Bangers';border:none; }"
-                                     "QPushButton:hover {color: #c97940 }");
-    ui->Mywallets_btn->setStyleSheet("QPushButton { color:#c97940; ;border:none;font: 28pt 'Bangers';letter-spacing: 1px;border:none;}"
-                                     "QPushButton:hover { color: #c97940  }");
-    ui->Profile_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                   "QPushButton:hover { color: #c97940  }");
-    ui->market_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                  "QPushButton:hover { color: #c97940  }");
-    ui->easyexchange_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                        "QPushButton:hover { color: #c97940  }");
-    ui->Transmission_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                        "QPushButton:hover { color: #c97940  }");
-    ui->currentprice_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                        "QPushButton:hover { color: #c97940  }");
-    ui->Authentication_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                          "QPushButton:hover { color: #c97940  }");
-    ui->Settings_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                    "QPushButton:hover { color: #c97940  }");
+    const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
+                              "QPushButton:hover { color: #c97940; }";
+
+    ui->Mywallets_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
+                                     "QPushButton:hover { color: #c97940; }");
+
+    ui->Dashboard_btn->setStyleSheet(baseStyle);
+    ui->Profile_btn->setStyleSheet(baseStyle);
+    ui->market_btn->setStyleSheet(baseStyle);
+    ui->easyexchange_btn->setStyleSheet(baseStyle);
+    ui->Transmission_btn->setStyleSheet(baseStyle);
+    ui->currentprice_btn->setStyleSheet(baseStyle);
+    ui->Authentication_btn->setStyleSheet(baseStyle);
+    ui->Settings_btn->setStyleSheet(baseStyle);
+    ui->Settings_btn_2->setStyleSheet(baseStyle);
 
      ui->tableWidget->setStyleSheet(
         "QTableWidget {"
-        "    background-color: #1d2633;"
+        "    background-color: #2980b9;"
         "    color: white;"
         "    font-family: Arial, sans-serif;"
         "    font-size: 14px;"
@@ -71,7 +71,6 @@ void mywallet::applyStyles()
         "    background-color: #2980b9;"
         "    border: none;"
         "    padding: 10px;"
-        "    border-radius: 5px;"
         "    font-size: 14px;"
         "}"
         "QTableWidget::item:selected {"
@@ -153,6 +152,7 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
     ui->tableWidget->setCellWidget(rowCount, 3, button);
      ui->tableWidget->viewport()->setCursor(Qt::PointingHandCursor);
 
+
 }
 void mywallet::on_creatwallet_btn_clicked() {
     QStringList words;
@@ -191,28 +191,30 @@ void mywallet::on_Dashboard_btn_clicked()
     dashboard *da = new dashboard();
     da->show();
 }
-
-
 void mywallet::processRowData(int row,const QString &name, const QString &address, double balance) {
 
     QString savedName = name;
     QString savedAddress = address;
-    //double savedBalance = balance;
+    double savedBalance = balance;
 
-    ui->tableWidget->item(row, 0)->setText("0");
-    ui->tableWidget->item(row, 1)->setText("0");
-    ui->tableWidget->item(row, 2)->setText("0");
+    //ui->tableWidget->item(row, 0)->setText("0");
+    //ui->tableWidget->item(row, 1)->setText("0");
+    //ui->tableWidget->item(row, 2)->setText("0");
+    PriceUpdater::balancetotether=0;
+    this->close();
+    Walldetails *details = new Walldetails();
+    details->setAttribute(Qt::WA_DeleteOnClose);
+    extern Client client;
+    client.Walletassets(form::globalEmail,savedName);
+    details->show();
+    QObject::connect(&client, &Client::sendinventorytowalletdetails, details, &Walldetails::addcointotable);
+
 }
-
-
-
-
-
-
 void mywallet::on_continue_btn_clicked()
 {
     ui->createwallet_widget->hide();
     ui->createwallet_widget_2->show();
+     ui->namewallet_lineedit->setFocus();
 
     extern Client client;
 
@@ -221,8 +223,6 @@ void mywallet::on_continue_btn_clicked()
 
     //client.walletsdata(form::globalEmail);
 }
-
-
 void mywallet::on_save_wallet_btn_clicked()
 {
     QString name=  ui->namewallet_lineedit->text();
@@ -254,19 +254,18 @@ void mywallet::on_save_wallet_btn_clicked()
     QString address=randomString;
     qDebug()<<address;
     double balance=0;
-    addtotable(name, address, balance);
     sendWalletToServer(selectedWords,name,address);
 }
-
 void mywallet::sendWalletToServer(const QStringList &words,const QString namewallet, const QString addresswallet)
 {
     extern Client client;
     QString name=namewallet;
     QString address= addresswallet;
-    qDebug()<< name;
+    qDebug()<<"323"<< name;
         client.sendWallet(words,name,address);
-}
+    this->hide();
 
+}
 void mywallet::on_backtowords_btn_clicked()
 {
     ui->createwallet_widget_2->hide();
@@ -285,8 +284,6 @@ void mywallet::on_close_btn_2_clicked()
     ui->createwallet_widget_2->close();
     ui->createwallet_widget->close();
 }
-
-
 void mywallet::on_tableWidget_cellClicked(int row, int column)
 {
     if (column == 1) {
@@ -298,5 +295,3 @@ void mywallet::on_tableWidget_cellClicked(int row, int column)
 void mywallet::addWalletToTable(const QString &name, const QString &address, double balance) {
     addtotable(name, address, balance);
 }
-
-

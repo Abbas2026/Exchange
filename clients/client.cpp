@@ -7,6 +7,10 @@
 #include <QMessageBox>
 #include "signin.h"
 #include "mywallet.h"
+#include "walldetails.h"
+#include <QtConcurrent>
+#include "priceupdater.h"
+int Client::bb=0;
 Client::Client(QObject *parent) : QObject(parent)
 {
     socket = new QTcpSocket(this);
@@ -44,6 +48,7 @@ void Client::sendMessage(const QString &message)
 
 void Client::sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone)
 {
+    qDebug() <<"335";
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["email"] = email;
@@ -75,8 +80,23 @@ void Client::readServerResponse() {
 
     buffer.append(socket->readAll());
 
-    while (buffer.size() > 0) {
+    while (!buffer.isEmpty()) {
         if (expectedLength == 0) {
+            if (!buffer.contains("\r\n") && !buffer.trimmed().startsWith("{")) {
+                QString responseStr = QString::fromUtf8(buffer.trimmed());
+                buffer.clear();
+                qDebug() << "Non-structured response: " << responseStr;
+                processSimpleResponse(responseStr);
+                return;
+            }
+
+
+            if (buffer.trimmed().startsWith("{") && buffer.trimmed().endsWith("}")) {
+                processResponse(buffer);
+                buffer.clear();
+                return;
+            }
+
             int index = buffer.indexOf("\r\n");
             if (index == -1) {
                 return;
@@ -87,104 +107,12 @@ void Client::readServerResponse() {
             buffer.remove(0, index + 2);
         }
 
+
         if (buffer.size() >= expectedLength) {
             QByteArray message = buffer.left(expectedLength);
             buffer.remove(0, expectedLength);
-
-            QString responseStr = QString::fromUtf8(message);
-            QJsonDocument doc = QJsonDocument::fromJson(message);
-
-            if (doc.isObject()) {
-                QJsonObject response = doc.object();
-                QString status = response["status"].toString();
-                QString error = response["error"].toString();
-                QString type = response["type"].toString();
-
-                if (type == "RecoveryRequest") {
-                    QJsonArray wordsArray = response["words"].toArray();
-                    QJsonArray indexesArray = response["indexes"].toArray();
-
-                    QMap<int, QString> recoveryMap;
-                    for (int i = 0; i < wordsArray.size(); ++i) {
-                        int index = indexesArray[i].toInt();
-                        QString word = wordsArray[i].toString();
-                        recoveryMap.insert(index, word);
-                    }
-
-                    qDebug() << "Recovered words and indexes in map:";
-                    for (auto it = recoveryMap.begin(); it != recoveryMap.end(); ++it) {
-                        qDebug() << "Index:" << it.key() << "Word:" << it.value();
-                    }
-                }
-
-                if (status == "success") {
-                    QString email = response["email"].toString();
-                    QString name = response["name"].toString();
-                    QString address = response["address"].toString();
-                    QString phone = response["phone"].toString();
-
-                    m_email = email;
-                    m_name = name;
-                    m_address = address;
-                    m_phone = phone;
-
-                    emit receivedMessage(QString("Email: %1\nName: %2\nAddress: %3\nPhone: %4")
-                                             .arg(email)
-                                             .arg(name)
-                                             .arg(address)
-                                             .arg(phone));
-                } else if (type == "walletData") {
-                    QString name = response["name"].toString();
-                    QString address = response["address"].toString();
-                    QJsonObject currencies = response["currencies"].toObject();
-
-                    qDebug() << "Wallet Name: " << name;
-                    qDebug() << "Wallet Address: " << address;
-                    if (currencies.contains("Ton")) {
-                        int tonAmount = currencies["Ton"].toInt();
-                        emit sendWalletToMywallet(name, address, tonAmount);
-                        qDebug() << "Ton Amount: " << tonAmount;
-                    } else {
-                        qDebug() << "Ton currency not found.";
-                    }
-
-
-
-                    // for (auto currency = currencies.begin(); currency != currencies.end(); ++currency) {
-                    //     QString currencyName = currency.key();
-                    //     int amount = currency.value().toInt();
-                    //     qDebug() << "Currency:" << currencyName << ", Amount:" << amount;
-                    // }
-                } else if (type == "end") {
-                    qDebug() << "All wallet data received.";
-                                        expectedLength = 0;
-                    return;
-                } else {
-                    qDebug() << "doc error" << type;
-                    emit receivedMessage("Error1: " + error);
-                }
-            } else {
-                QString myString = "ready";
-                if (responseStr == myString) {
-                    qDebug() << "Registration successful!";
-                    qDebug() << "Accessing global email:" << form::globalEmail;
-                    emit registrationSuccessful();
-                } else if (responseStr == "این نام کاربری قبلاً ثبت شده است") {
-                    emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
-                } else if (responseStr == "Login successful") {
-                    qDebug() << "Login successful";
-                    emit triggerSigninSlot();
-                    emit loginSuccessful();
-                } else if (responseStr == "Password forgotten confirmed") {
-                    qDebug() << "Password forgotten confirmed";
-                    emit triggerSigninSlot();
-                    emit loginSuccessful();
-                } else {
-                    qDebug() << "Error: " << responseStr;
-                    emit receivedMessagetosign(responseStr);
-                }
-            }
-
+            //qDebug() << "Structured message: " << message;
+            processResponse(message);
             expectedLength = 0;
         } else {
             return;
@@ -202,6 +130,145 @@ void Client::requestUserData(const QString &email)
         socket->write(data);
     }
 }
+void Client::processResponse(const QByteArray& message) {
+    QString responseStr = QString::fromUtf8(message);
+    QJsonDocument doc = QJsonDocument::fromJson(message);
+
+    if (doc.isObject()) {
+        QJsonObject response = doc.object();
+        QString type = response["type"].toString();
+        QString status = response["status"].toString();
+        QString error = response["error"].toString();
+
+        if (type == "RecoveryRequest") {
+            QJsonArray wordsArray = response["words"].toArray();
+            QJsonArray indexesArray = response["indexes"].toArray();
+            QMap<int, QString> recoveryMap;
+
+            for (int i = 0; i < wordsArray.size(); ++i) {
+                int index = indexesArray[i].toInt();
+                QString word = wordsArray[i].toString();
+                recoveryMap.insert(index, word);
+            }
+
+            qDebug() << "Recovered words and indexes in map:";
+            for (auto it = recoveryMap.begin(); it != recoveryMap.end(); ++it) {
+                qDebug() << "Index:" << it.key() << "Word:" << it.value();
+            }
+        } else if (status == "success") {
+            QString email = response["email"].toString();
+            QString name = response["name"].toString();
+            QString address = response["address"].toString();
+            QString phone = response["phone"].toString();
+
+            m_email = email;
+            m_name = name;
+            m_address = address;
+            m_phone = phone;
+
+            emit receivedMessage(QString("Email: %1\nName: %2\nAddress: %3\nPhone: %4")
+                                     .arg(email)
+                                     .arg(name)
+                                     .arg(address)
+                                     .arg(phone));
+        } else if (type == "WalletExists") {
+            QtConcurrent::run([=]() {
+                emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
+            });
+            dashboard *da = new dashboard();
+            da->setAttribute(Qt::WA_DeleteOnClose);
+            da->on_Mywallets_btn_clicked();
+            qDebug() << "Wallet name already exists for this email";
+        } else if (type == "Wallet created successfully") {
+            dashboard *da = new dashboard();
+            da->setAttribute(Qt::WA_DeleteOnClose);
+            da->on_Mywallets_btn_clicked();
+            qDebug() << "Wallet created successfully";
+        } else if (type == "WordsMatched") {
+            qDebug() << "Words Matched";
+        } else if (type == "walletInfo") {
+            QString name = response["name"].toString();
+            QString address = response["address"].toString();
+
+            //qDebug() << "Wallet Name: " << name;
+            //qDebug() << "Wallet Address: " << address;
+            extern Client client;
+
+            client.Walletassets(form::globalEmail,name);
+            emit sendWalletToMywallet(name, address, PriceUpdater::balancetotether);
+        } else if (type == "walletCurrencies") {
+            QString name = response["name"].toString();
+            QString address = response["address"].toString();
+            QJsonObject currencies = response["currencies"].toObject();
+            for (const QString& key : currencies.keys()) {
+                double amount = currencies[key].toDouble();
+                double Currentvalue;
+                if(key=="Bitcoin"){
+                    Currentvalue=amount*PriceUpdater::bitcoinToTether;
+                    PriceUpdater::balancetotether+=Currentvalue;
+                    emit sendinventorytowalletdetails(key, amount,Currentvalue);
+                }
+                if(key=="Ethereum"){
+                    Currentvalue=amount*PriceUpdater::ethereumToTether;
+                    PriceUpdater::balancetotether+=Currentvalue;
+                    emit sendinventorytowalletdetails(key, amount,Currentvalue);
+                }
+                if(key=="Tron"){
+                    Currentvalue=amount*PriceUpdater::tronToTether;
+                    PriceUpdater::balancetotether+=Currentvalue;
+                    emit sendinventorytowalletdetails(key, amount,Currentvalue);
+                    Client::bb=1;
+
+                }
+                if(key=="Toman"){
+                    Currentvalue=amount/PriceUpdater::tetherToToman;
+                    PriceUpdater::balancetotether+=Currentvalue;
+                    emit sendinventorytowalletdetails(key, amount,Currentvalue);
+                }
+                if(key=="Tether"){
+                    Currentvalue=amount;
+                    PriceUpdater::balancetotether+=Currentvalue;
+                    emit sendinventorytowalletdetails(key, amount,Currentvalue);
+                }
+                extern Client client;
+                if(Client::bb==1){
+                    emit sendWalletToMywallet(name, address, PriceUpdater::balancetotether);
+                    Client::bb=0;
+                    PriceUpdater::balancetotether=0;
+
+                }
+
+            }
+        } else if (type == "end") {
+            qDebug() << "All wallet data received.";
+        } else {
+            qDebug() << "Unknown type or error: " << error;
+        }
+    }
+}
+void Client::processSimpleResponse(const QString& responseStr) {
+    if (responseStr == "ready") {
+        qDebug() << "Registration successful!";
+        emit registrationSuccessful();
+    } else if (responseStr == "این نام کاربری قبلاً ثبت شده است") {
+        emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
+    } else if (responseStr == "Login successful") {
+        qDebug() << "Login successful";
+        emit triggerSigninSlot();
+        emit loginSuccessful();
+    } else if (responseStr == "Password forgotten confirmed") {
+        qDebug() << "Password forgotten confirmed";
+        emit triggerSigninSlot();
+        emit loginSuccessful();
+    } else {
+        qDebug() << "Unknown response: " << responseStr;
+        emit receivedMessagetosign(responseStr);
+    }
+}
+
+
+
+
 void Client::sendForgotPasswordRequest(const QString &email, const QString &username)
 {
     if (socket->state() == QTcpSocket::ConnectedState) {
@@ -216,6 +283,9 @@ void Client::sendForgotPasswordRequest(const QString &email, const QString &user
 }
 void Client::sendWallet(const QStringList &words, const QString &name , const QString &address)
 {
+
+    m_pendingWalletName = name;
+    m_pendingWalletAddress = address;
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "createwallet";
@@ -252,10 +322,22 @@ void Client::sendRecoveryRequest()
     }
 }
 void Client::walletsdata(const QString &email){
+    if (socket->state() == QTcpSocket::ConnectedState) {
 
+        QJsonObject json;
+        json["type"] = "walletInfo";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+void Client::Walletassets(const QString &email,const QString &namewallet){
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
-        json["type"] = "Walletdata";
+        json["type"] = "walletCurrencies";
+         json["walletName"] =namewallet ;
         json["email"] = "jpdnsjhhdsj@gmail.com";
         QJsonDocument doc(json);
         socket->write(doc.toJson());

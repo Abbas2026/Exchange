@@ -36,6 +36,7 @@ public:
     QPushButton *Authentication_btn;
     QPushButton *backButton;
     QPushButton *Settings_btn;
+    QPushButton *Settings_btn_2;
 
     void setupUi(QWidget *dashboard)
     {
@@ -53,7 +54,7 @@ public:
         widget->setStyleSheet(QString::fromUtf8("background-color:#d9d8d4  ;"));
         currentprice_btn = new QPushButton(widget);
         currentprice_btn->setObjectName("currentprice_btn");
-        currentprice_btn->setGeometry(QRect(1030, 690, 221, 41));
+        currentprice_btn->setGeometry(QRect(1030, 630, 221, 41));
         currentprice_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         currentprice_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -61,7 +62,7 @@ public:
 "letter-spacing: 1px;"));
         Mywallets_btn = new QPushButton(widget);
         Mywallets_btn->setObjectName("Mywallets_btn");
-        Mywallets_btn->setGeometry(QRect(1050, 290, 171, 41));
+        Mywallets_btn->setGeometry(QRect(1050, 280, 171, 41));
         Mywallets_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Mywallets_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -78,7 +79,7 @@ public:
 ""));
         market_btn = new QPushButton(widget);
         market_btn->setObjectName("market_btn");
-        market_btn->setGeometry(QRect(1050, 450, 171, 41));
+        market_btn->setGeometry(QRect(1050, 420, 171, 41));
         market_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         market_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -114,7 +115,7 @@ public:
         label_3->setIndent(-6);
         easyexchange_btn = new QPushButton(widget);
         easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(1040, 530, 211, 41));
+        easyexchange_btn->setGeometry(QRect(1040, 490, 211, 41));
         easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -126,7 +127,7 @@ public:
         textEdit->setGeometry(QRect(60, 790, 104, 51));
         Transmission_btn = new QPushButton(widget);
         Transmission_btn->setObjectName("Transmission_btn");
-        Transmission_btn->setGeometry(QRect(1030, 610, 221, 41));
+        Transmission_btn->setGeometry(QRect(1030, 560, 221, 41));
         Transmission_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Transmission_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -134,7 +135,7 @@ public:
 "letter-spacing: 1px;"));
         Profile_btn = new QPushButton(widget);
         Profile_btn->setObjectName("Profile_btn");
-        Profile_btn->setGeometry(QRect(1030, 370, 211, 41));
+        Profile_btn->setGeometry(QRect(1030, 350, 211, 41));
         Profile_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Profile_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -142,7 +143,7 @@ public:
 "letter-spacing: 1px;"));
         Authentication_btn = new QPushButton(widget);
         Authentication_btn->setObjectName("Authentication_btn");
-        Authentication_btn->setGeometry(QRect(1030, 770, 231, 41));
+        Authentication_btn->setGeometry(QRect(1030, 700, 231, 41));
         Authentication_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Authentication_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: #4fee93;\n"
@@ -160,9 +161,17 @@ public:
 "           border: none;  "));
         Settings_btn = new QPushButton(widget);
         Settings_btn->setObjectName("Settings_btn");
-        Settings_btn->setGeometry(QRect(1060, 850, 171, 41));
+        Settings_btn->setGeometry(QRect(1060, 770, 171, 41));
         Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: 1px;"));
+        Settings_btn_2 = new QPushButton(widget);
+        Settings_btn_2->setObjectName("Settings_btn_2");
+        Settings_btn_2->setGeometry(QRect(1040, 840, 201, 41));
+        Settings_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        Settings_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -180,6 +189,7 @@ public:
         Authentication_btn->raise();
         backButton->raise();
         Settings_btn->raise();
+        Settings_btn_2->raise();
 
         retranslateUi(dashboard);
 
@@ -204,7 +214,8 @@ public:
         Profile_btn->setText(QCoreApplication::translate("dashboard", "Profile", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("dashboard", "Authentication", nullptr));
         backButton->setText(QCoreApplication::translate("dashboard", "log out", nullptr));
-        Settings_btn->setText(QCoreApplication::translate("dashboard", "Settings", nullptr));
+        Settings_btn->setText(QCoreApplication::translate("dashboard", "Deposit ", nullptr));
+        Settings_btn_2->setText(QCoreApplication::translate("dashboard", " withdrawal", nullptr));
     } // retranslateUi
 
 };

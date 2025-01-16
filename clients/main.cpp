@@ -5,22 +5,32 @@
 #include <QThread>
 #include "signin.h"
 #include "dashboard.h"
-Client client;
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    form w;
+#include "priceupdater.h"
 
+Client client;
+PriceUpdater* priceUpdater = nullptr;
+
+void printPrices() {
+    qDebug() << "Bitcoin to Tether:" << PriceUpdater::bitcoinToTether;
+    qDebug() << "Ethereum to Tether:" << PriceUpdater::ethereumToTether;
+    qDebug() << "Tron to Tether:" << PriceUpdater::tronToTether;
+    qDebug() << "Tether to Toman:" << PriceUpdater::tetherToToman;
+}
+
+int main(int argc, char *argv[]) {
+    QApplication a(argc, argv);
+    priceUpdater = new PriceUpdater();
+    QObject::connect(priceUpdater, &PriceUpdater::pricesUpdated, []() {
+        qDebug() << "Prices updated!";
+        printPrices();
+    });
+    form w;
     dashboard m;
     client.connectToServer("127.0.0.1", 1234);
     QObject::connect(&w, &form::sendCredentials, &client, &Client::sendCredentials);
     QObject::connect(&client, &Client::receivedMessage, &w, &form::displayServerResponse);
     QObject::connect(&client, &Client::registrationSuccessful, &w, &form::onRegistrationSuccessful);
     QObject::connect(&client, &Client::loginSuccessful, &w, &form::loginSuccessful);
-
-
-
     m.show();
     return a.exec();
 }
-

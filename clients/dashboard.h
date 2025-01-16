@@ -24,9 +24,10 @@ signals:
     void backToFormRequested();
 public slots :
     void ServerResponse(const QString &response);
+    void on_Mywallets_btn_clicked();
+
 private slots:
     void on_backButton_clicked();
-    void on_Mywallets_btn_clicked();
     void on_Profile_btn_clicked();
     void on_market_btn_clicked();
     void on_easyexchange_btn_clicked();

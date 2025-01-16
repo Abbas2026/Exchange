@@ -42,8 +42,8 @@ static constexpr auto qt_meta_stringdata_ZN9dashboardE = QtMocHelpers::stringDat
     "",
     "ServerResponse",
     "response",
-    "on_backButton_clicked",
     "on_Mywallets_btn_clicked",
+    "on_backButton_clicked",
     "on_Profile_btn_clicked",
     "on_market_btn_clicked",
     "on_easyexchange_btn_clicked",
@@ -74,7 +74,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9dashboardE[] = {
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        3,    1,   81,    2, 0x0a,    2 /* Public */,
-       5,    0,   84,    2, 0x08,    4 /* Private */,
+       5,    0,   84,    2, 0x0a,    4 /* Public */,
        6,    0,   85,    2, 0x08,    5 /* Private */,
        7,    0,   86,    2, 0x08,    6 /* Private */,
        8,    0,   87,    2, 0x08,    7 /* Private */,
@@ -116,9 +116,9 @@ Q_CONSTINIT const QMetaObject dashboard::staticMetaObject = { {
         // method 'ServerResponse'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        // method 'on_backButton_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_Mywallets_btn_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_backButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_Profile_btn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -145,8 +145,8 @@ void dashboard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         switch (_id) {
         case 0: _t->backToFormRequested(); break;
         case 1: _t->ServerResponse((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 2: _t->on_backButton_clicked(); break;
-        case 3: _t->on_Mywallets_btn_clicked(); break;
+        case 2: _t->on_Mywallets_btn_clicked(); break;
+        case 3: _t->on_backButton_clicked(); break;
         case 4: _t->on_Profile_btn_clicked(); break;
         case 5: _t->on_market_btn_clicked(); break;
         case 6: _t->on_easyexchange_btn_clicked(); break;

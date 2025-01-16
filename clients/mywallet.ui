@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>290</y>
+      <y>280</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -66,7 +66,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>610</y>
+      <y>560</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -136,7 +136,7 @@ color: rgb(0, 0, 0);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>770</y>
+      <y>700</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -186,7 +186,7 @@ word-spacing: 3px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>530</y>
+      <y>490</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -208,7 +208,7 @@ letter-spacing: -1px;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>370</y>
+      <y>350</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -230,7 +230,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>690</y>
+      <y>630</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -252,7 +252,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>850</y>
+      <y>770</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -267,14 +267,14 @@ font: 28pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
-     <string>Settings</string>
+     <string>Deposit </string>
     </property>
    </widget>
    <widget class="QPushButton" name="market_btn">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>450</y>
+      <y>420</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -290,6 +290,28 @@ letter-spacing: 1px;</string>
     </property>
     <property name="text">
      <string>market</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Settings_btn_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>840</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string> withdrawal</string>
     </property>
    </widget>
   </widget>
@@ -330,6 +352,9 @@ background-color: #10161f;</string>
    </property>
    <property name="layoutDirection">
     <enum>Qt::LayoutDirection::RightToLeft</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="dragEnabled">
     <bool>false</bool>
@@ -982,11 +1007,11 @@ color: #6f7988;
     <zorder>close_btn_2</zorder>
    </widget>
   </widget>
-  <zorder>creatwallet_btn</zorder>
   <zorder>tableWidget</zorder>
-  <zorder>createwallet_widget</zorder>
+  <zorder>creatwallet_btn</zorder>
   <zorder>widget</zorder>
   <zorder>createwallet_widget_2</zorder>
+  <zorder>createwallet_widget</zorder>
  </widget>
  <resources/>
  <connections/>

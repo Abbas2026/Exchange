@@ -36,6 +36,7 @@ public:
     QPushButton *currentprice_btn;
     QPushButton *Settings_btn;
     QPushButton *market_btn;
+    QPushButton *Settings_btn_2;
     QPushButton *creatwallet_btn;
     QTableWidget *tableWidget;
     QWidget *createwallet_widget;
@@ -81,7 +82,7 @@ public:
         widget->setStyleSheet(QString::fromUtf8("background-color:#d9d8d4  ;"));
         Mywallets_btn = new QPushButton(widget);
         Mywallets_btn->setObjectName("Mywallets_btn");
-        Mywallets_btn->setGeometry(QRect(30, 290, 171, 41));
+        Mywallets_btn->setGeometry(QRect(30, 280, 171, 41));
         Mywallets_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Mywallets_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: #c97940;\n"
@@ -89,7 +90,7 @@ public:
 "letter-spacing: 1px;"));
         Transmission_btn = new QPushButton(widget);
         Transmission_btn->setObjectName("Transmission_btn");
-        Transmission_btn->setGeometry(QRect(10, 610, 221, 41));
+        Transmission_btn->setGeometry(QRect(10, 560, 221, 41));
         Transmission_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Transmission_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -113,7 +114,7 @@ public:
 ""));
         Authentication_btn = new QPushButton(widget);
         Authentication_btn->setObjectName("Authentication_btn");
-        Authentication_btn->setGeometry(QRect(10, 770, 231, 41));
+        Authentication_btn->setGeometry(QRect(10, 700, 231, 41));
         Authentication_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Authentication_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: #4fee93;\n"
@@ -133,7 +134,7 @@ public:
         app_name->setAlignment(Qt::AlignmentFlag::AlignCenter);
         easyexchange_btn = new QPushButton(widget);
         easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(20, 530, 211, 41));
+        easyexchange_btn->setGeometry(QRect(20, 490, 211, 41));
         easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -141,7 +142,7 @@ public:
 "letter-spacing: -1px;"));
         Profile_btn = new QPushButton(widget);
         Profile_btn->setObjectName("Profile_btn");
-        Profile_btn->setGeometry(QRect(10, 370, 211, 41));
+        Profile_btn->setGeometry(QRect(10, 350, 211, 41));
         Profile_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Profile_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -149,7 +150,7 @@ public:
 "letter-spacing: 1px;"));
         currentprice_btn = new QPushButton(widget);
         currentprice_btn->setObjectName("currentprice_btn");
-        currentprice_btn->setGeometry(QRect(10, 690, 221, 41));
+        currentprice_btn->setGeometry(QRect(10, 630, 221, 41));
         currentprice_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         currentprice_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -157,7 +158,7 @@ public:
 "letter-spacing: 1px;"));
         Settings_btn = new QPushButton(widget);
         Settings_btn->setObjectName("Settings_btn");
-        Settings_btn->setGeometry(QRect(40, 850, 171, 41));
+        Settings_btn->setGeometry(QRect(40, 770, 171, 41));
         Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
@@ -165,9 +166,17 @@ public:
 "letter-spacing: 1px;"));
         market_btn = new QPushButton(widget);
         market_btn->setObjectName("market_btn");
-        market_btn->setGeometry(QRect(30, 450, 171, 41));
+        market_btn->setGeometry(QRect(30, 420, 171, 41));
         market_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         market_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: 1px;"));
+        Settings_btn_2 = new QPushButton(widget);
+        Settings_btn_2->setObjectName("Settings_btn_2");
+        Settings_btn_2->setGeometry(QRect(20, 840, 201, 41));
+        Settings_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        Settings_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -185,6 +194,7 @@ public:
         tableWidget->setEnabled(true);
         tableWidget->setGeometry(QRect(10, 60, 1011, 851));
         tableWidget->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
+        tableWidget->setStyleSheet(QString::fromUtf8(""));
         tableWidget->setDragEnabled(false);
         tableWidget->setCornerButtonEnabled(true);
         createwallet_widget = new QWidget(mywallet);
@@ -424,11 +434,11 @@ public:
         label_21->raise();
         backtowords_btn->raise();
         close_btn_2->raise();
-        creatwallet_btn->raise();
         tableWidget->raise();
-        createwallet_widget->raise();
+        creatwallet_btn->raise();
         widget->raise();
         createwallet_widget_2->raise();
+        createwallet_widget->raise();
 
         retranslateUi(mywallet);
 
@@ -447,8 +457,9 @@ public:
         easyexchange_btn->setText(QCoreApplication::translate("mywallet", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("mywallet", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("mywallet", "Current price", nullptr));
-        Settings_btn->setText(QCoreApplication::translate("mywallet", "Settings", nullptr));
+        Settings_btn->setText(QCoreApplication::translate("mywallet", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("mywallet", "market", nullptr));
+        Settings_btn_2->setText(QCoreApplication::translate("mywallet", " withdrawal", nullptr));
         creatwallet_btn->setText(QCoreApplication::translate("mywallet", "Create a wallet", nullptr));
         continue_btn->setText(QCoreApplication::translate("mywallet", "Continue", nullptr));
         label_1->setText(QCoreApplication::translate("mywallet", "1.", nullptr));

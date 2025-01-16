@@ -21,7 +21,7 @@ public:
     void sendWalletToServer(const QStringList &words,const QString namewallet,const QString addresswallet);
 
 
-    public  slots:
+    public slots:
        void addWalletToTable(const QString &name, const QString &address, double balance);
 private slots:
     void on_Dashboard_btn_clicked();

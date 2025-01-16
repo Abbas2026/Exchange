@@ -3,9 +3,13 @@ release/dashboard.o
 release/main.o
 release/form.o
 release/mywallet.o
+release/priceupdater.o
 release/signin.o
+release/walldetails.o
 release/moc_client.o
 release/moc_dashboard.o
 release/moc_form.o
 release/moc_mywallet.o
+release/moc_priceupdater.o
 release/moc_signin.o
+release/moc_walldetails.o

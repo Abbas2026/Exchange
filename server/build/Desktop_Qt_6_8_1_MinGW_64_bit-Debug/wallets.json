@@ -1,0 +1,151 @@
+{
+    "wallets": {
+        "jpdnsjhhdsj@gmail.com": [
+            {
+                "walletName": "ali",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "cloud"
+                    },
+                    {
+                        "index": 2,
+                        "word": "pirate"
+                    },
+                    {
+                        "index": 3,
+                        "word": "jungle"
+                    },
+                    {
+                        "index": 4,
+                        "word": "jungle"
+                    },
+                    {
+                        "index": 5,
+                        "word": "wind"
+                    },
+                    {
+                        "index": 6,
+                        "word": "water"
+                    }
+                ]
+            },
+            {
+                "walletName": "g",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "tree"
+                    },
+                    {
+                        "index": 2,
+                        "word": "house"
+                    },
+                    {
+                        "index": 3,
+                        "word": "grape"
+                    },
+                    {
+                        "index": 4,
+                        "word": "lion"
+                    },
+                    {
+                        "index": 5,
+                        "word": "sky"
+                    },
+                    {
+                        "index": 6,
+                        "word": "apple"
+                    }
+                ]
+            },
+            {
+                "walletName": "hhhh",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "unicorn"
+                    },
+                    {
+                        "index": 2,
+                        "word": "star"
+                    },
+                    {
+                        "index": 3,
+                        "word": "xylophone"
+                    },
+                    {
+                        "index": 4,
+                        "word": "x-ray"
+                    },
+                    {
+                        "index": 5,
+                        "word": "goat"
+                    },
+                    {
+                        "index": 6,
+                        "word": "sky"
+                    }
+                ]
+            },
+            {
+                "walletName": "y",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "fountain"
+                    },
+                    {
+                        "index": 2,
+                        "word": "book"
+                    },
+                    {
+                        "index": 3,
+                        "word": "zinnia"
+                    },
+                    {
+                        "index": 4,
+                        "word": "sky"
+                    },
+                    {
+                        "index": 5,
+                        "word": "orbit"
+                    },
+                    {
+                        "index": 6,
+                        "word": "axe"
+                    }
+                ]
+            },
+            {
+                "walletName": "h",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "apple"
+                    },
+                    {
+                        "index": 2,
+                        "word": "forest"
+                    },
+                    {
+                        "index": 3,
+                        "word": "stone"
+                    },
+                    {
+                        "index": 4,
+                        "word": "zoo"
+                    },
+                    {
+                        "index": 5,
+                        "word": "penguin"
+                    },
+                    {
+                        "index": 6,
+                        "word": "ant"
+                    }
+                ]
+            }
+        ]
+    }
+}

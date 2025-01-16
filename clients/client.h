@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QTcpSocket>
 #include "form.h"
+
 class Client : public QObject
 {
     Q_OBJECT
@@ -16,18 +17,21 @@ public:
     void sendWallet(const QStringList &words, const QString &name  , const QString &address);
     void sendRecoveryRequest();
     void walletsdata(const QString &address);
-
-
+    void Walletassets(const QString &email,const QString &namewallet);
+    void processResponse(const QByteArray& message);
+    void processSimpleResponse(const QString& responseStr);
+    static int bb;
 
 signals:
+    void sendinventorytowalletdetails(const QString &coinname,const double &coinamount,const double &Currentvalue);
     void receivedMessage(const QString &message);
     void receivedMessagetodash(const QString &message);
     void receivedMessagetosign(const QString &message);
-
     void registrationSuccessful();
     void loginSuccessful();
     void triggerSigninSlot();
-     void sendWalletToMywallet(const QString &name, const QString &address, double balance);
+    void sendWalletToMywallet(const QString &name, const QString &address, double balance);
+
 public slots:
     void sendMessage(const QString &message);
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
@@ -43,7 +47,8 @@ private:
     QString m_name;
     QString m_address;
     QString m_phone;
-
+    QString m_pendingWalletName;
+    QString m_pendingWalletAddress;
     QTcpSocket *socket;
 };
 

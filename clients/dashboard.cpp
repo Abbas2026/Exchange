@@ -38,26 +38,22 @@ void dashboard::ServerResponse(const QString &response)
 }
 void dashboard::applyStyles()
 {
-    ui->Dashboard_btn->setStyleSheet("QPushButton { color: #c97940;border:none;font: 28pt 'Bangers';border:none; }"
-                                     "QPushButton:hover {color: #c97940 }");
-    ui->Mywallets_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';letter-spacing: 1px;border:none;}"
-                                     "QPushButton:hover { color: #c97940  }");
-    ui->Profile_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                   "QPushButton:hover { color: #c97940  }");
-    ui->market_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                  "QPushButton:hover { color: #c97940  }");
-    ui->easyexchange_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                        "QPushButton:hover { color: #c97940  }");
-    ui->Transmission_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                        "QPushButton:hover { color: #c97940  }");
-    ui->currentprice_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                        "QPushButton:hover { color: #c97940  }");
-    ui->Authentication_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                          "QPushButton:hover { color: #c97940  }");
-    ui->Settings_btn->setStyleSheet("QPushButton { color:black; ;border:none;font: 28pt 'Bangers';border:none; }"
-                                          "QPushButton:hover { color: #c97940  }");
-}
+    const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
+                              "QPushButton:hover { color: #c97940; }";
 
+    ui->Dashboard_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
+                                     "QPushButton:hover { color: #c97940; }");
+
+    ui->Mywallets_btn->setStyleSheet(baseStyle);
+    ui->Profile_btn->setStyleSheet(baseStyle);
+    ui->market_btn->setStyleSheet(baseStyle);
+    ui->easyexchange_btn->setStyleSheet(baseStyle);
+    ui->Transmission_btn->setStyleSheet(baseStyle);
+    ui->currentprice_btn->setStyleSheet(baseStyle);
+    ui->Authentication_btn->setStyleSheet(baseStyle);
+    ui->Settings_btn->setStyleSheet(baseStyle);
+    ui->Settings_btn_2->setStyleSheet(baseStyle);
+}
 
 void dashboard::on_Mywallets_btn_clicked()
 {
@@ -69,7 +65,7 @@ void dashboard::on_Mywallets_btn_clicked()
       extern Client client;
         QObject::connect(&client, &Client::sendWalletToMywallet, wallets, &mywallet::addWalletToTable);
 
-      client.walletsdata(form::globalEmail);
+        client.walletsdata(form::globalEmail);
              wallets->show();
 }
 
