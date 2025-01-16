@@ -1,3 +1,4 @@
+
 #include "form.h"
 #include <QDebug>
 #include <QApplication>
@@ -6,7 +7,7 @@
 #include "signin.h"
 #include "dashboard.h"
 #include "priceupdater.h"
-
+#include "CurrentPrice.h"
 Client client;
 PriceUpdater* priceUpdater = nullptr;
 
