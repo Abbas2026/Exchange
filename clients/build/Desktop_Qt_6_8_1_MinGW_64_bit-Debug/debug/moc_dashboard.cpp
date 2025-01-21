@@ -75,14 +75,14 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9dashboardE[] = {
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        3,    1,   81,    2, 0x0a,    2 /* Public */,
        5,    0,   84,    2, 0x0a,    4 /* Public */,
-       6,    0,   85,    2, 0x08,    5 /* Private */,
-       7,    0,   86,    2, 0x08,    6 /* Private */,
-       8,    0,   87,    2, 0x08,    7 /* Private */,
-       9,    0,   88,    2, 0x08,    8 /* Private */,
-      10,    0,   89,    2, 0x08,    9 /* Private */,
-      11,    0,   90,    2, 0x08,   10 /* Private */,
-      12,    0,   91,    2, 0x08,   11 /* Private */,
-      13,    0,   92,    2, 0x08,   12 /* Private */,
+       6,    0,   85,    2, 0x0a,    5 /* Public */,
+       7,    0,   86,    2, 0x0a,    6 /* Public */,
+       8,    0,   87,    2, 0x0a,    7 /* Public */,
+       9,    0,   88,    2, 0x0a,    8 /* Public */,
+      10,    0,   89,    2, 0x0a,    9 /* Public */,
+      11,    0,   90,    2, 0x0a,   10 /* Public */,
+      12,    0,   91,    2, 0x0a,   11 /* Public */,
+      13,    0,   92,    2, 0x0a,   12 /* Public */,
 
  // signals: parameters
     QMetaType::Void,

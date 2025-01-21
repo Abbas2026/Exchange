@@ -5,9 +5,9 @@
 #include <QNetworkRequest>
 #include <QDebug>
 
-double PriceUpdater::bitcoinToTether = 0.0;
-double PriceUpdater::ethereumToTether = 0.0;
-double PriceUpdater::tronToTether = 0.0;
+double PriceUpdater::bitcoinToTether = 102000.0;
+double PriceUpdater::ethereumToTether = 3288.0;
+double PriceUpdater::tronToTether = 0.24;
 double PriceUpdater::tetherToToman = 80000.0;
 double PriceUpdater::balancetotether=0.0;
 PriceUpdater::PriceUpdater(QObject* parent)

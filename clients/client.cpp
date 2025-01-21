@@ -11,6 +11,9 @@
 #include <QtConcurrent>
 #include "priceupdater.h"
 int Client::bb=0;
+QString Client::user_level="0";
+QString Client::globalEmail = "jkdsjhdsj@gmail.com";
+
 Client::Client(QObject *parent) : QObject(parent)
 {
     socket = new QTcpSocket(this);
@@ -19,10 +22,7 @@ Client::Client(QObject *parent) : QObject(parent)
     } else {
         qDebug() << "Socket created successfully!";
     }
-    m_email = "";
-    m_name = "";
-    m_address = "";
-    m_phone = "";
+
     connect(socket, &QTcpSocket::readyRead, this, &Client::readServerResponse);
 }
 
@@ -46,15 +46,13 @@ void Client::sendMessage(const QString &message)
 }
 
 
-void Client::sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone)
+void Client::sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone)
 {
-    qDebug() <<"335";
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["email"] = email;
         json["password"] = password;
         json["name"] = name;
-        json["address"] = address;
         json["phone"] = phone;
         QJsonDocument doc(json);
         QByteArray data = doc.toJson();
@@ -85,7 +83,6 @@ void Client::readServerResponse() {
             if (!buffer.contains("\r\n") && !buffer.trimmed().startsWith("{")) {
                 QString responseStr = QString::fromUtf8(buffer.trimmed());
                 buffer.clear();
-                qDebug() << "Non-structured response: " << responseStr;
                 processSimpleResponse(responseStr);
                 return;
             }
@@ -131,13 +128,11 @@ void Client::requestUserData(const QString &email)
     }
 }
 void Client::processResponse(const QByteArray& message) {
-    QString responseStr = QString::fromUtf8(message);
     QJsonDocument doc = QJsonDocument::fromJson(message);
 
     if (doc.isObject()) {
         QJsonObject response = doc.object();
         QString type = response["type"].toString();
-        QString status = response["status"].toString();
         QString error = response["error"].toString();
 
         if (type == "RecoveryRequest") {
@@ -155,23 +150,31 @@ void Client::processResponse(const QByteArray& message) {
             for (auto it = recoveryMap.begin(); it != recoveryMap.end(); ++it) {
                 qDebug() << "Index:" << it.key() << "Word:" << it.value();
             }
-        } else if (status == "success") {
-            QString email = response["email"].toString();
-            QString name = response["name"].toString();
-            QString address = response["address"].toString();
-            QString phone = response["phone"].toString();
+        } else if (type == "userprofile") {
+            qDebug()<<"222222";
+            QJsonObject userObject = response["user"].toObject();
+            QString email = userObject["email"].toString();
+            QString name = userObject["name"].toString();
+            QString password = userObject["password"].toString();
+            QString phone = userObject["phone"].toString();
+            Client::user_level=userObject["userlevel"].toString();
+            QString address = userObject["addresshome"].toString() ;
+            QString firstname= userObject["fname"].toString();
+            QString lastname= userObject["lname"].toString();
+            qDebug()<<"1111"<<email<<name<<password<<phone<<user_level<<lastname;
+            emit sendusertoprofile(email,name,password,phone,address,firstname,lastname);
+        } else if (type == "saveuserprofile") {
+            if(response["status"].toString()=="success"){
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_Profile_btn_clicked();
+            }
+            else if(response["status"].toString()=="defeat"){
+            }
 
-            m_email = email;
-            m_name = name;
-            m_address = address;
-            m_phone = phone;
+        }
 
-            emit receivedMessage(QString("Email: %1\nName: %2\nAddress: %3\nPhone: %4")
-                                     .arg(email)
-                                     .arg(name)
-                                     .arg(address)
-                                     .arg(phone));
-        } else if (type == "WalletExists") {
+        else if (type == "WalletExists") {
             QtConcurrent::run([=]() {
                 emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
             });
@@ -190,11 +193,8 @@ void Client::processResponse(const QByteArray& message) {
             QString name = response["name"].toString();
             QString address = response["address"].toString();
 
-            //qDebug() << "Wallet Name: " << name;
-            //qDebug() << "Wallet Address: " << address;
             extern Client client;
-
-            client.Walletassets(form::globalEmail,name);
+            client.Walletassets(Client::globalEmail,name);
             emit sendWalletToMywallet(name, address, PriceUpdater::balancetotether);
         } else if (type == "walletCurrencies") {
             QString name = response["name"].toString();
@@ -230,7 +230,6 @@ void Client::processResponse(const QByteArray& message) {
                     PriceUpdater::balancetotether+=Currentvalue;
                     emit sendinventorytowalletdetails(key, amount,Currentvalue);
                 }
-                extern Client client;
                 if(Client::bb==1){
                     emit sendWalletToMywallet(name, address, PriceUpdater::balancetotether);
                     Client::bb=0;
@@ -284,14 +283,13 @@ void Client::sendForgotPasswordRequest(const QString &email, const QString &user
 void Client::sendWallet(const QStringList &words, const QString &name , const QString &address)
 {
 
-    m_pendingWalletName = name;
-    m_pendingWalletAddress = address;
+
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "createwallet";
         json["email"] = "jpdnsjhhdsj@gmail.com";
         json["walletName"] = name;
-        json["walletaddress"] = address;
+        json["address"] = address;
 
         QJsonArray jsonWords;
         for (int i = 0; i < words.size(); ++i) {
@@ -339,6 +337,36 @@ void Client::Walletassets(const QString &email,const QString &namewallet){
         json["type"] = "walletCurrencies";
          json["walletName"] =namewallet ;
         json["email"] = "jpdnsjhhdsj@gmail.com";
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+void Client::getuserprofile(){
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        json["type"] = "userprofile";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+void Client::senduserprofiletoserver(const QString &name,const QString &address,const QString &phone,const QString &firstname,const QString &lastname,const QString &password,const QString &user_level){
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        qDebug() <<"123456";
+        QJsonObject json;
+        json["type"] = "userprofiletoserver";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["name"] =name ;
+        json["addresshome"] = address;
+        json["phone"] = phone;
+        json["fname"] = firstname;
+        json["lname"] = lastname;
+        json["password"] = password;
+        json["userlevel"] = user_level;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
     } else {

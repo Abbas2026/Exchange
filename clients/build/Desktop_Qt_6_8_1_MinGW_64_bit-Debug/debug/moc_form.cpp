@@ -43,7 +43,6 @@ static constexpr auto qt_meta_stringdata_ZN4formE = QtMocHelpers::stringData(
     "email",
     "password",
     "name",
-    "address",
     "phone",
     "displayServerResponse",
     "response",
@@ -70,20 +69,20 @@ Q_CONSTINIT static const uint qt_meta_data_ZN4formE[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    5,   50,    2, 0x06,    1 /* Public */,
+       1,    4,   50,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    1,   61,    2, 0x0a,    7 /* Public */,
-      10,    0,   64,    2, 0x0a,    9 /* Public */,
-      11,    0,   65,    2, 0x0a,   10 /* Public */,
-      12,    0,   66,    2, 0x08,   11 /* Private */,
-      13,    0,   67,    2, 0x08,   12 /* Private */,
+       7,    1,   59,    2, 0x0a,    6 /* Public */,
+       9,    0,   62,    2, 0x0a,    8 /* Public */,
+      10,    0,   63,    2, 0x0a,    9 /* Public */,
+      11,    0,   64,    2, 0x08,   10 /* Private */,
+      12,    0,   65,    2, 0x08,   11 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,    6,    7,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    3,    4,    5,    6,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString,    9,
+    QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -103,7 +102,6 @@ Q_CONSTINIT const QMetaObject form::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<form, std::true_type>,
         // method 'sendCredentials'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
@@ -128,7 +126,7 @@ void form::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
     auto *_t = static_cast<form *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->sendCredentials((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5]))); break;
+        case 0: _t->sendCredentials((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4]))); break;
         case 1: _t->displayServerResponse((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 2: _t->onRegistrationSuccessful(); break;
         case 3: _t->loginSuccessful(); break;
@@ -140,7 +138,7 @@ void form::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
     if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _q_method_type = void (form::*)(const QString & , const QString & , const QString & , const QString & , const QString & );
+            using _q_method_type = void (form::*)(const QString & , const QString & , const QString & , const QString & );
             if (_q_method_type _q_method = &form::sendCredentials; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -181,9 +179,9 @@ int form::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void form::sendCredentials(const QString & _t1, const QString & _t2, const QString & _t3, const QString & _t4, const QString & _t5)
+void form::sendCredentials(const QString & _t1, const QString & _t2, const QString & _t3, const QString & _t4)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

@@ -29,7 +29,7 @@ public:
     QLineEdit *lineEditName;
     QLabel *label_phone;
     QPushButton *pushButton;
-    QLabel *label_address;
+    QLabel *label_copas;
     QLabel *label_password;
     QLineEdit *lineEditEmail;
     QLineEdit *lineEdit_2;
@@ -39,7 +39,7 @@ public:
     QLineEdit *lineEdit;
     QLineEdit *lineEditPhone;
     QTextEdit *textEdit;
-    QLineEdit *lineEditAddress;
+    QLineEdit *confirmpassword;
     QLabel *label_name;
     QLineEdit *lineEditPassword;
     QLineEdit *invitationcode;
@@ -60,7 +60,7 @@ public:
         centralwidget->setStyleSheet(QString::fromUtf8("background-color:#0A0C0E  ;"));
         lineEditName = new QLineEdit(centralwidget);
         lineEditName->setObjectName("lineEditName");
-        lineEditName->setGeometry(QRect(750, 240, 201, 31));
+        lineEditName->setGeometry(QRect(750, 180, 201, 31));
         lineEditName->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
@@ -72,6 +72,7 @@ public:
         label_phone->setGeometry(QRect(620, 360, 61, 20));
         label_phone->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
+"background-color:#0A0C0E;\n"
 ""));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
@@ -83,17 +84,19 @@ public:
 "            border-radius: 10px;\n"
 "            font-size: 16px;\n"
 "           border: none;  "));
-        label_address = new QLabel(centralwidget);
-        label_address->setObjectName("label_address");
-        label_address->setGeometry(QRect(610, 300, 71, 20));
-        label_address->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
+        label_copas = new QLabel(centralwidget);
+        label_copas->setObjectName("label_copas");
+        label_copas->setGeometry(QRect(530, 300, 161, 20));
+        label_copas->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
+"background-color:#0A0C0E;\n"
 ""));
         label_password = new QLabel(centralwidget);
         label_password->setObjectName("label_password");
-        label_password->setGeometry(QRect(590, 180, 111, 20));
+        label_password->setGeometry(QRect(590, 240, 111, 20));
         label_password->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
+"background-color:#0A0C0E;\n"
 ""));
         lineEditEmail = new QLineEdit(centralwidget);
         lineEditEmail->setObjectName("lineEditEmail");
@@ -118,6 +121,7 @@ public:
         label_invitationcode->setGeometry(QRect(560, 420, 121, 20));
         label_invitationcode->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
+"background-color:#0A0C0E;\n"
 ""));
         pushButton_gosignin = new QPushButton(centralwidget);
         pushButton_gosignin->setObjectName("pushButton_gosignin");
@@ -132,6 +136,7 @@ public:
         label_email->setGeometry(QRect(620, 120, 81, 20));
         label_email->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
+"background-color:#0A0C0E;\n"
 ""));
         lineEdit = new QLineEdit(centralwidget);
         lineEdit->setObjectName("lineEdit");
@@ -155,24 +160,26 @@ public:
         textEdit->setEnabled(false);
         textEdit->setGeometry(QRect(550, 480, 181, 41));
         textEdit->setStyleSheet(QString::fromUtf8("border:none;"));
-        lineEditAddress = new QLineEdit(centralwidget);
-        lineEditAddress->setObjectName("lineEditAddress");
-        lineEditAddress->setGeometry(QRect(750, 300, 201, 28));
-        lineEditAddress->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
+        confirmpassword = new QLineEdit(centralwidget);
+        confirmpassword->setObjectName("confirmpassword");
+        confirmpassword->setGeometry(QRect(750, 300, 201, 28));
+        confirmpassword->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
 "    color: #333333; \n"
 "    font-size: 12px;\n"
 ""));
+        confirmpassword->setEchoMode(QLineEdit::EchoMode::Password);
         label_name = new QLabel(centralwidget);
         label_name->setObjectName("label_name");
-        label_name->setGeometry(QRect(590, 240, 111, 20));
+        label_name->setGeometry(QRect(590, 180, 111, 20));
         label_name->setStyleSheet(QString::fromUtf8("    font-size: 16px;\n"
 "    font-weight: bold;\n"
+"background-color:#0A0C0E;\n"
 ""));
         lineEditPassword = new QLineEdit(centralwidget);
         lineEditPassword->setObjectName("lineEditPassword");
-        lineEditPassword->setGeometry(QRect(750, 180, 201, 28));
+        lineEditPassword->setGeometry(QRect(750, 240, 201, 28));
         lineEditPassword->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
 "    background-color:#ffcc00; \n"
@@ -213,11 +220,11 @@ public:
 
     void retranslateUi(QMainWindow *form)
     {
-        form->setWindowTitle(QCoreApplication::translate("form", "form", nullptr));
+        form->setWindowTitle(QCoreApplication::translate("form", "HELIACAL EXCHANGE", nullptr));
         lineEditName->setPlaceholderText(QString());
         label_phone->setText(QCoreApplication::translate("form", "phone:", nullptr));
         pushButton->setText(QCoreApplication::translate("form", "register", nullptr));
-        label_address->setText(QCoreApplication::translate("form", "address:", nullptr));
+        label_copas->setText(QCoreApplication::translate("form", "confirm password : *", nullptr));
         label_password->setText(QCoreApplication::translate("form", "password :  *", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("form", "Sign up", nullptr));
         label_invitationcode->setText(QCoreApplication::translate("form", "invitationcode:", nullptr));
@@ -225,7 +232,7 @@ public:
         label_email->setText(QCoreApplication::translate("form", "email :  *", nullptr));
         lineEdit->setText(QCoreApplication::translate("form", "Have an account? Sign in now.", nullptr));
         lineEditPhone->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
-        lineEditAddress->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
+        confirmpassword->setPlaceholderText(QString());
         label_name->setText(QCoreApplication::translate("form", "user name:  *", nullptr));
         invitationcode->setPlaceholderText(QCoreApplication::translate("form", "\330\247\330\256\330\252\333\214\330\247\330\261\333\214", nullptr));
         label_6->setText(QString());

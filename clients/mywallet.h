@@ -17,7 +17,7 @@ public:
     void applyStyles();
     void populateTable();
     void addtotable(const QString &name1, const QString &address1, double balance1);
-    void processRowData(int row,const QString &name, const QString &address, double balance);
+    void processRowData(const QString &name, const QString &address, double balance);
     void sendWalletToServer(const QStringList &words,const QString namewallet,const QString addresswallet);
 
 
@@ -40,6 +40,8 @@ private slots:
 
     void on_tableWidget_cellClicked(int row, int column);
 
+
+    void on_Profile_btn_clicked();
 
 private:
     Ui::mywallet *ui;

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>HELIACAL EXCHANGE</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color:#d9d8d4  ;</string>

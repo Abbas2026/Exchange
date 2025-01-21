@@ -2,6 +2,7 @@
 #include "form.h"
 #include <QDebug>
 #include <QApplication>
+#include <QCoreApplication>
 #include "client.h"
 #include <QThread>
 #include "signin.h"
@@ -18,6 +19,12 @@ void printPrices() {
     qDebug() << "Tether to Toman:" << PriceUpdater::tetherToToman;
 }
 
+
+
+
+
+
+
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     priceUpdater = new PriceUpdater();
@@ -32,6 +39,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&client, &Client::receivedMessage, &w, &form::displayServerResponse);
     QObject::connect(&client, &Client::registrationSuccessful, &w, &form::onRegistrationSuccessful);
     QObject::connect(&client, &Client::loginSuccessful, &w, &form::loginSuccessful);
+
     m.show();
     return a.exec();
 }

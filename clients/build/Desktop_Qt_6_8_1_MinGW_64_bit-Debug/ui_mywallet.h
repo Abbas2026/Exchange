@@ -368,6 +368,7 @@ public:
 "           border: none;  "));
         label_20 = new QLabel(widget_3);
         label_20->setObjectName("label_20");
+        label_20->setEnabled(false);
         label_20->setGeometry(QRect(40, 180, 111, 41));
         label_20->setStyleSheet(QString::fromUtf8("color: #6f7988;\n"
 "background-color: rgb(29, 38, 51);"));
@@ -402,6 +403,7 @@ public:
 ""));
         label_21 = new QLabel(widget_3);
         label_21->setObjectName("label_21");
+        label_21->setEnabled(false);
         label_21->setGeometry(QRect(480, 180, 81, 41));
         label_21->setStyleSheet(QString::fromUtf8("color: #6f7988;\n"
 "background-color: rgb(29, 38, 51);"));
@@ -437,8 +439,8 @@ public:
         tableWidget->raise();
         creatwallet_btn->raise();
         widget->raise();
-        createwallet_widget_2->raise();
         createwallet_widget->raise();
+        createwallet_widget_2->raise();
 
         retranslateUi(mywallet);
 
@@ -447,7 +449,7 @@ public:
 
     void retranslateUi(QWidget *mywallet)
     {
-        mywallet->setWindowTitle(QCoreApplication::translate("mywallet", "Form", nullptr));
+        mywallet->setWindowTitle(QCoreApplication::translate("mywallet", "HELIACAL EXCHANGE", nullptr));
         Mywallets_btn->setText(QCoreApplication::translate("mywallet", "My wallets", nullptr));
         Transmission_btn->setText(QCoreApplication::translate("mywallet", "Transmission", nullptr));
         app_logo->setText(QString());

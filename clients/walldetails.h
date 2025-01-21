@@ -25,6 +25,8 @@ signals:
     private slots:
     void on_backtomywallet_btn_clicked();
 
+        void on_Profile_btn_clicked();
+
     private:
     Ui::Walldetails *ui;
 };

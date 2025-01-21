@@ -16,11 +16,10 @@ class form : public QMainWindow
 public:
     form(QWidget *parent = nullptr);
 
-    static QString globalEmail;
     ~form();
 
 signals:
-    void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &address, const QString &phone);
+    void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone);
 
 public slots:
     void displayServerResponse(const QString &response);

@@ -6,7 +6,6 @@
 #include <QMessageBox>
 #include "signin.h"
 #include "dashboard.h"
-QString form::globalEmail = "jkdsjhdsj@gmail.com";
 form::form(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::form)
@@ -46,17 +45,12 @@ bool isValidPassword(const QString &password) {
 }
 
 
-
-
-
-
-
 void form::on_pushButton_clicked()
 {
     QString email = ui->lineEditEmail->text();
     QString password = ui->lineEditPassword->text();
     QString name = ui->lineEditName->text();
-    QString address = ui->lineEditAddress->text();
+    QString copassword = ui->confirmpassword->text();
     QString phone = ui->lineEditPhone->text();
     if(email.isEmpty()){ QMessageBox::warning(this, "خطا", "لطفاً ایمیل خود را وارد کنید.");return;}
     if(password.isEmpty()){ QMessageBox::warning(this, "خطا", "لطفاً رمز عبور خود را وارد کنید.");return;}
@@ -71,9 +65,13 @@ void form::on_pushButton_clicked()
         QMessageBox::warning(this, "warning", "رمز عبور نامعتبر است. رمز عبور باید حداقل 8 کاراکتر، شامل یک حرف بزرگ، یک حرف کوچک و یک عدد باشد.");
         return;
     }
+    if (password!=copassword){
+        QMessageBox::warning(this, "warning", "the password and its repetition are not the same.");
+        return;
+    }
 
-    form::globalEmail = email;
-    emit sendCredentials(email, password, name, address, phone);
+    Client::globalEmail = email;
+    emit sendCredentials(email, password, name, phone);
 }
 
 void form::displayServerResponse(const QString &response)
@@ -90,7 +88,6 @@ void form::onRegistrationSuccessful() {
     this->hide();
 
     dashboard *da = new dashboard();
-    da->setEmail(form::globalEmail);
     da->setAttribute(Qt::WA_DeleteOnClose);
     connect(da, &dashboard::backToFormRequested, this, [this]() {
         this->show();
@@ -101,7 +98,6 @@ void form::onRegistrationSuccessful() {
 void form::loginSuccessful() {
     this->hide();
     dashboard *da = new dashboard();
-    da->setEmail(form::globalEmail);
     da->setAttribute(Qt::WA_DeleteOnClose);
     connect(da, &dashboard::backToFormRequested, this, [this]() {
         this->show();

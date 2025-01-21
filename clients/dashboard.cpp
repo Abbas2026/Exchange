@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include "mywallet.h"
 #include "client.h"
+#include "profile.h"
+
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
@@ -16,11 +18,7 @@ dashboard::~dashboard()
 {
     delete ui;
 }
-void dashboard::setEmail(const QString &email)
-{
-    m_email = email;
 
-}
 void dashboard::on_backButton_clicked()
 {
     emit backToFormRequested();
@@ -33,17 +31,13 @@ void dashboard::ServerResponse(const QString &response)
     } else {
         ui->textEdit->setText(response);
     }
-
-
 }
 void dashboard::applyStyles()
 {
     const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
                               "QPushButton:hover { color: #c97940; }";
-
     ui->Dashboard_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
                                      "QPushButton:hover { color: #c97940; }");
-
     ui->Mywallets_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -58,21 +52,24 @@ void dashboard::applyStyles()
 void dashboard::on_Mywallets_btn_clicked()
 {
     this->close();
-
     mywallet *wallets = new mywallet();
     wallets->setAttribute(Qt::WA_DeleteOnClose);
-
-      extern Client client;
-        QObject::connect(&client, &Client::sendWalletToMywallet, wallets, &mywallet::addWalletToTable);
-
-        client.walletsdata(form::globalEmail);
-             wallets->show();
+    extern Client client;
+    QObject::connect(&client, &Client::sendWalletToMywallet, wallets, &mywallet::addWalletToTable);
+    client.walletsdata(Client::globalEmail);
+    wallets->show();
 }
 
 
 void dashboard::on_Profile_btn_clicked()
 {
-
+    this->close();
+    extern Client client;
+    client.getuserprofile();
+    profile *prof= new profile();
+    connect(&client, &Client::sendusertoprofile, prof, &profile::receiveduserprofile);
+    prof->setAttribute(Qt::WA_DeleteOnClose);
+    prof->show();
 }
 
 

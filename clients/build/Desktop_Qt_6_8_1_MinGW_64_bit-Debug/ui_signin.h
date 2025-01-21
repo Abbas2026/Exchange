@@ -183,7 +183,7 @@ public:
 
     void retranslateUi(QWidget *signin)
     {
-        signin->setWindowTitle(QCoreApplication::translate("signin", "Form", nullptr));
+        signin->setWindowTitle(QCoreApplication::translate("signin", "HELIACAL EXCHANGE", nullptr));
         label->setText(QString());
         pushButton_gosignin->setText(QCoreApplication::translate("signin", "Sign up", nullptr));
         forgot_password->setText(QCoreApplication::translate("signin", "Forgot your password?", nullptr));

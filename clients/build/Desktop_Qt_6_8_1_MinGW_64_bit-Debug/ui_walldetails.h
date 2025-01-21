@@ -349,7 +349,7 @@ public:
 
     void retranslateUi(QWidget *Walldetails)
     {
-        Walldetails->setWindowTitle(QCoreApplication::translate("Walldetails", "Form", nullptr));
+        Walldetails->setWindowTitle(QCoreApplication::translate("Walldetails", "HELIACAL EXCHANGE", nullptr));
         tokens_btn->setText(QCoreApplication::translate("Walldetails", "Tokens", nullptr));
         history_btn->setText(QCoreApplication::translate("Walldetails", "History", nullptr));
         label->setText(QCoreApplication::translate("Walldetails", "Total value of inventory :", nullptr));

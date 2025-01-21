@@ -13,6 +13,7 @@
 #include "dashboard.h"
 #include "priceupdater.h"
 #include <QLocale>
+#include "profile.h"
 Walldetails::Walldetails(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Walldetails)
@@ -21,7 +22,6 @@ Walldetails::Walldetails(QWidget *parent)
      applyStyles();
      populateTable();
 }
-
 Walldetails::~Walldetails()
 {
     delete ui;
@@ -45,7 +45,6 @@ void Walldetails::applyStyles()
     renderer1.render(&painter);
     ui->lb_icon_tether->setPixmap(pixmap);
     ui->lb_icon_tether->setFixedSize(30, 30);
-
     svgCode=R"(
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="25" fill="#f7931a"/><path d="M31.644,18.531c.491-3.275-2-5.036-5.414-6.211l1.106-4.437-2.7-.672-1.078,4.32c-.709-.178-1.437-.344-2.164-.509L22.48,6.673,19.78,6l-1.106,4.436c-.588-.134-1.166-.266-1.725-.406l0-.014-3.725-.93-.719,2.884s2,.459,1.963.488a1.437,1.437,0,0,1,1.258,1.572L14.47,19.084a2.4,2.4,0,0,1,.281.089l-.286-.07L12.7,26.184a.985.985,0,0,1-1.239.641c.028.039-1.962-.489-1.962-.489L8.157,29.427l3.516.877c.653.164,1.294.336,1.923.5l-1.117,4.487,2.7.672,1.106-4.437c.737.2,1.453.383,2.153.558l-1.1,4.419,2.7.672,1.117-4.478c4.606.872,8.069.52,9.527-3.645,1.175-3.353-.058-5.289-2.481-6.55a4.305,4.305,0,0,0,3.448-3.966Zm-6.172,8.653c-.833,3.355-6.481,1.541-8.312,1.086l1.484-5.945C20.476,22.783,26.346,23.688,25.473,27.184Zm.836-8.7c-.761,3.052-5.461,1.5-6.984,1.12l1.344-5.391c1.523.38,6.434,1.087,5.641,4.27Z" transform="translate(4.588 3.375) " fill="#fff"/></svg>
     )";
@@ -53,7 +52,6 @@ void Walldetails::applyStyles()
     renderer2.render(&painter);
     ui->lb_icon_bitcoin->setPixmap(pixmap);
     ui->lb_icon_bitcoin->setFixedSize(30, 30);
-
     svgCode=R"(
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="25" fill="#d9d9d9"/><path d="M1092.594,652,1080,672.919l12.594,7.482,12.515-7.482ZM1080,675.413l12.594,7.4,12.515-7.4-12.515,17.781Z" transform="translate(-1067.446 -647.488) " fill="#828384" fill-rule="evenodd"/><path d="M1144.2,680.353V652l12.48,20.859Zm12.438-4.913L1144.2,693.194V682.847Z" transform="translate(-1119.052 -647.488) " fill="#2f3030" fill-rule="evenodd"/><path d="M1092.594,729.93,1080,735.562l12.594,7.482,12.515-7.482Z" transform="translate(-1067.446 -710.132) " fill="#131313" fill-rule="evenodd" opacity="0.8"/></svg>
     )";
@@ -61,7 +59,6 @@ void Walldetails::applyStyles()
     renderer3.render(&painter);
     ui->lb_icon_ethereum->setPixmap(pixmap);
     ui->lb_icon_ethereum->setFixedSize(30, 30);
-
     svgCode=R"(
 
 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="25" fill="#eb0029"/><path d="M34.164,15.228c-1.248-.886-2.584-1.831-3.891-2.769-.03-.022-.058-.044-.094-.066a1.75,1.75,0,0,0-.513-.292l-.016-.008Q24.41,10.808,19.17,9.51L9.819,7.2l-.245-.066a2.374,2.374,0,0,0-.953-.125.658.658,0,0,0-.266.1l-.087.073a1.078,1.078,0,0,0-.245.4L8,7.642v.336l.016.052c1.969,5.6,3.991,11.284,5.941,16.783,1.5,4.234,3.063,8.619,4.584,12.925a.766.766,0,0,0,.694.512h.072a.811.811,0,0,0,.722-.4l5.719-8.458q2.088-3.087,4.18-6.18l1.711-2.534c.937-1.391,1.906-2.827,2.867-4.225l.05-.072v-.089a1.117,1.117,0,0,0-.391-1.063m-6.7,3.084c-1.344.709-2.714,1.442-4.094,2.167l2.413-2.622c1-1.1,2.05-2.234,3.075-3.347l.022-.022a3.253,3.253,0,0,1,.311-.344c.078-.08.166-.161.245-.256.534.375,1.075.755,1.6,1.128q.563.405,1.148.813-2.366,1.226-4.716,2.483m-3.45-.352c-1.033,1.134-2.1,2.3-3.163,3.448q-3.088-3.8-6.2-7.586l-2.78-3.391-.006-.008c-.209-.241-.412-.5-.614-.753-.13-.169-.267-.33-.4-.5.837.219,1.683.425,2.512.622.73.177,1.488.359,2.231.55l12.57,3.1c-1.394,1.509-2.8,3.039-4.152,4.519M20.381,32.231c.08-.769.167-1.559.239-2.336.066-.623.13-1.259.2-1.867.1-.975.209-1.984.3-2.973l.02-.175c.072-.631.144-1.281.188-1.934a2.156,2.156,0,0,1,.261-.125,3.094,3.094,0,0,0,.323-.159q2.5-1.333,5.011-2.652c1.669-.878,3.38-1.787,5.077-2.687q-2.309,3.392-4.6,6.8c-1.292,1.909-2.62,3.88-3.942,5.82-.519.777-1.061,1.567-1.573,2.328-.578.85-1.17,1.72-1.747,2.594.072-.88.158-1.766.252-2.63M10.319,10.9c-.094-.264-.2-.534-.283-.791,1.95,2.387,3.913,4.789,5.827,7.117.989,1.208,1.978,2.409,2.967,3.625.2.227.391.469.578.7.245.3.491.616.758.916-.087.753-.159,1.516-.239,2.247-.05.512-.1,1.027-.158,1.547v.006c-.022.328-.066.659-.1.981L19.5,28.71l-.008.05c-.13,1.48-.289,2.973-.441,4.423-.064.6-.122,1.216-.187,1.831-.036-.109-.078-.22-.116-.323q-.165-.448-.317-.9l-.773-2.175L10.317,10.9" transform="translate(4.5 3.937) " fill="#fff"/></svg>
@@ -77,7 +74,6 @@ void Walldetails::applyStyles()
 
     ui->Mywallets_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
                                      "QPushButton:hover { color: #c97940; }");
-
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -117,8 +113,6 @@ void Walldetails::applyStyles()
         "    color: white;"
         "    border: none;"
         "}"
-
-
         );
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(50);
@@ -150,14 +144,13 @@ void Walldetails::populateTable()
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
 }
-
 void Walldetails::addcointotable(const QString &name1, const double &inventory1,const double &Currentvalue1) {
     int rowCount = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(rowCount);
     QString name = name1;
     double inventory = inventory1;
     double Currentvalue=Currentvalue1;
-    QString formattedValue1 = QLocale(QLocale::English).toString(inventory, 'f', 2);
+    QString formattedValue1 = QString::number(inventory, 'f', 15).remove(QRegularExpression("0+$")).remove(QRegularExpression("\\.$"));
     if(name=="Toman"){
         ui->tableWidget->setCellWidget(rowCount, 0, ui->widget_toman);
     }
@@ -173,7 +166,6 @@ void Walldetails::addcointotable(const QString &name1, const double &inventory1,
     else if(name=="Tron"){
         ui->tableWidget->setCellWidget(rowCount, 0, ui->widget_ton);
     }
-
     QTableWidgetItem *nameItem = new QTableWidgetItem(name);
     nameItem->setTextAlignment(Qt::AlignCenter);
     nameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -190,26 +182,11 @@ void Walldetails::addcointotable(const QString &name1, const double &inventory1,
     ui->tableWidget->setItem(rowCount, 3, Currentvaluee);
 
 
-
-
     ui->textEdit_totalbalnce->setText("USDT " + QString::number(PriceUpdater::balancetotether));
     QString formattedValue = QString("%1").arg(QLocale().toString(PriceUpdater::balancetotether * PriceUpdater::tetherToToman, 'f', 0));
 
     ui->textEdit_totalbalnce_2->setText(formattedValue + "  IRT");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void Walldetails::on_backtomywallet_btn_clicked()
 {
@@ -219,5 +196,16 @@ void Walldetails::on_backtomywallet_btn_clicked()
     da->on_Mywallets_btn_clicked();
 
 
+}
+
+
+void Walldetails::on_Profile_btn_clicked()
+{
+    this->close();
+    extern Client client;
+    client.getuserprofile();
+    profile *prof= new profile();
+    prof->setAttribute(Qt::WA_DeleteOnClose);
+    prof->show();
 }
 

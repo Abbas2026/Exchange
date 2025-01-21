@@ -198,7 +198,7 @@ public:
 
     void retranslateUi(QWidget *dashboard)
     {
-        dashboard->setWindowTitle(QCoreApplication::translate("dashboard", "Form", nullptr));
+        dashboard->setWindowTitle(QCoreApplication::translate("dashboard", "HELIACAL EXCHANGE", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("dashboard", "Current price", nullptr));
         Mywallets_btn->setText(QCoreApplication::translate("dashboard", "My wallets", nullptr));
         Dashboard_btn->setText(QCoreApplication::translate("dashboard", "Dashboard", nullptr));

@@ -20,8 +20,14 @@ SOURCES += \
     form.cpp \
     mywallet.cpp \
     priceupdater.cpp \
+    profile.cpp \
     signin.cpp \
-    walldetails.cpp
+    walldetails.cpp \
+    coingeckoapi.cpp \
+    CurrentPrice.cpp\
+
+
+
 
 HEADERS += \
     client.h \
@@ -29,15 +35,24 @@ HEADERS += \
     form.h \
     mywallet.h \
     priceupdater.h \
+    profile.h \
     signin.h \
-    walldetails.h
+    walldetails.h \
+    coingeckoapi.h \
+    CurrentPrice.h \
+
+
+
 
 FORMS += \
     dashboard.ui \
     form.ui \
     mywallet.ui \
+    profile.ui \
     signin.ui \
-    walldetails.ui
+    walldetails.ui \
+    coingeckoapi.ui \
+    CurrentPrice.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

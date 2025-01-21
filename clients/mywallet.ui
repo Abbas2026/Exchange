@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>HELIACAL EXCHANGE</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #10161f;</string>
@@ -824,6 +824,9 @@ color: #6f7988;
      </property>
     </widget>
     <widget class="QLabel" name="label_20">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -926,6 +929,9 @@ color: rgb(255, 255, 255);
      </property>
     </widget>
     <widget class="QLabel" name="label_21">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>480</x>
@@ -1010,8 +1016,8 @@ color: #6f7988;
   <zorder>tableWidget</zorder>
   <zorder>creatwallet_btn</zorder>
   <zorder>widget</zorder>
-  <zorder>createwallet_widget_2</zorder>
   <zorder>createwallet_widget</zorder>
+  <zorder>createwallet_widget_2</zorder>
  </widget>
  <resources/>
  <connections/>

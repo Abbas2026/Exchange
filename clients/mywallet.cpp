@@ -18,6 +18,7 @@
 #include "walldetails.h"
 #include "client.h"
 #include "priceupdater.h"
+#include "profile.h"
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -147,7 +148,7 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
         QString currentAddress = ui->tableWidget->item(rowCount, 1)->text();
         double currentBalance = ui->tableWidget->item(rowCount, 2)->text().toDouble();
 
-        processRowData(rowCount,currentName, currentAddress, currentBalance);
+        processRowData(currentName, currentAddress, currentBalance);
     });
     ui->tableWidget->setCellWidget(rowCount, 3, button);
      ui->tableWidget->viewport()->setCursor(Qt::PointingHandCursor);
@@ -185,27 +186,18 @@ void mywallet::on_creatwallet_btn_clicked() {
 
     ui->createwallet_widget->show();
 }
-void mywallet::on_Dashboard_btn_clicked()
-{
-    this->close();
-    dashboard *da = new dashboard();
-    da->show();
-}
-void mywallet::processRowData(int row,const QString &name, const QString &address, double balance) {
+void mywallet::processRowData(const QString &name, const QString &address, double balance) {
 
     QString savedName = name;
     QString savedAddress = address;
     double savedBalance = balance;
 
-    //ui->tableWidget->item(row, 0)->setText("0");
-    //ui->tableWidget->item(row, 1)->setText("0");
-    //ui->tableWidget->item(row, 2)->setText("0");
     PriceUpdater::balancetotether=0;
     this->close();
     Walldetails *details = new Walldetails();
     details->setAttribute(Qt::WA_DeleteOnClose);
     extern Client client;
-    client.Walletassets(form::globalEmail,savedName);
+    client.Walletassets(Client::globalEmail,savedName);
     details->show();
     QObject::connect(&client, &Client::sendinventorytowalletdetails, details, &Walldetails::addcointotable);
 
@@ -295,3 +287,18 @@ void mywallet::on_tableWidget_cellClicked(int row, int column)
 void mywallet::addWalletToTable(const QString &name, const QString &address, double balance) {
     addtotable(name, address, balance);
 }
+void mywallet::on_Dashboard_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->show();
+}
+
+void mywallet::on_Profile_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_Profile_btn_clicked();
+}
+
