@@ -161,7 +161,7 @@ font-size:18px;</string>
       <rect>
        <x>80</x>
        <y>60</y>
-       <width>231</width>
+       <width>341</width>
        <height>41</height>
       </rect>
      </property>
@@ -503,7 +503,7 @@ font-size:18px;</string>
       <rect>
        <x>440</x>
        <y>60</y>
-       <width>221</width>
+       <width>401</width>
        <height>41</height>
       </rect>
      </property>
@@ -739,7 +739,7 @@ letter-spacing: 1px;</string>
      <string>Current price</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Settings_btn">
+   <widget class="QPushButton" name="deposit_btn">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -783,7 +783,7 @@ letter-spacing: 1px;</string>
      <string>market</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Settings_btn_2">
+   <widget class="QPushButton" name="withdrawal_btn">
     <property name="geometry">
      <rect>
       <x>20</x>

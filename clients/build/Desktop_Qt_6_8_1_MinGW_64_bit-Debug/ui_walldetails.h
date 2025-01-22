@@ -58,9 +58,9 @@ public:
     QPushButton *easyexchange_btn;
     QPushButton *Profile_btn;
     QPushButton *currentprice_btn;
-    QPushButton *Settings_btn;
+    QPushButton *deposit_btn;
     QPushButton *market_btn;
-    QPushButton *Settings_btn_2;
+    QPushButton *withdrawal_btn;
 
     void setupUi(QWidget *Walldetails)
     {
@@ -117,7 +117,7 @@ public:
         textEdit_totalbalnce = new QTextEdit(widget_3);
         textEdit_totalbalnce->setObjectName("textEdit_totalbalnce");
         textEdit_totalbalnce->setEnabled(false);
-        textEdit_totalbalnce->setGeometry(QRect(80, 60, 231, 41));
+        textEdit_totalbalnce->setGeometry(QRect(80, 60, 341, 41));
         textEdit_totalbalnce->setStyleSheet(QString::fromUtf8("font-size: 22px;\n"
 "color: rgb(255, 255, 255);\n"
 "border:none\n"
@@ -231,7 +231,7 @@ public:
         textEdit_totalbalnce_2 = new QTextEdit(widget_3);
         textEdit_totalbalnce_2->setObjectName("textEdit_totalbalnce_2");
         textEdit_totalbalnce_2->setEnabled(false);
-        textEdit_totalbalnce_2->setGeometry(QRect(440, 60, 221, 41));
+        textEdit_totalbalnce_2->setGeometry(QRect(440, 60, 401, 41));
         textEdit_totalbalnce_2->setStyleSheet(QString::fromUtf8("font-size: 22px;\n"
 "color: rgb(255, 255, 255);\n"
 "border:none\n"
@@ -317,11 +317,11 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn = new QPushButton(widget_2);
-        Settings_btn->setObjectName("Settings_btn");
-        Settings_btn->setGeometry(QRect(40, 770, 171, 41));
-        Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+        deposit_btn = new QPushButton(widget_2);
+        deposit_btn->setObjectName("deposit_btn");
+        deposit_btn->setGeometry(QRect(40, 770, 171, 41));
+        deposit_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        deposit_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -333,11 +333,11 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn_2 = new QPushButton(widget_2);
-        Settings_btn_2->setObjectName("Settings_btn_2");
-        Settings_btn_2->setGeometry(QRect(20, 840, 201, 41));
-        Settings_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+        withdrawal_btn = new QPushButton(widget_2);
+        withdrawal_btn->setObjectName("withdrawal_btn");
+        withdrawal_btn->setGeometry(QRect(20, 840, 201, 41));
+        withdrawal_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        withdrawal_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -429,9 +429,9 @@ public:
         easyexchange_btn->setText(QCoreApplication::translate("Walldetails", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("Walldetails", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("Walldetails", "Current price", nullptr));
-        Settings_btn->setText(QCoreApplication::translate("Walldetails", "Deposit ", nullptr));
+        deposit_btn->setText(QCoreApplication::translate("Walldetails", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("Walldetails", "market", nullptr));
-        Settings_btn_2->setText(QCoreApplication::translate("Walldetails", " withdrawal", nullptr));
+        withdrawal_btn->setText(QCoreApplication::translate("Walldetails", " withdrawal", nullptr));
     } // retranslateUi
 
 };

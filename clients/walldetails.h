@@ -27,6 +27,10 @@ signals:
 
         void on_Profile_btn_clicked();
 
+    void on_Dashboard_btn_clicked();
+
+        void on_deposit_btn_clicked();
+
     private:
     Ui::Walldetails *ui;
 };

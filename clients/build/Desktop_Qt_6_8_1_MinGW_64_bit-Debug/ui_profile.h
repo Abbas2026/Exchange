@@ -65,9 +65,9 @@ public:
     QPushButton *easyexchange_btn;
     QPushButton *Profile_btn;
     QPushButton *currentprice_btn;
-    QPushButton *Settings_btn;
+    QPushButton *deposit_btn;
     QPushButton *market_btn;
-    QPushButton *Settings_btn_2;
+    QPushButton *withdrawal_btn;
     QWidget *widget_3;
     QTextEdit *textEdit_profname_4;
     QTextEdit *textEdit_userlevel_4;
@@ -103,6 +103,10 @@ public:
     QPushButton *change_pas;
     QPushButton *backt_btn;
     QLineEdit *lineEdit_password_4;
+    QPushButton *backt_btn_2;
+    QLabel *captchaLabel;
+    QLineEdit *inputField;
+    QTextEdit *textEdit_captcha;
     QWidget *paswidget;
     QWidget *widget_4;
     QPushButton *confirm_pas_btn;
@@ -506,11 +510,11 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn = new QPushButton(widget_2);
-        Settings_btn->setObjectName("Settings_btn");
-        Settings_btn->setGeometry(QRect(40, 770, 171, 41));
-        Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+        deposit_btn = new QPushButton(widget_2);
+        deposit_btn->setObjectName("deposit_btn");
+        deposit_btn->setGeometry(QRect(40, 770, 171, 41));
+        deposit_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        deposit_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -522,11 +526,11 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn_2 = new QPushButton(widget_2);
-        Settings_btn_2->setObjectName("Settings_btn_2");
-        Settings_btn_2->setGeometry(QRect(20, 840, 201, 41));
-        Settings_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+        withdrawal_btn = new QPushButton(widget_2);
+        withdrawal_btn->setObjectName("withdrawal_btn");
+        withdrawal_btn->setGeometry(QRect(20, 840, 201, 41));
+        withdrawal_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        withdrawal_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -750,7 +754,7 @@ public:
         recordchange_btn = new QPushButton(widget_3);
         recordchange_btn->setObjectName("recordchange_btn");
         recordchange_btn->setEnabled(true);
-        recordchange_btn->setGeometry(QRect(30, 710, 161, 41));
+        recordchange_btn->setGeometry(QRect(30, 790, 161, 41));
         recordchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         recordchange_btn->setStyleSheet(QString::fromUtf8("          background-color: #27AE60 ;\n"
 "            color: white;\n"
@@ -837,6 +841,38 @@ public:
 "font: 14pt \"Orienta\";\n"
 "padding-left:10px;\n"
 "color: rgb(0, 0, 0);"));
+        backt_btn_2 = new QPushButton(widget_3);
+        backt_btn_2->setObjectName("backt_btn_2");
+        backt_btn_2->setEnabled(true);
+        backt_btn_2->setGeometry(QRect(210, 790, 101, 41));
+        backt_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        backt_btn_2->setStyleSheet(QString::fromUtf8("          background-color: #BF360C;\n"
+"            color: white;\n"
+"            border-radius: 10px;\n"
+"            font-size: 16px;\n"
+"           border: none;  "));
+        captchaLabel = new QLabel(widget_3);
+        captchaLabel->setObjectName("captchaLabel");
+        captchaLabel->setGeometry(QRect(400, 660, 221, 71));
+        captchaLabel->setScaledContents(true);
+        inputField = new QLineEdit(widget_3);
+        inputField->setObjectName("inputField");
+        inputField->setGeometry(QRect(790, 660, 161, 41));
+        inputField->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 170, 255);\n"
+"font: 14pt \"Orienta\";\n"
+"padding-left:10px;\n"
+"color: rgb(0, 0, 0);"));
+        textEdit_captcha = new QTextEdit(widget_3);
+        textEdit_captcha->setObjectName("textEdit_captcha");
+        textEdit_captcha->setEnabled(false);
+        textEdit_captcha->setGeometry(QRect(20, 660, 231, 41));
+        textEdit_captcha->setStyleSheet(QString::fromUtf8("background-color: #10161f;\n"
+"font-size: 18px;\n"
+"font: 16pt \"Orienta\";\n"
+"color: rgb(255, 255, 255);\n"
+"border:none;\n"
+""));
+        textEdit_captcha->setReadOnly(true);
         paswidget = new QWidget(profile);
         paswidget->setObjectName("paswidget");
         paswidget->setGeometry(QRect(0, 0, 1031, 911));
@@ -946,9 +982,9 @@ public:
         reppas_lineEdit->raise();
         label_23->raise();
         widget_2->raise();
+        paswidget->raise();
         widget->raise();
         widget_3->raise();
-        paswidget->raise();
 
         retranslateUi(profile);
 
@@ -969,12 +1005,14 @@ public:
         easyexchange_btn->setText(QCoreApplication::translate("profile", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("profile", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("profile", "Current price", nullptr));
-        Settings_btn->setText(QCoreApplication::translate("profile", "Deposit ", nullptr));
+        deposit_btn->setText(QCoreApplication::translate("profile", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("profile", "market", nullptr));
-        Settings_btn_2->setText(QCoreApplication::translate("profile", " withdrawal", nullptr));
+        withdrawal_btn->setText(QCoreApplication::translate("profile", " withdrawal", nullptr));
         recordchange_btn->setText(QCoreApplication::translate("profile", "Record changes", nullptr));
         change_pas->setText(QCoreApplication::translate("profile", "change password", nullptr));
         backt_btn->setText(QCoreApplication::translate("profile", "\342\206\220", nullptr));
+        backt_btn_2->setText(QCoreApplication::translate("profile", "cancel", nullptr));
+        captchaLabel->setText(QString());
         confirm_pas_btn->setText(QCoreApplication::translate("profile", "confirm", nullptr));
         label_20->setText(QCoreApplication::translate("profile", "Password ", nullptr));
         textEdit_24->setPlaceholderText(QString());

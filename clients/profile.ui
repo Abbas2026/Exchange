@@ -1011,7 +1011,7 @@ letter-spacing: 1px;</string>
      <string>Current price</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Settings_btn">
+   <widget class="QPushButton" name="deposit_btn">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -1055,7 +1055,7 @@ letter-spacing: 1px;</string>
      <string>market</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Settings_btn_2">
+   <widget class="QPushButton" name="withdrawal_btn">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -1638,7 +1638,7 @@ border:none;
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>710</y>
+      <y>790</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -1852,6 +1852,88 @@ color: rgb(0, 0, 0);</string>
 font: 14pt &quot;Orienta&quot;;
 padding-left:10px;
 color: rgb(0, 0, 0);</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backt_btn_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>790</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">          background-color: #BF360C;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+           border: none;  </string>
+    </property>
+    <property name="text">
+     <string>cancel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="captchaLabel">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>660</y>
+      <width>221</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputField">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>660</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(170, 170, 255);
+font: 14pt &quot;Orienta&quot;;
+padding-left:10px;
+color: rgb(0, 0, 0);</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_captcha">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>660</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #10161f;
+font-size: 18px;
+font: 16pt &quot;Orienta&quot;;
+color: rgb(255, 255, 255);
+border:none;
+</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -2141,9 +2223,9 @@ background-color: rgb(29, 38, 51);</string>
    </widget>
   </widget>
   <zorder>widget_2</zorder>
+  <zorder>paswidget</zorder>
   <zorder>widget</zorder>
   <zorder>widget_3</zorder>
-  <zorder>paswidget</zorder>
  </widget>
  <resources/>
  <connections/>

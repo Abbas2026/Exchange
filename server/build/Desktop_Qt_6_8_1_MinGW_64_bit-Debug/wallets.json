@@ -29,6 +29,35 @@
                         "word": "umbrella"
                     }
                 ]
+            },
+            {
+                "walletName": "کیومرث",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "ice"
+                    },
+                    {
+                        "index": 2,
+                        "word": "cloud"
+                    },
+                    {
+                        "index": 3,
+                        "word": "desk"
+                    },
+                    {
+                        "index": 4,
+                        "word": "water"
+                    },
+                    {
+                        "index": 5,
+                        "word": "arrow"
+                    },
+                    {
+                        "index": 6,
+                        "word": "grape"
+                    }
+                ]
             }
         ]
     }

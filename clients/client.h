@@ -21,11 +21,14 @@ public:
     void processResponse(const QByteArray& message);
     void processSimpleResponse(const QString& responseStr);
     void senduserprofiletoserver(const QString &name,const QString &address,const QString &phone,const QString &firstname,const QString &lastname,const QString &password,const QString &user_level);
-
     void getuserprofile();
+    void depositcheckserver(const QString &coin,const QString &address,const QString &amounth);
+
     static int bb;
+    static int warname;
     static QString user_level;
     static QString globalEmail ;
+    static QString password_creator;
 
 signals:
     void sendinventorytowalletdetails(const QString &coinname,const double &coinamount,const double &Currentvalue);

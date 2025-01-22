@@ -4,13 +4,24 @@
             {
                 "address": "jhzks0owommdt0yuzgw7o5tac",
                 "currencies": {
+                    "Bitcoin": 1e-05,
+                    "Ethereum": 0.0101,
+                    "Tether": 19,
+                    "Toman": 350000,
+                    "Tron": 230
+                },
+                "name": "abbas"
+            },
+            {
+                "address": "vt00a1f3rrbwe9vbsdifftq6z",
+                "currencies": {
                     "Bitcoin": 0,
-                    "Ethereum": 0,
+                    "Ethereum": 10000,
                     "Tether": 0,
                     "Toman": 0,
                     "Tron": 0
                 },
-                "name": "abbas"
+                "name": "کیومرث"
             }
         ]
     }

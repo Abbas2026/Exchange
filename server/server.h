@@ -22,8 +22,6 @@ private slots:
     void readClientMessage();
     void clientDisconnected();
 
-public slots:
-
 private:
     QTcpServer *server;
     QList<QTcpSocket*> clientSockets;
@@ -44,12 +42,7 @@ private:
                                    const QString &lastname, const QString &user_level, QTcpSocket *clientSocket);
     void getUserProfileByEmail(const QString &email, QTcpSocket *clientSocket);
     void saveCredentials2(const QString &email, const QString &password, const QString &name, const QString &phone);
-
-
-
-
-
-
+    void checkdeposit(const QString &email,const QString &coin,const QString &addresswal,const QString &amounth, QTcpSocket *clientSocket);
 
 
 };

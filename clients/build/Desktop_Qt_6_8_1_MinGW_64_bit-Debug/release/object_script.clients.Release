@@ -1,5 +1,6 @@
 release/client.o
 release/dashboard.o
+release/deposit.o
 release/main.o
 release/form.o
 release/mywallet.o
@@ -11,6 +12,7 @@ release/coingeckoapi.o
 release/CurrentPrice.o
 release/moc_client.o
 release/moc_dashboard.o
+release/moc_deposit.o
 release/moc_form.o
 release/moc_mywallet.o
 release/moc_priceupdater.o

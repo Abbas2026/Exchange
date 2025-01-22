@@ -3,12 +3,8 @@ QT += core gui network
 QT += svg
 QT += concurrent
 QT += core network
-
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 CONFIG += c++17
-
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
@@ -16,6 +12,7 @@ CONFIG += c++17
 SOURCES += \
     client.cpp \
     dashboard.cpp \
+    deposit.cpp \
     main.cpp \
     form.cpp \
     mywallet.cpp \
@@ -24,14 +21,12 @@ SOURCES += \
     signin.cpp \
     walldetails.cpp \
     coingeckoapi.cpp \
-    CurrentPrice.cpp\
-
-
-
+    CurrentPrice.cpp
 
 HEADERS += \
     client.h \
     dashboard.h \
+    deposit.h \
     form.h \
     mywallet.h \
     priceupdater.h \
@@ -39,13 +34,11 @@ HEADERS += \
     signin.h \
     walldetails.h \
     coingeckoapi.h \
-    CurrentPrice.h \
-
-
-
+    CurrentPrice.h
 
 FORMS += \
     dashboard.ui \
+    deposit.ui \
     form.ui \
     mywallet.ui \
     profile.ui \
@@ -53,7 +46,6 @@ FORMS += \
     walldetails.ui \
     coingeckoapi.ui \
     CurrentPrice.ui
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

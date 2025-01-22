@@ -34,9 +34,9 @@ public:
     QPushButton *easyexchange_btn;
     QPushButton *Profile_btn;
     QPushButton *currentprice_btn;
-    QPushButton *Settings_btn;
+    QPushButton *deposit_btn;
     QPushButton *market_btn;
-    QPushButton *Settings_btn_2;
+    QPushButton *withdrawal_btn;
     QPushButton *creatwallet_btn;
     QTableWidget *tableWidget;
     QWidget *createwallet_widget;
@@ -156,11 +156,11 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn = new QPushButton(widget);
-        Settings_btn->setObjectName("Settings_btn");
-        Settings_btn->setGeometry(QRect(40, 770, 171, 41));
-        Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+        deposit_btn = new QPushButton(widget);
+        deposit_btn->setObjectName("deposit_btn");
+        deposit_btn->setGeometry(QRect(40, 770, 171, 41));
+        deposit_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        deposit_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -172,11 +172,11 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn_2 = new QPushButton(widget);
-        Settings_btn_2->setObjectName("Settings_btn_2");
-        Settings_btn_2->setGeometry(QRect(20, 840, 201, 41));
-        Settings_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+        withdrawal_btn = new QPushButton(widget);
+        withdrawal_btn->setObjectName("withdrawal_btn");
+        withdrawal_btn->setGeometry(QRect(20, 840, 201, 41));
+        withdrawal_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        withdrawal_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -459,9 +459,9 @@ public:
         easyexchange_btn->setText(QCoreApplication::translate("mywallet", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("mywallet", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("mywallet", "Current price", nullptr));
-        Settings_btn->setText(QCoreApplication::translate("mywallet", "Deposit ", nullptr));
+        deposit_btn->setText(QCoreApplication::translate("mywallet", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("mywallet", "market", nullptr));
-        Settings_btn_2->setText(QCoreApplication::translate("mywallet", " withdrawal", nullptr));
+        withdrawal_btn->setText(QCoreApplication::translate("mywallet", " withdrawal", nullptr));
         creatwallet_btn->setText(QCoreApplication::translate("mywallet", "Create a wallet", nullptr));
         continue_btn->setText(QCoreApplication::translate("mywallet", "Continue", nullptr));
         label_1->setText(QCoreApplication::translate("mywallet", "1.", nullptr));

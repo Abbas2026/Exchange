@@ -35,8 +35,8 @@ public:
     QPushButton *Profile_btn;
     QPushButton *Authentication_btn;
     QPushButton *backButton;
-    QPushButton *Settings_btn;
-    QPushButton *Settings_btn_2;
+    QPushButton *deposit_btn;
+    QPushButton *withdrawal_btn;
 
     void setupUi(QWidget *dashboard)
     {
@@ -159,19 +159,19 @@ public:
 "            border-radius: 10px;\n"
 "            font-size: 16px;\n"
 "           border: none;  "));
-        Settings_btn = new QPushButton(widget);
-        Settings_btn->setObjectName("Settings_btn");
-        Settings_btn->setGeometry(QRect(1060, 770, 171, 41));
-        Settings_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+        deposit_btn = new QPushButton(widget);
+        deposit_btn->setObjectName("deposit_btn");
+        deposit_btn->setGeometry(QRect(1060, 770, 171, 41));
+        deposit_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        deposit_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
-        Settings_btn_2 = new QPushButton(widget);
-        Settings_btn_2->setObjectName("Settings_btn_2");
-        Settings_btn_2->setGeometry(QRect(1040, 840, 201, 41));
-        Settings_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        Settings_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+        withdrawal_btn = new QPushButton(widget);
+        withdrawal_btn->setObjectName("withdrawal_btn");
+        withdrawal_btn->setGeometry(QRect(1040, 840, 201, 41));
+        withdrawal_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        withdrawal_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
@@ -188,8 +188,8 @@ public:
         Profile_btn->raise();
         Authentication_btn->raise();
         backButton->raise();
-        Settings_btn->raise();
-        Settings_btn_2->raise();
+        deposit_btn->raise();
+        withdrawal_btn->raise();
 
         retranslateUi(dashboard);
 
@@ -214,8 +214,8 @@ public:
         Profile_btn->setText(QCoreApplication::translate("dashboard", "Profile", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("dashboard", "Authentication", nullptr));
         backButton->setText(QCoreApplication::translate("dashboard", "log out", nullptr));
-        Settings_btn->setText(QCoreApplication::translate("dashboard", "Deposit ", nullptr));
-        Settings_btn_2->setText(QCoreApplication::translate("dashboard", " withdrawal", nullptr));
+        deposit_btn->setText(QCoreApplication::translate("dashboard", "Deposit ", nullptr));
+        withdrawal_btn->setText(QCoreApplication::translate("dashboard", " withdrawal", nullptr));
     } // retranslateUi
 
 };

@@ -65,6 +65,7 @@ void Server::readClientMessage()
     qDebug() << "walletName"<< walletName;
     qDebug() << "type" << type;
     qDebug() << "address"<< addresswal;
+
     if (json["type"].toString() == "forgot_password") {
         QString email = json["email"].toString();
         QString username = json["username"].toString();
@@ -95,6 +96,15 @@ void Server::readClientMessage()
         saveProfileToFile(email,password,name,phone,address,firstname,lastname,user_level,senderClient);
 
         return;
+    }
+    else if(type=="deposit"){
+        QString email = json["email"].toString();
+        QString coin = json["coin"].toString();
+        QString addresswal = json["address"].toString() ;
+        QString amounth = json["amounth"].toString() ;
+        checkdeposit(email,coin,addresswal,amounth,senderClient);
+        return;
+
     }
 
     else if (json["type"].toString() == "createwallet") {
@@ -992,4 +1002,84 @@ void Server::saveCredentials2(const QString &email, const QString &password, con
 
     qDebug() << "User credentials2 saved to file2.";
 }
+void Server::checkdeposit(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket) {
+    QFile file("walletsdata.json");
+
+    if (!file.open(QIODevice::ReadWrite)) {
+        qDebug() << "Failed to open file for reading and writing";
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject jsonObj;
+
+    if (doc.isNull() || !doc.isObject()) {
+        qDebug() << "Invalid JSON format!";
+        file.close();
+        return;
+    }
+
+    jsonObj = doc.object();
+
+    if (!jsonObj.contains(email)) {
+        qDebug() << "Email not found!";
+        file.close();
+        return;
+    }
+
+    QJsonObject emailObj = jsonObj[email].toObject();
+    QJsonArray walletsArray = emailObj["wallets"].toArray();
+
+    bool found = false;
+    bool updated = false;
+
+    for (int i = 0; i < walletsArray.size(); ++i) {
+        QJsonObject wallet = walletsArray[i].toObject();
+
+        if (wallet["address"].toString() == addresswal) {
+            found = true;
+            QJsonObject currencies = wallet["currencies"].toObject();
+
+            if (currencies.contains(coin)) {
+                double currentAmount = currencies[coin].toDouble();
+                double newAmount = currentAmount + amounth.toDouble();
+                currencies[coin] = newAmount;
+                wallet["currencies"] = currencies;
+                walletsArray[i] = wallet;
+                updated = true;
+            }
+            break;
+        }
+    }
+
+    QJsonObject response;
+    response["type"] = "deposit";
+
+    if (!found) {
+        response["status"] = "walletnotfound";
+    } else if (!updated) {
+        response["status"] = "currencynotfound";
+    } else {
+        emailObj["wallets"] = walletsArray;
+        jsonObj[email] = emailObj;
+
+        file.seek(0);
+        file.resize(0);
+        file.write(QJsonDocument(jsonObj).toJson());
+        response["status"] = "success";
+    }
+
+    file.close();
+
+    if (clientSocket && clientSocket->isOpen()) {
+        QJsonDocument docResponse(response);
+        QByteArray jsonData = docResponse.toJson(QJsonDocument::Compact);
+        clientSocket->write(jsonData);
+        clientSocket->flush();
+    } else {
+        qDebug() << "Client socket is not open!";
+    }
+}
+
 

@@ -355,7 +355,7 @@ letter-spacing: -1px;</string>
      <string>log out</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Settings_btn">
+   <widget class="QPushButton" name="deposit_btn">
     <property name="geometry">
      <rect>
       <x>1060</x>
@@ -377,7 +377,7 @@ letter-spacing: 1px;</string>
      <string>Deposit </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Settings_btn_2">
+   <widget class="QPushButton" name="withdrawal_btn">
     <property name="geometry">
      <rect>
       <x>1040</x>
@@ -412,8 +412,8 @@ letter-spacing: 1px;</string>
    <zorder>Profile_btn</zorder>
    <zorder>Authentication_btn</zorder>
    <zorder>backButton</zorder>
-   <zorder>Settings_btn</zorder>
-   <zorder>Settings_btn_2</zorder>
+   <zorder>deposit_btn</zorder>
+   <zorder>withdrawal_btn</zorder>
   </widget>
  </widget>
  <resources/>

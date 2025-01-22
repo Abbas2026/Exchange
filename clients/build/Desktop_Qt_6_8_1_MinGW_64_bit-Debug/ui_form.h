@@ -158,7 +158,7 @@ public:
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
         textEdit->setEnabled(false);
-        textEdit->setGeometry(QRect(550, 480, 181, 41));
+        textEdit->setGeometry(QRect(530, 480, 201, 41));
         textEdit->setStyleSheet(QString::fromUtf8("border:none;"));
         confirmpassword = new QLineEdit(centralwidget);
         confirmpassword->setObjectName("confirmpassword");

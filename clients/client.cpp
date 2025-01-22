@@ -11,8 +11,10 @@
 #include <QtConcurrent>
 #include "priceupdater.h"
 int Client::bb=0;
+int Client::warname=0;
+QString Client::password_creator="Abbas1383";
 QString Client::user_level="0";
-QString Client::globalEmail = "jkdsjhdsj@gmail.com";
+QString Client::globalEmail = "jpdnsjhhdsj@gmail.com";
 
 Client::Client(QObject *parent) : QObject(parent)
 {
@@ -151,7 +153,6 @@ void Client::processResponse(const QByteArray& message) {
                 qDebug() << "Index:" << it.key() << "Word:" << it.value();
             }
         } else if (type == "userprofile") {
-            qDebug()<<"222222";
             QJsonObject userObject = response["user"].toObject();
             QString email = userObject["email"].toString();
             QString name = userObject["name"].toString();
@@ -170,6 +171,10 @@ void Client::processResponse(const QByteArray& message) {
                 da->on_Profile_btn_clicked();
             }
             else if(response["status"].toString()=="defeat"){
+                Client::warname=1;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_Profile_btn_clicked();
             }
 
         }
@@ -238,7 +243,23 @@ void Client::processResponse(const QByteArray& message) {
                 }
 
             }
-        } else if (type == "end") {
+        } else if(type=="deposit"){
+            Client::warname=2;
+            if(response["status"].toString()=="success"){
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_deposit_btn_clicked();
+
+            }
+            else if(response["status"].toString()=="walletnotfound"){
+                Client::warname=1;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_deposit_btn_clicked();
+            }
+        }
+
+        else if (type == "end") {
             qDebug() << "All wallet data received.";
         } else {
             qDebug() << "Unknown type or error: " << error;
@@ -356,7 +377,6 @@ void Client::getuserprofile(){
 }
 void Client::senduserprofiletoserver(const QString &name,const QString &address,const QString &phone,const QString &firstname,const QString &lastname,const QString &password,const QString &user_level){
     if (socket->state() == QTcpSocket::ConnectedState) {
-        qDebug() <<"123456";
         QJsonObject json;
         json["type"] = "userprofiletoserver";
         json["email"] = "jpdnsjhhdsj@gmail.com";
@@ -367,6 +387,20 @@ void Client::senduserprofiletoserver(const QString &name,const QString &address,
         json["lname"] = lastname;
         json["password"] = password;
         json["userlevel"] = user_level;
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+void Client::depositcheckserver(const QString &coin,const QString &address,const QString &amounth){
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        json["type"] = "deposit";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["coin"] =coin ;
+        json["address"] = address;
+        json["amounth"] = amounth;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
     } else {

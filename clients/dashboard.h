@@ -30,9 +30,11 @@ public slots :
     void on_Transmission_btn_clicked();
     void on_currentprice_btn_clicked();
     void on_Authentication_btn_clicked();
-    void on_Settings_btn_clicked();
+    void on_deposit_btn_clicked();
+    void on_withdrawal_btn_clicked();
 
 private slots:
+
 
 };
 

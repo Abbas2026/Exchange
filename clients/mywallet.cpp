@@ -19,6 +19,7 @@
 #include "client.h"
 #include "priceupdater.h"
 #include "profile.h"
+#include "deposit.h"
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -48,8 +49,8 @@ void mywallet::applyStyles()
     ui->Transmission_btn->setStyleSheet(baseStyle);
     ui->currentprice_btn->setStyleSheet(baseStyle);
     ui->Authentication_btn->setStyleSheet(baseStyle);
-    ui->Settings_btn->setStyleSheet(baseStyle);
-    ui->Settings_btn_2->setStyleSheet(baseStyle);
+    ui->deposit_btn->setStyleSheet(baseStyle);
+    ui->withdrawal_btn->setStyleSheet(baseStyle);
 
      ui->tableWidget->setStyleSheet(
         "QTableWidget {"
@@ -300,5 +301,14 @@ void mywallet::on_Profile_btn_clicked()
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Profile_btn_clicked();
+}
+
+
+void mywallet::on_deposit_btn_clicked()
+{
+    this->close();
+    deposit *dep = new deposit();
+    dep->setAttribute(Qt::WA_DeleteOnClose);
+    dep->show();
 }
 

@@ -16,7 +16,7 @@ class form : public QMainWindow
 public:
     form(QWidget *parent = nullptr);
 
-    ~form();
+    ~form();        
 
 signals:
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone);

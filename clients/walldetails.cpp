@@ -14,6 +14,7 @@
 #include "priceupdater.h"
 #include <QLocale>
 #include "profile.h"
+#include "deposit.h"
 Walldetails::Walldetails(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Walldetails)
@@ -81,8 +82,8 @@ void Walldetails::applyStyles()
     ui->Transmission_btn->setStyleSheet(baseStyle);
     ui->currentprice_btn->setStyleSheet(baseStyle);
     ui->Authentication_btn->setStyleSheet(baseStyle);
-    ui->Settings_btn->setStyleSheet(baseStyle);
-    ui->Settings_btn_2->setStyleSheet(baseStyle);
+    ui->deposit_btn->setStyleSheet(baseStyle);
+    ui->withdrawal_btn->setStyleSheet(baseStyle);
     ui->history_btn->setStyleSheet("QPushButton { color: #fff; border: none;  border: none;  border-radius: 10px; font-size:20px; background-color: #242d3b; }"
                                    "QPushButton:hover { background-color: #2e3847; }");
 
@@ -198,7 +199,6 @@ void Walldetails::on_backtomywallet_btn_clicked()
 
 }
 
-
 void Walldetails::on_Profile_btn_clicked()
 {
     this->close();
@@ -207,5 +207,22 @@ void Walldetails::on_Profile_btn_clicked()
     profile *prof= new profile();
     prof->setAttribute(Qt::WA_DeleteOnClose);
     prof->show();
+}
+
+void Walldetails::on_Dashboard_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->show();
+}
+
+
+void Walldetails::on_deposit_btn_clicked()
+{
+    this->close();
+    deposit *dep = new deposit();
+    dep->setAttribute(Qt::WA_DeleteOnClose);
+    dep->show();
 }
 

@@ -282,9 +282,9 @@ color: rgb(255, 255, 255);
     </property>
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>530</x>
       <y>480</y>
-      <width>181</width>
+      <width>201</width>
       <height>41</height>
      </rect>
     </property>

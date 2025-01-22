@@ -10,6 +10,10 @@
 #include "mywallet.h"
 #include <QMessageBox>
 #include <QRegularExpression>
+#include "deposit.h"
+#include <QRandomGenerator>
+#include <QPixmap>
+#include <QPainter>
 profile::profile(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::profile)
@@ -57,8 +61,8 @@ void profile::applyStyles()
     ui->Transmission_btn->setStyleSheet(baseStyle);
     ui->currentprice_btn->setStyleSheet(baseStyle);
     ui->Authentication_btn->setStyleSheet(baseStyle);
-    ui->Settings_btn->setStyleSheet(baseStyle);
-    ui->Settings_btn_2->setStyleSheet(baseStyle);
+    ui->deposit_btn->setStyleSheet(baseStyle);
+    ui->withdrawal_btn->setStyleSheet(baseStyle);
 
 
     ui->textEdit_userlevel->setText("User Level :");
@@ -84,6 +88,7 @@ void profile::applyStyles()
     ui->textEdit_password_4->setText("Password :");
     ui->textEdit_Transactionfees_4->setText("Transaction Fees :");
     ui->textEdit_Transactionfees_value_4->setText("Base");
+    ui->textEdit_captcha->setText("captcha :");
     ui->textEdit_userlevel_value_4->setText("level  " + Client::user_level);
     ui->textEdit_email_value_4->setText( Client::globalEmail);
 
@@ -95,8 +100,6 @@ void profile::applyStyles()
     ui->textEdit_firstname_value->setText("empty");
     ui->textEdit_lastname_value->setText("empty");
     ui->textEdit_30->setText("Change Password");
-
-
 }
 void profile::receiveduserprofile(const QString email,const QString name,const QString password,const QString phone,const QString address,const QString firstname,const QString lastname){
     ui->textEdit_userlevel_value->setText("level  " + Client::user_level);
@@ -121,10 +124,12 @@ void profile::receiveduserprofile(const QString email,const QString name,const Q
     ui->lineEdit_address_4->setText(address);
     ui->lineEdit_firstname_4->setText(firstname);
     ui->lineEdit_lastname_4->setText(lastname);
-
     if( Client::user_level=="0"){
         ui->text_authentication->setText("in order to access all features you must first complete all your information.");
     }
+     captchaText = generateCaptcha(5);
+    ui->captchaLabel->setPixmap(generateCaptchaImage(captchaText));
+
 
 }
 
@@ -157,6 +162,15 @@ void profile::on_edit_information_btn_clicked()
 
 void profile::on_recordchange_btn_clicked()
 {
+    QString userCaptchaInput = ui->inputField->text();
+    if (userCaptchaInput.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Please enter the captcha.");
+        return;
+    }
+    if (!verifyCaptcha(userCaptchaInput, captchaText)) {
+        QMessageBox::warning(this, "Error", "Captcha Incorrect! Try Again.");
+        return;
+    }
      QString name = ui->lineEdit_username_4->text();
      QString address = ui->lineEdit_address_4->text();
      QString phone = ui->lineEdit_numberphone_4->text();
@@ -166,6 +180,7 @@ void profile::on_recordchange_btn_clicked()
      if (!name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !password.isEmpty()) {
          Client::user_level="1";
      }
+
      extern Client client;
      client.senduserprofiletoserver(name,address,phone,firstname,lastname,password,Client::user_level);
      this->hide();
@@ -216,3 +231,75 @@ void profile::on_confirm_pas_btn_clicked()
 
 }
 
+
+void profile::on_backt_btn_2_clicked()
+{
+    ui->widget->show();
+    ui->widget_3->close();
+}
+
+
+void profile::on_deposit_btn_clicked()
+{
+    this->close();
+    deposit *dep = new deposit();
+    dep->setAttribute(Qt::WA_DeleteOnClose);
+    dep->show();
+}
+
+QString profile::generateCaptcha(int length = 5) {
+    const QString chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    QString captcha;
+    for (int i = 0; i < length; ++i) {
+        int index = QRandomGenerator::global()->bounded(chars.length());
+        captcha.append(chars.at(index));
+    }
+    return captcha;
+}
+QPixmap profile::generateCaptchaImage(const QString &captchaText) {
+    int width = 250;
+    int height = 80;
+    QPixmap pixmap(width, height);
+    pixmap.fill(Qt::white);
+    QPainter painter(&pixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    QFont font("Times New Roman", 25, QFont::Bold);
+    painter.setFont(font);
+    int xOffset = 20;
+    int yOffset = height / 2;
+    for (int i = 0; i < captchaText.length(); ++i) {
+        QColor color(QRandomGenerator::global()->bounded(255),
+                     QRandomGenerator::global()->bounded(255),
+                     QRandomGenerator::global()->bounded(255));
+        painter.setPen(color);
+        int angle = QRandomGenerator::global()->bounded(-30, 30);
+        painter.save();
+        painter.translate(xOffset + i * 40, yOffset + QRandomGenerator::global()->bounded(-10, 10));  // موقعیت یابی بهتر
+        painter.rotate(angle);
+        painter.drawText(0, 0, QString(captchaText[i]));
+        painter.restore();
+    }
+    for (int i = 0; i < 10; ++i) {
+        painter.setPen(QPen(QColor(QRandomGenerator::global()->bounded(255),
+                                   QRandomGenerator::global()->bounded(255),
+                                   QRandomGenerator::global()->bounded(255)), 2));
+        int x1 = QRandomGenerator::global()->bounded(width);
+        int y1 = QRandomGenerator::global()->bounded(height);
+        int x2 = QRandomGenerator::global()->bounded(width);
+        int y2 = QRandomGenerator::global()->bounded(height);
+        painter.drawLine(x1, y1, x2, y2);
+    }
+    for (int i = 0; i < 5; ++i) {
+        painter.setPen(QPen(QColor(QRandomGenerator::global()->bounded(255),
+                                   QRandomGenerator::global()->bounded(255),
+                                   QRandomGenerator::global()->bounded(255)), 1));
+        int x = QRandomGenerator::global()->bounded(width);
+        int y = QRandomGenerator::global()->bounded(height);
+        painter.drawEllipse(x, y, 3, 3);
+    }
+    return pixmap;
+}
+bool profile::verifyCaptcha(const QString &input, const QString &correctCaptcha) {
+    return input == correctCaptcha;
+}

@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include "signin.h"
 #include "dashboard.h"
+
 form::form(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::form)
@@ -128,4 +129,10 @@ void form::on_pushButton_gosignin_clicked()
 
     sign->show();
 }
+
+
+
+
+
+
 
