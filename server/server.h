@@ -9,6 +9,9 @@
 #include <QStringList>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <crypto.h>
+#include "managecrypto.h"
+
 class Server : public QObject
 {
     Q_OBJECT
@@ -47,6 +50,8 @@ private:
     void checkKeysandwithdrawal(const QString &email, const QString &address, const QJsonArray &wordsArray,const QString &coin,const QString &amounth, QTcpSocket *clientSocket);
 
 
+    QVector<Crypto> *Coins;
+    manageCrypto *cryptoManager;
 
 };
 

@@ -8,7 +8,8 @@
 Server::Server(QObject *parent) : QObject(parent)
 {
     server = new QTcpServer(this);
-
+    Coins=new QVector<Crypto>;
+    cryptoManager=new manageCrypto(Coins);
     connect(server, &QTcpServer::newConnection, this, &Server::newConnection);
 }
 
