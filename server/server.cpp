@@ -1201,10 +1201,12 @@ void Server::checkKeysandwithdrawal(const QString &email, const QString &address
     clientSocket->write(responseDoc.toJson());
     clientSocket->flush();
 }
-void Server::transferCurrency(const QString &fromAddress, const QString &toEmail, const QString &toWalletName, const QMap<QString, double> &transferCurrencies) {
+
+void Server::transferCurrency(const QString &fromAddress, const QString &toEmail, const QString &toWalletName, const QMap<QString, double> &transferCurrencies, QTcpSocket *clientSocket) {
     QFile file("walletsdata.json");
     if (!file.open(QIODevice::ReadWrite)) {
         qDebug() << "Failed to open file for reading and writing";
+        clientSocket->write("{\"status\":\"error\",\"message\":\"Failed to open file\"}");
         return;
     }
 
@@ -1235,12 +1237,14 @@ void Server::transferCurrency(const QString &fromAddress, const QString &toEmail
 
     if (!fromWalletFound) {
         qDebug() << "Source wallet not found.";
+        clientSocket->write("{\"status\":\"error\",\"message\":\"Source wallet not found\"}");
         return;
     }
 
     // Validate destination wallet
     if (!jsonObj.contains(toEmail)) {
         qDebug() << "Destination email not found in the file.";
+        clientSocket->write("{\"status\":\"error\",\"message\":\"Destination email not found\"}");
         return;
     }
 
@@ -1260,6 +1264,7 @@ void Server::transferCurrency(const QString &fromAddress, const QString &toEmail
 
     if (!toWalletFound) {
         qDebug() << "Destination wallet not found.";
+        clientSocket->write("{\"status\":\"error\",\"message\":\"Destination wallet not found\"}");
         return;
     }
 
@@ -1276,6 +1281,7 @@ void Server::transferCurrency(const QString &fromAddress, const QString &toEmail
             toCurrencies[currencyName] = toCurrencies[currencyName].toDouble() + amount;
         } else {
             qDebug() << "Insufficient funds or currency not found in source wallet.";
+            clientSocket->write("{\"status\":\"error\",\"message\":\"Insufficient funds or currency not found in source wallet\"}");
             return;
         }
     }
@@ -1311,8 +1317,10 @@ void Server::transferCurrency(const QString &fromAddress, const QString &toEmail
     file.write(updatedDoc.toJson());
     file.close();
 
+    clientSocket->write("{\"status\":\"success\",\"message\":\"Transfer completed successfully\"}");
     qDebug() << "Transfer completed successfully.";
 }
+
 void Server::checkdwithdrawal(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket) {
 
     QFile file("walletsdata.json");
