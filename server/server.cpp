@@ -150,6 +150,18 @@ void Server::readClientMessage()
         handleRecoveryRequest(json, senderClient);
         return;
     }
+    else if (type == "transferCurrency") {
+    QString fromAddress = json["fromAddress"].toString();
+    QString toEmail = json["toEmail"].toString();
+    QString toWalletName = json["toWalletName"].toString();
+    QMap<QString, double> transferCurrencies;
+    QJsonObject currencies = json["currencies"].toObject();
+    for (auto key : currencies.keys()) {
+        transferCurrencies[key] = currencies[key].toDouble();
+    }
+    transferCurrency(fromAddress, toEmail, toWalletName, transferCurrencies, senderClient);
+    return;
+}
 
     if (!email.isEmpty() && !password.isEmpty()) {
         if (name.isEmpty() && phone.isEmpty()) {
