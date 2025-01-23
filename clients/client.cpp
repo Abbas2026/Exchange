@@ -474,6 +474,33 @@ void Client::depositcheckserver(const QString &coin,const QString &address,const
     }
 }
 
+void Client::transferCurrency(const QString &fromAddress, const QString &toEmail, const QString &toWalletName, const QMap<QString, double> &transferCurrencies) {
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject request;
+        request["type"] = "transferCurrency";
+        request["fromAddress"] = fromAddress;
+        request["toEmail"] = toEmail;
+        request["toWalletName"] = toWalletName;
+
+        QJsonObject currencies;
+        for (auto it = transferCurrencies.begin(); it != transferCurrencies.end(); ++it) {
+            currencies[it.key()] = it.value();
+        }
+        request["currencies"] = currencies;
+
+        QJsonDocument doc(request);
+        QByteArray data = doc.toJson();
+        socket->write(data);
+        if (socket->waitForBytesWritten(3000)) {
+            qDebug() << "Transfer request sent successfully.";
+        } else {
+            qDebug() << "Failed to send transfer request.";
+        }
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+
 
 void Client::withdrawalcheckserver(const QString &coin, const QString &amounth, const QString &address, const QList<QString>& selectedWords) {
     if (socket->state() == QTcpSocket::ConnectedState) {
