@@ -11,6 +11,7 @@
 #include <QtConcurrent>
 #include "priceupdater.h"
 #include "withdrawal.h"
+#include "transfercurrency.h"
 int Client::bb=0;
 int Client::warname=0;
 QString Client::password_creator="Abbas1383";
