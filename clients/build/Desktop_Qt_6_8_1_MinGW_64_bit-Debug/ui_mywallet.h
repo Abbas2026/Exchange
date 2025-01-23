@@ -439,8 +439,8 @@ public:
         tableWidget->raise();
         creatwallet_btn->raise();
         widget->raise();
-        createwallet_widget->raise();
         createwallet_widget_2->raise();
+        createwallet_widget->raise();
 
         retranslateUi(mywallet);
 

@@ -15,6 +15,7 @@
 #include <QLocale>
 #include "profile.h"
 #include "deposit.h"
+#include "withdrawal.h"
 Walldetails::Walldetails(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Walldetails)
@@ -224,5 +225,14 @@ void Walldetails::on_deposit_btn_clicked()
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
     dep->show();
+}
+
+
+void Walldetails::on_withdrawal_btn_clicked()
+{
+    this->close();
+    withdrawal *withdrl = new withdrawal();
+    withdrl->setAttribute(Qt::WA_DeleteOnClose);
+    withdrl->show();
 }
 

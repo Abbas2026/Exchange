@@ -20,6 +20,7 @@
 #include "priceupdater.h"
 #include "profile.h"
 #include "deposit.h"
+#include "withdrawal.h"
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -27,7 +28,6 @@ mywallet::mywallet(QWidget *parent)
     ui->setupUi(this);
     applyStyles();
     populateTable();
-
 }
 
 mywallet::~mywallet()
@@ -41,7 +41,6 @@ void mywallet::applyStyles()
 
     ui->Mywallets_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
                                      "QPushButton:hover { color: #c97940; }");
-
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -51,7 +50,6 @@ void mywallet::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
-
      ui->tableWidget->setStyleSheet(
         "QTableWidget {"
         "    background-color: #2980b9;"
@@ -93,10 +91,8 @@ void mywallet::applyStyles()
          "}"
          );
 
-
-
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); // تمام عرض جدول را پر کند
-    ui->tableWidget->verticalHeader()->setDefaultSectionSize(50); // ارتفاع هر ردیف
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->verticalHeader()->setDefaultSectionSize(50);
 }
 void mywallet::populateTable()
 {
@@ -112,9 +108,6 @@ void mywallet::populateTable()
     ui->createwallet_widget_2->hide();
     ui->textEdit_30->setText("Name your wallet");
     ui->textEdit_24->setText("Name your wallet to easily identify it while using the wallets.");
-
-
-
 
 }
 void mywallet::addtotable(const QString &name1, const QString &address1, double balance1) {
@@ -132,7 +125,6 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
         QIcon copyIcon("./copy1.png");
 
     QTableWidgetItem *addresItem = new QTableWidgetItem(copyIcon, address);
-    //addresItem->setTextAlignment(Qt::AlignCenter);
        addresItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     addresItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     ui->tableWidget->setItem(rowCount, 1, addresItem );
@@ -211,10 +203,6 @@ void mywallet::on_continue_btn_clicked()
 
     extern Client client;
 
-    //client.sendRecoveryRequest();
-
-
-    //client.walletsdata(form::globalEmail);
 }
 void mywallet::on_save_wallet_btn_clicked()
 {
@@ -246,7 +234,6 @@ void mywallet::on_save_wallet_btn_clicked()
     }
     QString address=randomString;
     qDebug()<<address;
-    double balance=0;
     sendWalletToServer(selectedWords,name,address);
 }
 void mywallet::sendWalletToServer(const QStringList &words,const QString namewallet, const QString addresswallet)
@@ -310,5 +297,14 @@ void mywallet::on_deposit_btn_clicked()
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
     dep->show();
+}
+
+
+void mywallet::on_withdrawal_btn_clicked()
+{
+    this->close();
+    withdrawal *withdrl = new withdrawal();
+    withdrl->setAttribute(Qt::WA_DeleteOnClose);
+    withdrl->show();
 }
 

@@ -685,7 +685,7 @@ border:none;
     <property name="styleSheet">
      <string notr="true">background-color: #10161f;
 font: 16pt &quot;Orienta&quot;;
-color: #6f7988;
+color: #10161f;
 border:none;
 </string>
     </property>
@@ -1837,7 +1837,7 @@ color: rgb(0, 0, 0);</string>
    </widget>
    <widget class="QLineEdit" name="lineEdit_password_4">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -1852,6 +1852,12 @@ color: rgb(0, 0, 0);</string>
 font: 14pt &quot;Orienta&quot;;
 padding-left:10px;
 color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="backt_btn_2">
@@ -2224,8 +2230,8 @@ background-color: rgb(29, 38, 51);</string>
   </widget>
   <zorder>widget_2</zorder>
   <zorder>paswidget</zorder>
-  <zorder>widget</zorder>
   <zorder>widget_3</zorder>
+  <zorder>widget</zorder>
  </widget>
  <resources/>
  <connections/>

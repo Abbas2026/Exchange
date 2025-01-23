@@ -33,7 +33,6 @@ private:
     bool isNameRegistered(const QString &name);
     void saveWalletData(const QString &email, const QString &walletName,const QString &address, const QJsonArray &words,  QTcpSocket *clientSocket);
     void handleRecoveryRequest(const QJsonObject &request, QTcpSocket *clientSocket);
-    void checkWalletWords(const QJsonObject &request, QTcpSocket *clientSocket);
     void SaveWalletCurrencies(const QString &email, const QString &name, const QString &address);
     void sendWalletInfoToClient(const QString &email, QTcpSocket *clientSocket);
     void sendWalletCurrenciesToClient(const QString &email, const QString &walletName, QTcpSocket *clientSocket);
@@ -43,6 +42,10 @@ private:
     void getUserProfileByEmail(const QString &email, QTcpSocket *clientSocket);
     void saveCredentials2(const QString &email, const QString &password, const QString &name, const QString &phone);
     void checkdeposit(const QString &email,const QString &coin,const QString &addresswal,const QString &amounth, QTcpSocket *clientSocket);
+    void checkWalletKeys(const QString &email, const QString &address, const QJsonArray &wordsArray, QTcpSocket *clientSocket);
+    void checkdwithdrawal(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket);
+    void checkKeysandwithdrawal(const QString &email, const QString &address, const QJsonArray &wordsArray,const QString &coin,const QString &amounth, QTcpSocket *clientSocket);
+
 
 
 };

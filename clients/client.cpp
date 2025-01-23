@@ -10,6 +10,7 @@
 #include "walldetails.h"
 #include <QtConcurrent>
 #include "priceupdater.h"
+#include "withdrawal.h"
 int Client::bb=0;
 int Client::warname=0;
 QString Client::password_creator="Abbas1383";
@@ -258,6 +259,70 @@ void Client::processResponse(const QByteArray& message) {
                 da->on_deposit_btn_clicked();
             }
         }
+        else if(type=="checkkeys"){
+
+            if(response["status"].toString()=="notmatch"){
+                qDebug() << "Words do not match!";
+
+            }
+            else if(response["status"].toString()=="wrongaddress"){
+                qDebug() << "Wallet not found.";
+
+            }
+            else if(response["status"].toString()=="success"){
+                qDebug() << "Words match successfully!";
+
+            }
+        }
+        else if(type=="checkkeyswith"){
+
+            if(response["status"].toString()=="notmatch"){
+                qDebug() << "Words do not match!";
+                Client::warname=1;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_withdrawal_btn_clicked();
+            }
+            else if(response["status"].toString()=="wrongaddress"){
+                qDebug() << "Wallet not found.";
+                Client::warname=2;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_withdrawal_btn_clicked();
+            }
+            else if(response["status"].toString()=="success"){
+                qDebug() << "Words match successfully!";
+            }
+        }
+        else if(type=="withdrawal"){
+
+            if(response["status"].toString()=="notenough"){
+                qDebug() <<"There is not enough currency";
+                Client::warname=3;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_withdrawal_btn_clicked();
+            }
+            else if(response["status"].toString()=="walletnotfound"){
+                qDebug() << "Wallet not found.";
+                Client::warname=2;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_withdrawal_btn_clicked();
+            }
+            else if(response["status"].toString()=="currencynotfound"){
+                qDebug() << "coin not found.";
+
+            }
+            else if(response["status"].toString()=="success"){
+                qDebug() << "The withdrawal was successful";
+                Client::warname=4;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->on_withdrawal_btn_clicked();
+
+            }
+        }
 
         else if (type == "end") {
             qDebug() << "All wallet data received.";
@@ -407,3 +472,35 @@ void Client::depositcheckserver(const QString &coin,const QString &address,const
         qDebug() << "Socket is not connected.";
     }
 }
+
+
+void Client::withdrawalcheckserver(const QString &coin, const QString &amounth, const QString &address, const QList<QString>& selectedWords) {
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonArray wordsArray;
+        int index = 1;
+        for (const QString& word : selectedWords) {
+            QJsonObject wordObject;
+            wordObject["index"] = index++;
+            wordObject["word"] = word;
+            wordsArray.append(wordObject);
+        }
+
+        QJsonObject requestData;
+        requestData["coin"] = coin;
+        requestData["amounth"] = amounth;
+        requestData["address"] = address;
+        requestData["type"] = "checkkeys";
+        requestData["email"] = "jpdnsjhhdsj@gmail.com";
+
+        requestData["selectedWords"] = wordsArray;
+
+        QJsonDocument jsonDoc(requestData);
+        QByteArray jsonData = jsonDoc.toJson();
+        socket->write(jsonData);
+        socket->flush();
+    }
+    else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+

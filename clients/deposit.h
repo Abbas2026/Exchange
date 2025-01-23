@@ -36,6 +36,8 @@ private slots:
 
     void on_save_wallet_btn_clicked();
 
+    void on_withdrawal_btn_clicked();
+
 private:
     Ui::deposit *ui;
 };

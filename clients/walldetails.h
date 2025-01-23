@@ -31,7 +31,9 @@ signals:
 
         void on_deposit_btn_clicked();
 
-    private:
+    void on_withdrawal_btn_clicked();
+
+private:
     Ui::Walldetails *ui;
 };
 

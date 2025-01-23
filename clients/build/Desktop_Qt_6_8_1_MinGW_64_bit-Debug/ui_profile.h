@@ -387,7 +387,7 @@ public:
         textEdit_password_value->setContextMenuPolicy(Qt::ContextMenuPolicy::ActionsContextMenu);
         textEdit_password_value->setStyleSheet(QString::fromUtf8("background-color: #10161f;\n"
 "font: 16pt \"Orienta\";\n"
-"color: #6f7988;\n"
+"color: #10161f;\n"
 "border:none;\n"
 ""));
         textEdit_password_value->setReadOnly(true);
@@ -835,12 +835,14 @@ public:
 "            border: none;  "));
         lineEdit_password_4 = new QLineEdit(widget_3);
         lineEdit_password_4->setObjectName("lineEdit_password_4");
-        lineEdit_password_4->setEnabled(false);
+        lineEdit_password_4->setEnabled(true);
         lineEdit_password_4->setGeometry(QRect(790, 540, 161, 41));
         lineEdit_password_4->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 170, 255);\n"
 "font: 14pt \"Orienta\";\n"
 "padding-left:10px;\n"
 "color: rgb(0, 0, 0);"));
+        lineEdit_password_4->setEchoMode(QLineEdit::EchoMode::PasswordEchoOnEdit);
+        lineEdit_password_4->setReadOnly(true);
         backt_btn_2 = new QPushButton(widget_3);
         backt_btn_2->setObjectName("backt_btn_2");
         backt_btn_2->setEnabled(true);
@@ -983,8 +985,8 @@ public:
         label_23->raise();
         widget_2->raise();
         paswidget->raise();
-        widget->raise();
         widget_3->raise();
+        widget->raise();
 
         retranslateUi(profile);
 

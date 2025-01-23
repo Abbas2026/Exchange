@@ -14,6 +14,7 @@
 #include <QRandomGenerator>
 #include <QPixmap>
 #include <QPainter>
+#include "withdrawal.h"
 profile::profile(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::profile)
@@ -100,6 +101,8 @@ void profile::applyStyles()
     ui->textEdit_firstname_value->setText("empty");
     ui->textEdit_lastname_value->setText("empty");
     ui->textEdit_30->setText("Change Password");
+    captchaText = generateCaptcha(5);
+    ui->captchaLabel->setPixmap(generateCaptchaImage(captchaText));
 }
 void profile::receiveduserprofile(const QString email,const QString name,const QString password,const QString phone,const QString address,const QString firstname,const QString lastname){
     ui->textEdit_userlevel_value->setText("level  " + Client::user_level);
@@ -177,12 +180,13 @@ void profile::on_recordchange_btn_clicked()
      QString firstname = ui->lineEdit_firstname_4->text();
      QString lastname = ui->lineEdit_lastname_4->text();
      QString password = ui->lineEdit_password_4->text();
-     if (!name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !password.isEmpty()) {
+     if (!name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty()) {
          Client::user_level="1";
      }
 
      extern Client client;
      client.senduserprofiletoserver(name,address,phone,firstname,lastname,password,Client::user_level);
+     qDebug()<<"11"<<Client::user_level;
      this->hide();
 
 
@@ -303,3 +307,12 @@ QPixmap profile::generateCaptchaImage(const QString &captchaText) {
 bool profile::verifyCaptcha(const QString &input, const QString &correctCaptcha) {
     return input == correctCaptcha;
 }
+
+void profile::on_withdrawal_btn_clicked()
+{
+    this->close();
+    withdrawal *withdrl = new withdrawal();
+    withdrl->setAttribute(Qt::WA_DeleteOnClose);
+    withdrl->show();
+}
+

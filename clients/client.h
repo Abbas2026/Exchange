@@ -23,13 +23,12 @@ public:
     void senduserprofiletoserver(const QString &name,const QString &address,const QString &phone,const QString &firstname,const QString &lastname,const QString &password,const QString &user_level);
     void getuserprofile();
     void depositcheckserver(const QString &coin,const QString &address,const QString &amounth);
-
+    void withdrawalcheckserver(const QString &coin, const QString &amounth,const QString &address, const QList<QString>& selectedWords);
     static int bb;
     static int warname;
     static QString user_level;
     static QString globalEmail ;
     static QString password_creator;
-
 signals:
     void sendinventorytowalletdetails(const QString &coinname,const double &coinamount,const double &Currentvalue);
     void receivedMessage(const QString &message);
@@ -40,17 +39,13 @@ signals:
     void triggerSigninSlot();
     void sendWalletToMywallet(const QString &name, const QString &address, double balance);
     void sendusertoprofile(const QString email,const QString name,const QString password,const QString phone,const QString address,const QString firstname,const QString lastname);
-
 public slots:
     void sendMessage(const QString &message);
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone);
     void requestUserData(const QString &email);
     void sendservertologin(const QString &email, const QString &password);
-
-
 private slots:
     void readServerResponse();
-
 private:
 
     QTcpSocket *socket;

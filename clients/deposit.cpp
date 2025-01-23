@@ -9,6 +9,7 @@
 #include "dashboard.h"
 #include <QMessageBox>
 #include "client.h"
+#include "withdrawal.h"
 deposit::deposit(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::deposit)
@@ -201,5 +202,14 @@ void deposit::on_save_wallet_btn_clicked()
     extern Client client;
     client.depositcheckserver(coin,address,amounth);
     this->hide();
+}
+
+
+void deposit::on_withdrawal_btn_clicked()
+{
+    this->close();
+    withdrawal *withdrl = new withdrawal();
+    withdrl->setAttribute(Qt::WA_DeleteOnClose);
+    withdrl->show();
 }
 
