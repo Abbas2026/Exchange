@@ -1189,7 +1189,118 @@ void Server::checkKeysandwithdrawal(const QString &email, const QString &address
     clientSocket->write(responseDoc.toJson());
     clientSocket->flush();
 }
+void Server::transferCurrency(const QString &fromAddress, const QString &toEmail, const QString &toWalletName, const QMap<QString, double> &transferCurrencies) {
+    QFile file("walletsdata.json");
+    if (!file.open(QIODevice::ReadWrite)) {
+        qDebug() << "Failed to open file for reading and writing";
+        return;
+    }
 
+    QByteArray data = file.readAll();
+    file.seek(0);
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject jsonObj = doc.object();
+
+    // Validate source wallet
+    bool fromWalletFound = false;
+    QJsonObject fromWallet;
+    QString fromEmail;
+    for (auto email : jsonObj.keys()) {
+        QJsonObject emailObj = jsonObj[email].toObject();
+        QJsonArray walletsArray = emailObj["wallets"].toArray();
+        for (int i = 0; i < walletsArray.size(); ++i) {
+            QJsonObject wallet = walletsArray[i].toObject();
+            if (wallet["address"].toString() == fromAddress) {
+                fromWallet = wallet;
+                fromEmail = email;
+                fromWalletFound = true;
+                break;
+            }
+        }
+        if (fromWalletFound) break;
+    }
+
+    if (!fromWalletFound) {
+        qDebug() << "Source wallet not found.";
+        return;
+    }
+
+    // Validate destination wallet
+    if (!jsonObj.contains(toEmail)) {
+        qDebug() << "Destination email not found in the file.";
+        return;
+    }
+
+    QJsonObject toEmailObj = jsonObj[toEmail].toObject();
+    QJsonArray toWalletsArray = toEmailObj["wallets"].toArray();
+
+    QJsonObject toWallet;
+    bool toWalletFound = false;
+    for (int i = 0; i < toWalletsArray.size(); ++i) {
+        QJsonObject wallet = toWalletsArray[i].toObject();
+        if (wallet["name"].toString() == toWalletName) {
+            toWallet = wallet;
+            toWalletFound = true;
+            break;
+        }
+    }
+
+    if (!toWalletFound) {
+        qDebug() << "Destination wallet not found.";
+        return;
+    }
+
+    // Update balances
+    QJsonObject fromCurrencies = fromWallet["currencies"].toObject();
+    QJsonObject toCurrencies = toWallet["currencies"].toObject();
+
+    for (auto it = transferCurrencies.begin(); it != transferCurrencies.end(); ++it) {
+        QString currencyName = it.key();
+        double amount = it.value();
+
+        if (fromCurrencies.contains(currencyName) && fromCurrencies[currencyName].toDouble() >= amount) {
+            fromCurrencies[currencyName] = fromCurrencies[currencyName].toDouble() - amount;
+            toCurrencies[currencyName] = toCurrencies[currencyName].toDouble() + amount;
+        } else {
+            qDebug() << "Insufficient funds or currency not found in source wallet.";
+            return;
+        }
+    }
+
+    fromWallet["currencies"] = fromCurrencies;
+    toWallet["currencies"] = toCurrencies;
+
+    // Update JSON data
+    QJsonArray fromWalletsArray = jsonObj[fromEmail].toObject()["wallets"].toArray();
+    for (int i = 0; i < fromWalletsArray.size(); ++i) {
+        if (fromWalletsArray[i].toObject()["address"].toString() == fromAddress) {
+            fromWalletsArray[i] = fromWallet;
+            break;
+        }
+    }
+
+    QJsonArray updatedToWalletsArray = toEmailObj["wallets"].toArray();
+    for (int i = 0; i < updatedToWalletsArray.size(); ++i) {
+        if (updatedToWalletsArray[i].toObject()["name"].toString() == toWalletName) {
+            updatedToWalletsArray[i] = toWallet;
+            break;
+        }
+    }
+
+    QJsonObject updatedFromEmailObj = jsonObj[fromEmail].toObject();
+    updatedFromEmailObj["wallets"] = fromWalletsArray;
+    jsonObj[fromEmail] = updatedFromEmailObj;
+
+    toEmailObj["wallets"] = updatedToWalletsArray;
+    jsonObj[toEmail] = toEmailObj;
+
+    QJsonDocument updatedDoc(jsonObj);
+    file.write(updatedDoc.toJson());
+    file.close();
+
+    qDebug() << "Transfer completed successfully.";
+}
 void Server::checkdwithdrawal(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket) {
 
     QFile file("walletsdata.json");
