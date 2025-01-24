@@ -23,6 +23,7 @@ public:
     void senduserprofiletoserver(const QString &name,const QString &address,const QString &phone,const QString &firstname,const QString &lastname,const QString &password,const QString &user_level);
     void getuserprofile();
     void depositcheckserver(const QString &coin,const QString &address,const QString &amounth);
+    void transferCurrency(const QString &fromAddress, const QString &toEmail, const QString &toWalletName, const QMap<QString, double> &transferCurrencies);
     void withdrawalcheckserver(const QString &coin, const QString &amounth,const QString &address, const QList<QString>& selectedWords);
     void getsupplyfromserver(QString &address);
     void buycoin(const QString &coin, const QString &amounth, const QString &address);
