@@ -62,12 +62,12 @@ public:
     QPushButton *Dashboard_btn;
     QPushButton *Authentication_btn;
     QLabel *app_name;
-    QPushButton *easyexchange_btn;
     QPushButton *Profile_btn;
     QPushButton *currentprice_btn;
     QPushButton *deposit_btn;
     QPushButton *market_btn;
     QPushButton *withdrawal_btn;
+    QPushButton *easyexchange_btn;
     QWidget *widget_3;
     QTextEdit *textEdit_profname_4;
     QTextEdit *textEdit_userlevel_4;
@@ -485,14 +485,6 @@ public:
 "word-spacing: 3px;\n"
 ""));
         app_name->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        easyexchange_btn = new QPushButton(widget_2);
-        easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(20, 490, 211, 41));
-        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
-"color: rgb(0, 0, 0);\n"
-"font: 28pt \"Bangers\";\n"
-"letter-spacing: -1px;"));
         Profile_btn = new QPushButton(widget_2);
         Profile_btn->setObjectName("Profile_btn");
         Profile_btn->setGeometry(QRect(10, 350, 211, 41));
@@ -534,6 +526,14 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
+        easyexchange_btn = new QPushButton(widget_2);
+        easyexchange_btn->setObjectName("easyexchange_btn");
+        easyexchange_btn->setGeometry(QRect(40, 490, 151, 41));
+        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: -1px;"));
         widget_3 = new QWidget(profile);
         widget_3->setObjectName("widget_3");
         widget_3->setGeometry(QRect(0, 0, 1031, 911));
@@ -1004,12 +1004,12 @@ public:
         Dashboard_btn->setText(QCoreApplication::translate("profile", "Dashboard", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("profile", "Authentication", nullptr));
         app_name->setText(QCoreApplication::translate("profile", "heliacal exchange", nullptr));
-        easyexchange_btn->setText(QCoreApplication::translate("profile", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("profile", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("profile", "Current price", nullptr));
         deposit_btn->setText(QCoreApplication::translate("profile", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("profile", "market", nullptr));
         withdrawal_btn->setText(QCoreApplication::translate("profile", " withdrawal", nullptr));
+        easyexchange_btn->setText(QCoreApplication::translate("profile", " Exchange", nullptr));
         recordchange_btn->setText(QCoreApplication::translate("profile", "Record changes", nullptr));
         change_pas->setText(QCoreApplication::translate("profile", "change password", nullptr));
         backt_btn->setText(QCoreApplication::translate("profile", "\342\206\220", nullptr));

@@ -12,7 +12,10 @@
 #include "priceupdater.h"
 #include "withdrawal.h"
 int Client::bb=0;
-int Client::warname=0;
+int Client::x=0;
+
+int Client::warname;
+int Client::number_wallets=0;
 QString Client::password_creator="Abbas1383";
 QString Client::user_level="0";
 QString Client::globalEmail = "jpdnsjhhdsj@gmail.com";
@@ -160,6 +163,7 @@ void Client::processResponse(const QByteArray& message) {
             QString password = userObject["password"].toString();
             QString phone = userObject["phone"].toString();
             Client::user_level=userObject["userlevel"].toString();
+
             QString address = userObject["addresshome"].toString() ;
             QString firstname= userObject["fname"].toString();
             QString lastname= userObject["lname"].toString();
@@ -168,14 +172,19 @@ void Client::processResponse(const QByteArray& message) {
         } else if (type == "saveuserprofile") {
             if(response["status"].toString()=="success"){
                 dashboard *da = new dashboard();
+                if(Client::x!=0){
+                    qDebug()<<"dd"<<Client::warname;
                 da->setAttribute(Qt::WA_DeleteOnClose);
-                da->on_Profile_btn_clicked();
+
+                da->on_Profile_btn_clicked();}
             }
             else if(response["status"].toString()=="defeat"){
+                if(Client::x!=0){
                 Client::warname=1;
                 dashboard *da = new dashboard();
                 da->setAttribute(Qt::WA_DeleteOnClose);
-                da->on_Profile_btn_clicked();
+                qDebug()<<"The username is duplicate.";
+                da->on_Profile_btn_clicked();}
             }
 
         }
@@ -323,8 +332,40 @@ void Client::processResponse(const QByteArray& message) {
 
             }
         }
+        else if (type == "getsupply") {
+            if (response["status"].toString() == "success") {
+                QJsonObject wallet = response["wallet"].toObject();
+                QString address = wallet["address"].toString();
+                QJsonObject currencies = wallet["currencies"].toObject();
+
+                qDebug() << "Wallet Address:" << address;
+
+                QMap<QString, double> currencyMap;
+
+                for (auto it = currencies.begin(); it != currencies.end(); ++it) {
+                    QString coin = it.key();
+                    double amount = it.value().toDouble();
+                    currencyMap[coin] = amount;
+                }
+
+                qDebug() << "Currencies:";
+                for (auto it = currencyMap.begin(); it != currencyMap.end(); ++it) {
+                    qDebug() << it.key() << ":" << it.value();
+                }
+                emit sendsupplytootherfile(currencyMap);
+            }
+            else {
+                qDebug() << "Error: Wallet not found or another issue occurred.";
+            }
+        }
+        else if(type=="exchange"){
+            qDebug()<<"bvnvb";
+
+        }
 
         else if (type == "end") {
+            qDebug()<<"123"<<++Client::number_wallets;
+
             qDebug() << "All wallet data received.";
         } else {
             qDebug() << "Unknown type or error: " << error;
@@ -432,6 +473,8 @@ void Client::Walletassets(const QString &email,const QString &namewallet){
 void Client::getuserprofile(){
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
+        qDebug()<<"ppppp";
+
         json["type"] = "userprofile";
         json["email"] = "jpdnsjhhdsj@gmail.com";
         QJsonDocument doc(json);
@@ -503,4 +546,66 @@ void Client::withdrawalcheckserver(const QString &coin, const QString &amounth, 
         qDebug() << "Socket is not connected.";
     }
 }
+void Client::getsupplyfromserver(QString &address){
 
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        json["type"] = "getsupply";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["address"] = address;
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+void Client::buycoin(const QString &coin, const QString &amounth, const QString &address){
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        qDebug()<<"ddd";
+        json["type"] = "buycoin";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["address"] = address;
+        json["coin"] = coin;
+        json["amounth"] = amounth;
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+void Client::sellcoin(const QString &coin, const QString &amounth, const QString &address){
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+        qDebug()<<"sss";
+
+        json["type"] = "sellcoin";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["address"] = address;
+        json["coin"] = coin;
+        json["amounth"] = amounth;
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}
+
+void Client::exchangeCoins(const QString &coin1, const QString &coin2, const QString &amount1, const QString &amount2, const QString &address) {
+    if (socket->state() == QTcpSocket::ConnectedState) {
+        QJsonObject json;
+
+        json["type"] = "exchange";
+        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["address"] = address;
+        json["coin1"] = coin1;
+        json["coin2"] = coin2;
+        json["amount1"] = amount1;
+        json["amount2"] = amount2;
+
+        QJsonDocument doc(json);
+        socket->write(doc.toJson());
+    } else {
+        qDebug() << "Socket is not connected.";
+    }
+}

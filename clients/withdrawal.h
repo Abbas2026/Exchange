@@ -35,6 +35,12 @@ private slots:
 
     void on_withdrawal_coin_clicked();
 
+    void on_deposit_btn_clicked();
+
+    void on_Authentication_btn_clicked();
+
+    void on_easyexchange_btn_clicked();
+
 private:
     Ui::withdrawal *ui;
 };

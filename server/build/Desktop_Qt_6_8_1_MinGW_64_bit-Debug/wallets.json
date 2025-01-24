@@ -1,7 +1,8 @@
 {
     "wallets": {
         "jpdnsjhhdsj@gmail.com": [
-            {   "address": "c8btgf7w9liwoplnrcw3vblrl",
+            {
+                "address": "c8btgf7w9liwoplnrcw3vblrl",
                 "walletName": "abbas",
                 "words": [
                     {
@@ -57,6 +58,36 @@
                     {
                         "index": 6,
                         "word": "jewel"
+                    }
+                ]
+            },
+            {
+                "address": "pwsm5zomex3lh1wjmojownxjj",
+                "walletName": "mom",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "zenith"
+                    },
+                    {
+                        "index": 2,
+                        "word": "xylophone"
+                    },
+                    {
+                        "index": 3,
+                        "word": "eclipse"
+                    },
+                    {
+                        "index": 4,
+                        "word": "date"
+                    },
+                    {
+                        "index": 5,
+                        "word": "umbrella"
+                    },
+                    {
+                        "index": 6,
+                        "word": "yarn"
                     }
                 ]
             }

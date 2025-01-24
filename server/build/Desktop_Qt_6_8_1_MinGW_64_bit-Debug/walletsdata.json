@@ -6,9 +6,9 @@
                 "currencies": {
                     "Bitcoin": 0,
                     "Ethereum": 0,
-                    "Tether": 0,
-                    "Toman": 0,
-                    "Tron": 0
+                    "Tether": 10,
+                    "Toman": 3936000,
+                    "Tron": 79.078264
                 },
                 "name": "abbas"
             },
@@ -22,6 +22,17 @@
                     "Tron": 90
                 },
                 "name": "ali"
+            },
+            {
+                "address": "pwsm5zomex3lh1wjmojownxjj",
+                "currencies": {
+                    "Bitcoin": 0,
+                    "Ethereum": 0,
+                    "Tether": 0,
+                    "Toman": 0,
+                    "Tron": 0
+                },
+                "name": "mom"
             }
         ]
     }

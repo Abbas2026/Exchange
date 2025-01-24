@@ -37,6 +37,10 @@ void deposit::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    if(Client::user_level=="1"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+    }
 
     ui->deposit_text->setText("Cryptocurrency deposit");
 
@@ -211,5 +215,23 @@ void deposit::on_withdrawal_btn_clicked()
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
     withdrl->show();
+}
+
+
+void deposit::on_Authentication_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_Authentication_btn_clicked();
+}
+
+
+void deposit::on_easyexchange_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_easyexchange_btn_clicked();
 }
 

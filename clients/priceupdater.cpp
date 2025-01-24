@@ -8,8 +8,11 @@
 double PriceUpdater::bitcoinToTether = 102000.0;
 double PriceUpdater::ethereumToTether = 3288.0;
 double PriceUpdater::tronToTether = 0.24;
+double PriceUpdater::TetherToTether = 1.0;
 double PriceUpdater::tetherToToman = 80000.0;
+double PriceUpdater::TomanToTether=0.0000125;
 double PriceUpdater::balancetotether=0.0;
+
 PriceUpdater::PriceUpdater(QObject* parent)
     : QObject(parent),
     networkManager(new QNetworkAccessManager(this)),

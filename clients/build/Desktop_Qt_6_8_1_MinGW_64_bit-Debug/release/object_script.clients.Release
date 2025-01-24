@@ -1,6 +1,7 @@
 release/client.o
 release/dashboard.o
 release/deposit.o
+release/exchange.o
 release/main.o
 release/form.o
 release/mywallet.o
@@ -14,6 +15,7 @@ release/withdrawal.o
 release/moc_client.o
 release/moc_dashboard.o
 release/moc_deposit.o
+release/moc_exchange.o
 release/moc_form.o
 release/moc_mywallet.o
 release/moc_priceupdater.o

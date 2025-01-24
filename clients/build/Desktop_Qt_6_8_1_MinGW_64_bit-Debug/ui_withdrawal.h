@@ -30,12 +30,12 @@ public:
     QPushButton *Dashboard_btn;
     QPushButton *Authentication_btn;
     QLabel *app_name;
-    QPushButton *easyexchange_btn;
     QPushButton *Profile_btn;
     QPushButton *currentprice_btn;
     QPushButton *deposit_btn;
     QPushButton *market_btn;
     QPushButton *withdrawal_btn;
+    QPushButton *easyexchange_btn;
     QWidget *widget;
     QWidget *widget_3;
     QWidget *widget_4;
@@ -86,6 +86,8 @@ public:
         if (withdrawal->objectName().isEmpty())
             withdrawal->setObjectName("withdrawal");
         withdrawal->resize(1278, 904);
+        withdrawal->setMinimumSize(QSize(1278, 904));
+        withdrawal->setMaximumSize(QSize(1278, 904));
         widget_2 = new QWidget(withdrawal);
         widget_2->setObjectName("widget_2");
         widget_2->setGeometry(QRect(1030, 0, 251, 904));
@@ -143,14 +145,6 @@ public:
 "word-spacing: 3px;\n"
 ""));
         app_name->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        easyexchange_btn = new QPushButton(widget_2);
-        easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(20, 490, 211, 41));
-        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
-"color: rgb(0, 0, 0);\n"
-"font: 28pt \"Bangers\";\n"
-"letter-spacing: -1px;"));
         Profile_btn = new QPushButton(widget_2);
         Profile_btn->setObjectName("Profile_btn");
         Profile_btn->setGeometry(QRect(10, 350, 211, 41));
@@ -194,6 +188,14 @@ public:
 "letter-spacing: 1px;\n"
 "color: #c97940;\n"
 ""));
+        easyexchange_btn = new QPushButton(widget_2);
+        easyexchange_btn->setObjectName("easyexchange_btn");
+        easyexchange_btn->setGeometry(QRect(40, 490, 151, 41));
+        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: -1px;"));
         widget = new QWidget(withdrawal);
         widget->setObjectName("widget");
         widget->setGeometry(QRect(0, 0, 1031, 911));
@@ -481,12 +483,12 @@ public:
         Dashboard_btn->setText(QCoreApplication::translate("withdrawal", "Dashboard", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("withdrawal", "Authentication", nullptr));
         app_name->setText(QCoreApplication::translate("withdrawal", "heliacal exchange", nullptr));
-        easyexchange_btn->setText(QCoreApplication::translate("withdrawal", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("withdrawal", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("withdrawal", "Current price", nullptr));
         deposit_btn->setText(QCoreApplication::translate("withdrawal", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("withdrawal", "market", nullptr));
         withdrawal_btn->setText(QCoreApplication::translate("withdrawal", " withdrawal", nullptr));
+        easyexchange_btn->setText(QCoreApplication::translate("withdrawal", " Exchange", nullptr));
         withdrawal_coin->setText(QCoreApplication::translate("withdrawal", "withdrawal", nullptr));
 #if QT_CONFIG(whatsthis)
         lb_icon_bitcoin->setWhatsThis(QCoreApplication::translate("withdrawal", "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:v=\"https://vecta.io/nano\" viewBox=\"195 77 358 360\"><path d=\"M535 316h-24.4v-1H508v1h-24.4v-1h-2.7v1h-24.4v-1h-2.7v1h-24.4v-1h-2.7v1h-24.4v-1h-2.7v1h-24.4v-1h-2.7v1h-24.4v-1h-2.7v1H321v-1h-2.7v1h-24.4v-1h-2.7v1h-24.4v-1h-2.7v1H240v-1h-2.7v1H213v-1h-2l2.2 5.8h8v1.9H214l1.5 3.5h8.8v-5.8h1.9v11.2h3.5v-11.2h1.9v11.2h3.5v-11.2h1.9v13.1h-12.8v-5.4h-7.9l1.6 3.5h3.2v1.9h-2.3C247.1 390.7 305.9 430 374 430s126.9-39.3 155.2-96.5h-7.3v-5.4H513v5.8h-2v-7.7h12.8v5.4h6.3c.6-1.2 1.1-2.3 1.6-3.5h-4.8v-1.9h5.7l1.5-3.5h-23.4v-1.9h24.2c.8-1.9 1.5-3.9 2.2-5.8h-2v1zm-295 4.8h35.2v1.9H240v-1.9zm8.2 12.7h-2.7v-1.9h2.7v1.9zm15.8 0h-12.8v-5.4h-8.9v5.8h-1.9v-7.7h12.8v5.4h8.9v-3.5h-5.8v-1.9h7.7v7.3zm27.1 0h-12.8v-5.4h-8.9v3.5h5.8v1.9h-7.7v-7.3h10.8v-5.8h1.9v11.2h3.5v-11.2h1.9v11.2h3.5v-11.2h1.9v13.1zm3.1-12.7h35.2v1.9h-35.2v-1.9zm8.1 12.7h-2.7v-1.9h2.7v1.9zm15.8 0h-12.8v-5.4h-8.9v5.8h-1.9v-7.7h12.8v5.4h8.9v-3.5h-5.8v-1.9h7.7v7.3zm27.1 0h-12.8"

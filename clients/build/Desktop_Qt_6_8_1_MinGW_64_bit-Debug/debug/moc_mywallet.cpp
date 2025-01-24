@@ -55,7 +55,9 @@ static constexpr auto qt_meta_stringdata_ZN8mywalletE = QtMocHelpers::stringData
     "column",
     "on_Profile_btn_clicked",
     "on_deposit_btn_clicked",
-    "on_withdrawal_btn_clicked"
+    "on_withdrawal_btn_clicked",
+    "on_Authentication_btn_clicked",
+    "on_easyexchange_btn_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -67,7 +69,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN8mywalletE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -75,18 +77,20 @@ Q_CONSTINIT static const uint qt_meta_data_ZN8mywalletE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    3,   86,    2, 0x0a,    1 /* Public */,
-       6,    0,   93,    2, 0x08,    5 /* Private */,
-       7,    0,   94,    2, 0x08,    6 /* Private */,
-       8,    0,   95,    2, 0x08,    7 /* Private */,
-       9,    0,   96,    2, 0x08,    8 /* Private */,
-      10,    0,   97,    2, 0x08,    9 /* Private */,
-      11,    0,   98,    2, 0x08,   10 /* Private */,
-      12,    0,   99,    2, 0x08,   11 /* Private */,
-      13,    2,  100,    2, 0x08,   12 /* Private */,
-      16,    0,  105,    2, 0x08,   15 /* Private */,
-      17,    0,  106,    2, 0x08,   16 /* Private */,
-      18,    0,  107,    2, 0x08,   17 /* Private */,
+       1,    3,   98,    2, 0x0a,    1 /* Public */,
+       6,    0,  105,    2, 0x08,    5 /* Private */,
+       7,    0,  106,    2, 0x08,    6 /* Private */,
+       8,    0,  107,    2, 0x08,    7 /* Private */,
+       9,    0,  108,    2, 0x08,    8 /* Private */,
+      10,    0,  109,    2, 0x08,    9 /* Private */,
+      11,    0,  110,    2, 0x08,   10 /* Private */,
+      12,    0,  111,    2, 0x08,   11 /* Private */,
+      13,    2,  112,    2, 0x08,   12 /* Private */,
+      16,    0,  117,    2, 0x08,   15 /* Private */,
+      17,    0,  118,    2, 0x08,   16 /* Private */,
+      18,    0,  119,    2, 0x08,   17 /* Private */,
+      19,    0,  120,    2, 0x08,   18 /* Private */,
+      20,    0,  121,    2, 0x08,   19 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Double,    3,    4,    5,
@@ -98,6 +102,8 @@ Q_CONSTINIT static const uint qt_meta_data_ZN8mywalletE[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   14,   15,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -142,6 +148,10 @@ Q_CONSTINIT const QMetaObject mywallet::staticMetaObject = { {
         // method 'on_deposit_btn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_withdrawal_btn_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_Authentication_btn_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_easyexchange_btn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -164,6 +174,8 @@ void mywallet::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 9: _t->on_Profile_btn_clicked(); break;
         case 10: _t->on_deposit_btn_clicked(); break;
         case 11: _t->on_withdrawal_btn_clicked(); break;
+        case 12: _t->on_Authentication_btn_clicked(); break;
+        case 13: _t->on_easyexchange_btn_clicked(); break;
         default: ;
         }
     }
@@ -188,14 +200,14 @@ int mywallet::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 14;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 14;
     }
     return _id;
 }

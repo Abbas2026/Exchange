@@ -50,6 +50,10 @@ void mywallet::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    if(Client::user_level=="1"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+    }
      ui->tableWidget->setStyleSheet(
         "QTableWidget {"
         "    background-color: #2980b9;"
@@ -149,6 +153,14 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
 
 }
 void mywallet::on_creatwallet_btn_clicked() {
+    if(Client::number_wallets==1 &&Client::user_level=="0"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
+                                         "QPushButton:hover { color: #c97940; }");
+         QMessageBox::warning(this, "warning", "To create a wallet, you must first authenticate yourself");
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        return;
+    }
     QStringList words;
     QFile file("words.txt");
     if (file.open(QIODevice::ReadOnly)) {
@@ -306,5 +318,23 @@ void mywallet::on_withdrawal_btn_clicked()
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
     withdrl->show();
+}
+
+
+void mywallet::on_Authentication_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_Authentication_btn_clicked();
+}
+
+
+void mywallet::on_easyexchange_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_easyexchange_btn_clicked();
 }
 

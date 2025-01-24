@@ -1,6 +1,7 @@
 debug/client.o
 debug/dashboard.o
 debug/deposit.o
+debug/exchange.o
 debug/main.o
 debug/form.o
 debug/mywallet.o
@@ -14,6 +15,7 @@ debug/withdrawal.o
 debug/moc_client.o
 debug/moc_dashboard.o
 debug/moc_deposit.o
+debug/moc_exchange.o
 debug/moc_form.o
 debug/moc_mywallet.o
 debug/moc_priceupdater.o

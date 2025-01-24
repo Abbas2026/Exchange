@@ -38,6 +38,10 @@ private slots:
 
     void on_withdrawal_btn_clicked();
 
+    void on_Authentication_btn_clicked();
+
+    void on_easyexchange_btn_clicked();
+
 private:
     Ui::deposit *ui;
 };

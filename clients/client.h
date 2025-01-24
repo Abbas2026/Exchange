@@ -24,11 +24,20 @@ public:
     void getuserprofile();
     void depositcheckserver(const QString &coin,const QString &address,const QString &amounth);
     void withdrawalcheckserver(const QString &coin, const QString &amounth,const QString &address, const QList<QString>& selectedWords);
+    void getsupplyfromserver(QString &address);
+    void buycoin(const QString &coin, const QString &amounth, const QString &address);
+    void sellcoin(const QString &coin, const QString &amounth, const QString &address);
+    void exchangeCoins(const QString &coin1, const QString &coin2, const QString &amount1, const QString &amount2, const QString &address);
+
+
     static int bb;
+    static int x;
     static int warname;
+    static int number_wallets;
     static QString user_level;
     static QString globalEmail ;
     static QString password_creator;
+
 signals:
     void sendinventorytowalletdetails(const QString &coinname,const double &coinamount,const double &Currentvalue);
     void receivedMessage(const QString &message);
@@ -39,6 +48,7 @@ signals:
     void triggerSigninSlot();
     void sendWalletToMywallet(const QString &name, const QString &address, double balance);
     void sendusertoprofile(const QString email,const QString name,const QString password,const QString phone,const QString address,const QString firstname,const QString lastname);
+     void sendsupplytootherfile(const QMap<QString, double>& walletCurrencies);
 public slots:
     void sendMessage(const QString &message);
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone);
@@ -50,5 +60,4 @@ private:
 
     QTcpSocket *socket;
 };
-
 #endif

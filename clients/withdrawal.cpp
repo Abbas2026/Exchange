@@ -9,6 +9,7 @@
 #include "dashboard.h"
 #include <QMessageBox>
 #include "client.h"
+#include "deposit.h"
 withdrawal::withdrawal(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::withdrawal)
@@ -36,6 +37,10 @@ void withdrawal::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
+    if(Client::user_level=="1"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+    }
 
     ui->withdrawal_text->setText("Withdrawal of currency");
 
@@ -222,3 +227,30 @@ extern Client client;
 client.withdrawalcheckserver(coin,amounth,address,selectedWords);
 this->hide();
 }
+
+void withdrawal::on_deposit_btn_clicked()
+{
+    this->close();
+    deposit *dep = new deposit();
+    dep->setAttribute(Qt::WA_DeleteOnClose);
+    dep->show();
+}
+
+
+void withdrawal::on_Authentication_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_Authentication_btn_clicked();
+}
+
+
+void withdrawal::on_easyexchange_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_easyexchange_btn_clicked();
+}
+

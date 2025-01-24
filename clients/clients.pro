@@ -13,6 +13,7 @@ SOURCES += \
     client.cpp \
     dashboard.cpp \
     deposit.cpp \
+    exchange.cpp \
     main.cpp \
     form.cpp \
     mywallet.cpp \
@@ -22,12 +23,13 @@ SOURCES += \
     walldetails.cpp \
     coingeckoapi.cpp \
     CurrentPrice.cpp \
-    withdrawal.cpp
+    withdrawal.cpp \
 
 HEADERS += \
     client.h \
     dashboard.h \
     deposit.h \
+    exchange.h \
     form.h \
     mywallet.h \
     priceupdater.h \
@@ -36,11 +38,13 @@ HEADERS += \
     walldetails.h \
     coingeckoapi.h \
     CurrentPrice.h \
-    withdrawal.h
+    withdrawal.h \
+
 
 FORMS += \
     dashboard.ui \
     deposit.ui \
+    exchange.ui \
     form.ui \
     mywallet.ui \
     profile.ui \
@@ -48,7 +52,8 @@ FORMS += \
     walldetails.ui \
     coingeckoapi.ui \
     CurrentPrice.ui \
-    withdrawal.ui
+    withdrawal.ui \
+    exchange.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

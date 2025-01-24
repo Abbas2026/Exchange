@@ -29,7 +29,6 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
-    QPushButton *easyexchange_btn;
     QTextEdit *textEdit;
     QPushButton *Transmission_btn;
     QPushButton *Profile_btn;
@@ -37,6 +36,7 @@ public:
     QPushButton *backButton;
     QPushButton *deposit_btn;
     QPushButton *withdrawal_btn;
+    QPushButton *easyexchange_btn;
 
     void setupUi(QWidget *dashboard)
     {
@@ -113,14 +113,6 @@ public:
         label_3->setPixmap(QPixmap(QString::fromUtf8("E:/Downloads/logo for a currency exchange named heliacal (1).png")));
         label_3->setScaledContents(true);
         label_3->setIndent(-6);
-        easyexchange_btn = new QPushButton(widget);
-        easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(1040, 490, 211, 41));
-        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
-"color: rgb(0, 0, 0);\n"
-"font: 28pt \"Bangers\";\n"
-"letter-spacing: -1px;"));
         textEdit = new QTextEdit(widget);
         textEdit->setObjectName("textEdit");
         textEdit->setEnabled(false);
@@ -175,6 +167,14 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
+        easyexchange_btn = new QPushButton(widget);
+        easyexchange_btn->setObjectName("easyexchange_btn");
+        easyexchange_btn->setGeometry(QRect(1060, 490, 151, 41));
+        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: -1px;"));
         textEdit->raise();
         currentprice_btn->raise();
         Mywallets_btn->raise();
@@ -182,7 +182,6 @@ public:
         market_btn->raise();
         label_2->raise();
         label_3->raise();
-        easyexchange_btn->raise();
         label->raise();
         Transmission_btn->raise();
         Profile_btn->raise();
@@ -190,6 +189,7 @@ public:
         backButton->raise();
         deposit_btn->raise();
         withdrawal_btn->raise();
+        easyexchange_btn->raise();
 
         retranslateUi(dashboard);
 
@@ -209,13 +209,13 @@ public:
         label->setText(QString());
         label_2->setText(QCoreApplication::translate("dashboard", "heliacal exchange", nullptr));
         label_3->setText(QString());
-        easyexchange_btn->setText(QCoreApplication::translate("dashboard", "Easy exchange", nullptr));
         Transmission_btn->setText(QCoreApplication::translate("dashboard", "Transmission", nullptr));
         Profile_btn->setText(QCoreApplication::translate("dashboard", "Profile", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("dashboard", "Authentication", nullptr));
         backButton->setText(QCoreApplication::translate("dashboard", "log out", nullptr));
         deposit_btn->setText(QCoreApplication::translate("dashboard", "Deposit ", nullptr));
         withdrawal_btn->setText(QCoreApplication::translate("dashboard", " withdrawal", nullptr));
+        easyexchange_btn->setText(QCoreApplication::translate("dashboard", " Exchange", nullptr));
     } // retranslateUi
 
 };

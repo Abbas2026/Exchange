@@ -34,8 +34,11 @@ int main(int argc, char *argv[]) {
         printPrices();
     });
     form w;
-    dashboard m;
     client.connectToServer("127.0.0.1", 1234);
+   extern Client client;
+
+     Client::warname=10;
+
     QObject::connect(&w, &form::sendCredentials, &client, &Client::sendCredentials);
     QObject::connect(&client, &Client::receivedMessage, &w, &form::displayServerResponse);
     QObject::connect(&client, &Client::registrationSuccessful, &w, &form::onRegistrationSuccessful);
@@ -45,8 +48,9 @@ int main(int argc, char *argv[]) {
                     "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
                     "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
                     "QMessageBox QPushButton:pressed { background-color: #5E81AC; }";
-
+    dashboard f;
     a.setStyleSheet(style);
-    m.show();
+    f.show();
+
     return a.exec();
 }

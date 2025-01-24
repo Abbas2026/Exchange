@@ -19,6 +19,8 @@ public:
     static double tronToTether;
     static double tetherToToman;
     static double balancetotether;
+    static double TetherToTether;
+    static double TomanToTether;
 
 signals:
     void pricesUpdated();

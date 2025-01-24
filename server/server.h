@@ -45,6 +45,10 @@ private:
     void checkWalletKeys(const QString &email, const QString &address, const QJsonArray &wordsArray, QTcpSocket *clientSocket);
     void checkdwithdrawal(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket);
     void checkKeysandwithdrawal(const QString &email, const QString &address, const QJsonArray &wordsArray,const QString &coin,const QString &amounth, QTcpSocket *clientSocket);
+    void getsupply(const QString &email, const QString &addresswal, QTcpSocket *clientSocket);
+    void buycoin(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket);
+    void sellcoin(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket);
+    void exchangeCoins(const QString &email, const QString &coin1, const QString &coin2, const QString &addresswal, const QString &amount1, const QString &amount2, QTcpSocket *clientSocket);
 
 
 

@@ -228,28 +228,6 @@ word-spacing: 3px;
      <number>-6</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="easyexchange_btn">
-    <property name="geometry">
-     <rect>
-      <x>1040</x>
-      <y>490</y>
-      <width>211</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border:none;
-color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
-letter-spacing: -1px;</string>
-    </property>
-    <property name="text">
-     <string>Easy exchange</string>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="enabled">
      <bool>false</bool>
@@ -399,6 +377,28 @@ letter-spacing: 1px;</string>
      <string> withdrawal</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="easyexchange_btn">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>490</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 28pt &quot;Bangers&quot;;
+letter-spacing: -1px;</string>
+    </property>
+    <property name="text">
+     <string> Exchange</string>
+    </property>
+   </widget>
    <zorder>textEdit</zorder>
    <zorder>currentprice_btn</zorder>
    <zorder>Mywallets_btn</zorder>
@@ -406,7 +406,6 @@ letter-spacing: 1px;</string>
    <zorder>market_btn</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
-   <zorder>easyexchange_btn</zorder>
    <zorder>label</zorder>
    <zorder>Transmission_btn</zorder>
    <zorder>Profile_btn</zorder>
@@ -414,6 +413,7 @@ letter-spacing: 1px;</string>
    <zorder>backButton</zorder>
    <zorder>deposit_btn</zorder>
    <zorder>withdrawal_btn</zorder>
+   <zorder>easyexchange_btn</zorder>
   </widget>
  </widget>
  <resources/>

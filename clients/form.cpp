@@ -93,7 +93,6 @@ void form::onRegistrationSuccessful() {
     connect(da, &dashboard::backToFormRequested, this, [this]() {
         this->show();
     });
-
     da->show();
 }
 void form::loginSuccessful() {

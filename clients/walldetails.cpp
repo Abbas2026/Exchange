@@ -87,7 +87,10 @@ void Walldetails::applyStyles()
     ui->withdrawal_btn->setStyleSheet(baseStyle);
     ui->history_btn->setStyleSheet("QPushButton { color: #fff; border: none;  border: none;  border-radius: 10px; font-size:20px; background-color: #242d3b; }"
                                    "QPushButton:hover { background-color: #2e3847; }");
-
+    if(Client::user_level=="1"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+    }
     ui->tableWidget->setStyleSheet(
         "QTableWidget {"
         "    background-color: #1e2026;"
@@ -234,5 +237,23 @@ void Walldetails::on_withdrawal_btn_clicked()
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
     withdrl->show();
+}
+
+
+void Walldetails::on_Authentication_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_Authentication_btn_clicked();
+}
+
+
+void Walldetails::on_easyexchange_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_easyexchange_btn_clicked();
 }
 

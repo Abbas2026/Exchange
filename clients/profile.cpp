@@ -64,6 +64,10 @@ void profile::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    if(Client::user_level=="1"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+    }
 
 
     ui->textEdit_userlevel->setText("User Level :");
@@ -314,5 +318,23 @@ void profile::on_withdrawal_btn_clicked()
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
     withdrl->show();
+}
+
+
+void profile::on_Authentication_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_Authentication_btn_clicked();
+}
+
+
+void profile::on_easyexchange_btn_clicked()
+{
+    this->close();
+    dashboard *da = new dashboard();
+    da->setAttribute(Qt::WA_DeleteOnClose);
+    da->on_easyexchange_btn_clicked();
 }
 

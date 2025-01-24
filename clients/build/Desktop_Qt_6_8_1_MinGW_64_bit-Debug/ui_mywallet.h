@@ -31,12 +31,12 @@ public:
     QPushButton *Dashboard_btn;
     QPushButton *Authentication_btn;
     QLabel *app_name;
-    QPushButton *easyexchange_btn;
     QPushButton *Profile_btn;
     QPushButton *currentprice_btn;
     QPushButton *deposit_btn;
     QPushButton *market_btn;
     QPushButton *withdrawal_btn;
+    QPushButton *easyexchange_btn;
     QPushButton *creatwallet_btn;
     QTableWidget *tableWidget;
     QWidget *createwallet_widget;
@@ -132,14 +132,6 @@ public:
 "word-spacing: 3px;\n"
 ""));
         app_name->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        easyexchange_btn = new QPushButton(widget);
-        easyexchange_btn->setObjectName("easyexchange_btn");
-        easyexchange_btn->setGeometry(QRect(20, 490, 211, 41));
-        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
-"color: rgb(0, 0, 0);\n"
-"font: 28pt \"Bangers\";\n"
-"letter-spacing: -1px;"));
         Profile_btn = new QPushButton(widget);
         Profile_btn->setObjectName("Profile_btn");
         Profile_btn->setGeometry(QRect(10, 350, 211, 41));
@@ -180,6 +172,14 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
+        easyexchange_btn = new QPushButton(widget);
+        easyexchange_btn->setObjectName("easyexchange_btn");
+        easyexchange_btn->setGeometry(QRect(40, 490, 151, 41));
+        easyexchange_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        easyexchange_btn->setStyleSheet(QString::fromUtf8("border:none;\n"
+"color: rgb(0, 0, 0);\n"
+"font: 28pt \"Bangers\";\n"
+"letter-spacing: -1px;"));
         creatwallet_btn = new QPushButton(mywallet);
         creatwallet_btn->setObjectName("creatwallet_btn");
         creatwallet_btn->setGeometry(QRect(420, 10, 201, 41));
@@ -456,12 +456,12 @@ public:
         Dashboard_btn->setText(QCoreApplication::translate("mywallet", "Dashboard", nullptr));
         Authentication_btn->setText(QCoreApplication::translate("mywallet", "Authentication", nullptr));
         app_name->setText(QCoreApplication::translate("mywallet", "heliacal exchange", nullptr));
-        easyexchange_btn->setText(QCoreApplication::translate("mywallet", "Easy exchange", nullptr));
         Profile_btn->setText(QCoreApplication::translate("mywallet", "Profile", nullptr));
         currentprice_btn->setText(QCoreApplication::translate("mywallet", "Current price", nullptr));
         deposit_btn->setText(QCoreApplication::translate("mywallet", "Deposit ", nullptr));
         market_btn->setText(QCoreApplication::translate("mywallet", "market", nullptr));
         withdrawal_btn->setText(QCoreApplication::translate("mywallet", " withdrawal", nullptr));
+        easyexchange_btn->setText(QCoreApplication::translate("mywallet", " Exchange", nullptr));
         creatwallet_btn->setText(QCoreApplication::translate("mywallet", "Create a wallet", nullptr));
         continue_btn->setText(QCoreApplication::translate("mywallet", "Continue", nullptr));
         label_1->setText(QCoreApplication::translate("mywallet", "1.", nullptr));
