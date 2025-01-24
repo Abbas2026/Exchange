@@ -52,6 +52,8 @@ private slots:
 
     void on_easyexchange_btn_clicked();
 
+    void on_currentprice_btn_clicked();
+
 private:
     Ui::profile *ui;
       QString captchaText;

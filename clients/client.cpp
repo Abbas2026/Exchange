@@ -11,7 +11,6 @@
 #include <QtConcurrent>
 #include "priceupdater.h"
 #include "withdrawal.h"
-#include "transfercurrency.h"
 int Client::bb=0;
 int Client::x=0;
 
@@ -19,7 +18,7 @@ int Client::warname;
 int Client::number_wallets=0;
 QString Client::password_creator="Abbas1383";
 QString Client::user_level="0";
-QString Client::globalEmail = "jpdnsjhhdsj@gmail.com";
+QString Client::globalEmail;
 
 Client::Client(QObject *parent) : QObject(parent)
 {
@@ -360,12 +359,9 @@ void Client::processResponse(const QByteArray& message) {
             }
         }
         else if(type=="exchange"){
-            qDebug()<<"bvnvb";
-
         }
 
         else if (type == "end") {
-            qDebug()<<"123"<<++Client::number_wallets;
 
             qDebug() << "All wallet data received.";
         } else {
@@ -415,7 +411,7 @@ void Client::sendWallet(const QStringList &words, const QString &name , const QS
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "createwallet";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["walletName"] = name;
         json["address"] = address;
 
@@ -438,7 +434,7 @@ void Client::sendRecoveryRequest()
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "RecoveryRequest";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] =Client::globalEmail;
         json["walletName"] = "name1";
         QJsonDocument doc(json);
         socket->write(doc.toJson());
@@ -452,7 +448,7 @@ void Client::walletsdata(const QString &email){
 
         QJsonObject json;
         json["type"] = "walletInfo";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
     } else {
@@ -464,7 +460,7 @@ void Client::Walletassets(const QString &email,const QString &namewallet){
         QJsonObject json;
         json["type"] = "walletCurrencies";
          json["walletName"] =namewallet ;
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
     } else {
@@ -477,7 +473,7 @@ void Client::getuserprofile(){
         qDebug()<<"ppppp";
 
         json["type"] = "userprofile";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
     } else {
@@ -488,7 +484,7 @@ void Client::senduserprofiletoserver(const QString &name,const QString &address,
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "userprofiletoserver";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["name"] =name ;
         json["addresshome"] = address;
         json["phone"] = phone;
@@ -506,39 +502,12 @@ void Client::depositcheckserver(const QString &coin,const QString &address,const
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "deposit";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["coin"] =coin ;
         json["address"] = address;
         json["amounth"] = amounth;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
-    } else {
-        qDebug() << "Socket is not connected.";
-    }
-}
-
-void Client::transferCurrency(const QString &fromAddress, const QString &toEmail, const QString &toWalletName, const QMap<QString, double> &transferCurrencies) {
-    if (socket->state() == QTcpSocket::ConnectedState) {
-        QJsonObject request;
-        request["type"] = "transferCurrency";
-        request["fromAddress"] = fromAddress;
-        request["toEmail"] = toEmail;
-        request["toWalletName"] = toWalletName;
-
-        QJsonObject currencies;
-        for (auto it = transferCurrencies.begin(); it != transferCurrencies.end(); ++it) {
-            currencies[it.key()] = it.value();
-        }
-        request["currencies"] = currencies;
-
-        QJsonDocument doc(request);
-        QByteArray data = doc.toJson();
-        socket->write(data);
-        if (socket->waitForBytesWritten(3000)) {
-            qDebug() << "Transfer request sent successfully.";
-        } else {
-            qDebug() << "Failed to send transfer request.";
-        }
     } else {
         qDebug() << "Socket is not connected.";
     }
@@ -561,7 +530,7 @@ void Client::withdrawalcheckserver(const QString &coin, const QString &amounth, 
         requestData["amounth"] = amounth;
         requestData["address"] = address;
         requestData["type"] = "checkkeys";
-        requestData["email"] = "jpdnsjhhdsj@gmail.com";
+        requestData["email"] = Client::globalEmail;
 
         requestData["selectedWords"] = wordsArray;
 
@@ -579,7 +548,7 @@ void Client::getsupplyfromserver(QString &address){
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
         json["type"] = "getsupply";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["address"] = address;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
@@ -592,7 +561,7 @@ void Client::buycoin(const QString &coin, const QString &amounth, const QString 
         QJsonObject json;
         qDebug()<<"ddd";
         json["type"] = "buycoin";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["address"] = address;
         json["coin"] = coin;
         json["amounth"] = amounth;
@@ -608,7 +577,7 @@ void Client::sellcoin(const QString &coin, const QString &amounth, const QString
         qDebug()<<"sss";
 
         json["type"] = "sellcoin";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["address"] = address;
         json["coin"] = coin;
         json["amounth"] = amounth;
@@ -624,7 +593,7 @@ void Client::exchangeCoins(const QString &coin1, const QString &coin2, const QSt
         QJsonObject json;
 
         json["type"] = "exchange";
-        json["email"] = "jpdnsjhhdsj@gmail.com";
+        json["email"] = Client::globalEmail;
         json["address"] = address;
         json["coin1"] = coin1;
         json["coin2"] = coin2;

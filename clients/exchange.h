@@ -42,6 +42,7 @@ private slots:
     void on_deposit_btn_clicked();
     void on_withdrawal_btn_clicked();
     void on_send_exchange_clicked();
+    void on_currentprice_btn_clicked();
 };
 
 #endif // EXCHANGE_H

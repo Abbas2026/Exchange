@@ -21,11 +21,6 @@ void printPrices() {
 }
 
 
-
-
-
-
-
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     priceUpdater = new PriceUpdater();
@@ -48,9 +43,8 @@ int main(int argc, char *argv[]) {
                     "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
                     "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
                     "QMessageBox QPushButton:pressed { background-color: #5E81AC; }";
-    dashboard f;
     a.setStyleSheet(style);
-    f.show();
+    w.show();
 
     return a.exec();
 }

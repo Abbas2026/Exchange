@@ -7,6 +7,8 @@
 #include "deposit.h"
 #include "withdrawal.h"
 #include "exchange.h"
+#include "CurrentPrice.h"
+
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
@@ -62,25 +64,6 @@ void dashboard::applyStyles()
 
 void dashboard::on_Mywallets_btn_clicked()
 {
-    // if(Client::user_level=="0"){
-    //     ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-    //                                      "QPushButton:hover { color: #c97940; }");
-    //     QMessageBox msgBox(this);
-    //     msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-    //                          "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-    //                          "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-    //                          "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-    //                          "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
-    //     msgBox.setIcon(QMessageBox::Warning);
-    //     msgBox.setWindowTitle("Warning");
-    //     msgBox.setText("To create a wallet, you must first authenticate yourself");
-    //     msgBox.setStandardButtons(QMessageBox::Ok);
-    //     msgBox.exec();
-    //     ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-    //                                           "QPushButton:hover { color: #c97940; }");
-    //     return;
-    // }
-
 
     this->close();
     mywallet *wallets = new mywallet();
@@ -132,6 +115,24 @@ void dashboard::on_market_btn_clicked()
 
 void dashboard::on_easyexchange_btn_clicked()
 {
+    if(Client::user_level=="0"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
+                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
+                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
+                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
+                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText(" you must first authenticate yourself");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        return;
+    }
 
     this->close();
     exchange *exch = new exchange();
@@ -152,7 +153,10 @@ void dashboard::on_Transmission_btn_clicked()
 
 void dashboard::on_currentprice_btn_clicked()
 {
-
+       this->close();
+    MainWindow *window = new MainWindow();
+    window->setAttribute(Qt::WA_DeleteOnClose);
+    window->show();
 }
 
 
@@ -171,6 +175,24 @@ void dashboard::on_Authentication_btn_clicked()
 
 void dashboard::on_deposit_btn_clicked()
 {
+    if(Client::user_level=="0"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
+                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
+                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
+                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
+                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText(" you must first authenticate yourself");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        return;
+    }
     this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
@@ -211,6 +233,25 @@ void dashboard::on_deposit_btn_clicked()
 
 void dashboard::on_withdrawal_btn_clicked()
 {
+    if(Client::user_level=="0"){
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        QMessageBox msgBox(this);
+        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
+                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
+                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
+                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
+                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setWindowTitle("Warning");
+        msgBox.setText(" you must first authenticate yourself");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
+        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
+                                              "QPushButton:hover { color: #c97940; }");
+        return;
+    }
+
     this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);

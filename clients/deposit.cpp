@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include "client.h"
 #include "withdrawal.h"
+#include "CurrentPrice.h"
 deposit::deposit(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::deposit)
@@ -233,5 +234,14 @@ void deposit::on_easyexchange_btn_clicked()
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_easyexchange_btn_clicked();
+}
+
+
+void deposit::on_currentprice_btn_clicked()
+{
+    this->close();
+    MainWindow *window = new MainWindow();
+    window->setAttribute(Qt::WA_DeleteOnClose);
+    window->show();
 }
 
