@@ -12,8 +12,8 @@ This project is a cryptocurrency management system built with Qt and C++, where 
 
 #Folder structure:
 📂 ap_project/
- ┣ 📂 clients/       # کدهای کلاینت
- ┣ 📂 server/        # کدهای سرور
+ ┣ 📂 clients/       
+ ┣ 📂 server/      
  ┗ 📜 README.md      
  ┣ 📂 images/
  ┣ 📂 fonts/
