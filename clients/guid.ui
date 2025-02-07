@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>guid</class>
+ <widget class="QWidget" name="guid">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1278</width>
+    <height>904</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1278</width>
+    <height>904</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1278</width>
+    <height>904</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #10161f;
+color: rgb(255, 255, 255);
+</string>
+  </property>
+  <widget class="QPushButton" name="backButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>830</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">          background-color: #BF360C;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+           border: none;  </string>
+   </property>
+   <property name="text">
+    <string>back</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>70</y>
+     <width>1181</width>
+     <height>661</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::NoFrame</enum>
+   </property>
+   <property name="lineWidth">
+    <number>8</number>
+   </property>
+   <property name="text">
+    <string>1 -بیتوکوین چیست؟ بیت کوین یکی از انواع ارزهای دیجیتال (کوین) است که به منظور انتقال سریع، امن و ارزان پول بدون نیاز به هیچ بانک یا واسطه ای ایجاد شده است. بیت کوین ها در کیف پول های اختصاصی ذخیره شده و به صورت الکترونیکی انتقال پیدا می کنند. پس از معرفی در سال 2009، ارزش بیت کوین به دلیل مقدار محدود و افزایش محبوبیت و تقاضا، به سرعت افزایش یافته است. برای کسب اطلاعات بیشتر مقاله آشنایی با بیتکوین و سایر ارزهای دیجیتال وبلاگ نوبیتکس را در ملاحظه بفرمایید.                                                                                                                                                                                                                                                     2-چطور ارز دیجیتال بخرم؟        پس از افتتاح حساب، احراز هویت و تأیید حساب، کاربران محترم می توانند با استفاده از درگاه بانکی اقدام به شارژ حساب ریالی خود نمایند. پس از شارژ حساب، بلافاصله با استفاده از سیستم سفارش گذاری می توانند درخواست خرید ارز دیجیتال مورد نیاز خود را با قیمت و حجم دلخواه در سایت ثبت نموده و در صورت وجود فروشنده، سفارش خود را تکمیل نمایند. پس از تکمیل خرید، کیف پول مربوط به ارز دیجیتال خریداری شده به صورت اتوماتیک شارژ خواهد شد. سپس، امکان درخواست برداشت ارز دیجیتال از کیف پول اختصاصی هر کاربر میسر خواهد بود. برای کسب اطلاعات بیشتر راهنمای سایت را مطالعه بفرمایید.  </string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

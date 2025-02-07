@@ -65,7 +65,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
 "    color: #333333; \n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 ""));
         label_phone = new QLabel(centralwidget);
         label_phone->setObjectName("label_phone");
@@ -105,7 +105,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
 "    color: #333333; \n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 "\n"
 ""));
         lineEdit_2 = new QLineEdit(centralwidget);
@@ -153,7 +153,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
 "    color: #333333; \n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 ""));
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
@@ -167,7 +167,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
 "    color: #333333; \n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 ""));
         confirmpassword->setEchoMode(QLineEdit::EchoMode::Password);
         label_name = new QLabel(centralwidget);
@@ -184,7 +184,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color:#ffcc00; \n"
 "    color: #333333; \n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 ""));
         lineEditPassword->setEchoMode(QLineEdit::EchoMode::Password);
         invitationcode = new QLineEdit(centralwidget);
@@ -194,7 +194,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #ffcc00; \n"
 "    color: #333333; \n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 ""));
         label_6 = new QLabel(centralwidget);
         label_6->setObjectName("label_6");

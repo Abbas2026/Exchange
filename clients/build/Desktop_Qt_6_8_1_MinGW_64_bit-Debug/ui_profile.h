@@ -932,6 +932,7 @@ public:
 "    font-size: 12px;\n"
 "\n"
 ""));
+        pas_lineEdit->setEchoMode(QLineEdit::EchoMode::PasswordEchoOnEdit);
         label_21 = new QLabel(widget_4);
         label_21->setObjectName("label_21");
         label_21->setEnabled(false);
@@ -966,6 +967,7 @@ public:
 "    font-size: 12px;\n"
 "\n"
 ""));
+        reppas_lineEdit->setEchoMode(QLineEdit::EchoMode::PasswordEchoOnEdit);
         label_23 = new QLabel(widget_4);
         label_23->setObjectName("label_23");
         label_23->setEnabled(false);
@@ -983,9 +985,9 @@ public:
         label_22->raise();
         reppas_lineEdit->raise();
         label_23->raise();
-        widget_2->raise();
         paswidget->raise();
         widget_3->raise();
+        widget_2->raise();
         widget->raise();
 
         retranslateUi(profile);

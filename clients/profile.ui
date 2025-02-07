@@ -2101,6 +2101,9 @@ color: rgb(255, 255, 255);
 
 </string>
      </property>
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+     </property>
     </widget>
     <widget class="QLabel" name="label_21">
      <property name="enabled">
@@ -2192,6 +2195,9 @@ color: rgb(255, 255, 255);
 
 </string>
      </property>
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+     </property>
     </widget>
     <widget class="QLabel" name="label_23">
      <property name="enabled">
@@ -2228,9 +2234,9 @@ background-color: rgb(29, 38, 51);</string>
     <zorder>label_23</zorder>
    </widget>
   </widget>
-  <zorder>widget_2</zorder>
   <zorder>paswidget</zorder>
   <zorder>widget_3</zorder>
+  <zorder>widget_2</zorder>
   <zorder>widget</zorder>
  </widget>
  <resources/>

@@ -51,7 +51,8 @@ static constexpr auto qt_meta_stringdata_ZN9dashboardE = QtMocHelpers::stringDat
     "on_currentprice_btn_clicked",
     "on_Authentication_btn_clicked",
     "on_deposit_btn_clicked",
-    "on_withdrawal_btn_clicked"
+    "on_withdrawal_btn_clicked",
+    "on_backButton_2_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -63,7 +64,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9dashboardE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -71,26 +72,28 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9dashboardE[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   86,    2, 0x06,    1 /* Public */,
+       1,    0,   92,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    1,   87,    2, 0x0a,    2 /* Public */,
-       5,    0,   90,    2, 0x0a,    4 /* Public */,
-       6,    0,   91,    2, 0x0a,    5 /* Public */,
-       7,    0,   92,    2, 0x0a,    6 /* Public */,
-       8,    0,   93,    2, 0x0a,    7 /* Public */,
-       9,    0,   94,    2, 0x0a,    8 /* Public */,
-      10,    0,   95,    2, 0x0a,    9 /* Public */,
-      11,    0,   96,    2, 0x0a,   10 /* Public */,
-      12,    0,   97,    2, 0x0a,   11 /* Public */,
-      13,    0,   98,    2, 0x0a,   12 /* Public */,
-      14,    0,   99,    2, 0x0a,   13 /* Public */,
+       3,    1,   93,    2, 0x0a,    2 /* Public */,
+       5,    0,   96,    2, 0x0a,    4 /* Public */,
+       6,    0,   97,    2, 0x0a,    5 /* Public */,
+       7,    0,   98,    2, 0x0a,    6 /* Public */,
+       8,    0,   99,    2, 0x0a,    7 /* Public */,
+       9,    0,  100,    2, 0x0a,    8 /* Public */,
+      10,    0,  101,    2, 0x0a,    9 /* Public */,
+      11,    0,  102,    2, 0x0a,   10 /* Public */,
+      12,    0,  103,    2, 0x0a,   11 /* Public */,
+      13,    0,  104,    2, 0x0a,   12 /* Public */,
+      14,    0,  105,    2, 0x0a,   13 /* Public */,
+      15,    0,  106,    2, 0x08,   14 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    4,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -138,6 +141,8 @@ Q_CONSTINIT const QMetaObject dashboard::staticMetaObject = { {
         // method 'on_deposit_btn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_withdrawal_btn_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_backButton_2_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -160,6 +165,7 @@ void dashboard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 9: _t->on_Authentication_btn_clicked(); break;
         case 10: _t->on_deposit_btn_clicked(); break;
         case 11: _t->on_withdrawal_btn_clicked(); break;
+        case 12: _t->on_backButton_2_clicked(); break;
         default: ;
         }
     }
@@ -194,14 +200,14 @@ int dashboard::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

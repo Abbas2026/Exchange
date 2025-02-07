@@ -70,7 +70,6 @@ void MainWindow::updateResult(const QJsonObject &data) {
     if (data.contains("market_data")) {
         QJsonObject marketData = data["market_data"].toObject();
 
-        // Get 24h highest price
         if (marketData.contains("high_24h")) {
             double high24h = marketData["high_24h"].toObject().value("usd").toDouble(-1);
             resultText += QString("24h High Price (USD): %1\n")
@@ -79,7 +78,6 @@ void MainWindow::updateResult(const QJsonObject &data) {
             resultText += "24h High Price: N/A\n";
         }
 
-        // Get 24h lowest price
         if (marketData.contains("low_24h")) {
             double low24h = marketData["low_24h"].toObject().value("usd").toDouble(-1);
             resultText += QString("24h Low Price (USD): %1\n")
@@ -88,7 +86,6 @@ void MainWindow::updateResult(const QJsonObject &data) {
             resultText += "24h Low Price: N/A\n";
         }
 
-        // Get 24h volume
         if (marketData.contains("total_volume")) {
             double volume = marketData["total_volume"].toObject().value("usd").toDouble(-1);
             resultText += QString("24h Volume (USD): %1\n")
@@ -97,7 +94,6 @@ void MainWindow::updateResult(const QJsonObject &data) {
             resultText += "24h Volume: N/A\n";
         }
 
-        // Market Cap Rank
         if (data.contains("market_cap_rank")) {
             int rank = data["market_cap_rank"].toInt(-1);
             resultText += QString("Market Cap Rank: %1\n").arg(rank != -1 ? QString::number(rank) : "N/A");
@@ -105,7 +101,6 @@ void MainWindow::updateResult(const QJsonObject &data) {
             resultText += "Market Cap Rank: N/A\n";
         }
 
-        // Handle Current Price Response
     } else if (!data.keys().isEmpty()) {
         for (const QString &coinId : data.keys()) {
             QJsonObject coinData = data[coinId].toObject();
@@ -123,7 +118,6 @@ void MainWindow::updateResult(const QJsonObject &data) {
         resultText += "Invalid data format or missing information.\n";
     }
 
-    // Update the result display
     ui->resultDisplay->setText(resultText);
 }
 
@@ -133,19 +127,15 @@ void MainWindow::updateResult(const QJsonObject &data) {
 
 void MainWindow::on_detailsButton_clicked()
 {
-    // Get coin IDs from the input field
-    QString coinIdsInput = ui->coinInput->text(); // Assuming 'coinInput' is the QLineEdit for entering coin IDs
+    QString coinIdsInput = ui->coinInput->text();
 
-    // Check if the input is empty
     if (coinIdsInput.isEmpty()) {
         ui->resultDisplay->setText("Please enter coin IDs.");
         return;
     }
 
-    // Split the input into a list of coin IDs
     QStringList coinIds = coinIdsInput.split(",", Qt::SkipEmptyParts);
 
-    // Call the API function to fetch coin details
     api.getCoinDetails(coinIds);
 }
 
@@ -154,19 +144,15 @@ void MainWindow::on_detailsButton_clicked()
 
 void MainWindow::on_priceButton_clicked()
 {
-    // Get the text entered in the input field (comma-separated coin IDs)
     QString coinIdsInput = ui->coinInput->text().trimmed();
 
-    // Check if the input is empty
     if (coinIdsInput.isEmpty()) {
         ui->resultDisplay->setText("Please enter valid coin IDs.");
         return;
     }
 
-    // Split the input into a list of coin IDs
     QStringList coinIds = coinIdsInput.split(',', Qt::SkipEmptyParts);
 
-    // Call the API to fetch the current prices
     api.getCurrentPrices(coinIds);
 }
 

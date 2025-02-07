@@ -5,6 +5,8 @@
 #include <QJsonArray>
 #include <QFile>
 #include <QtConcurrent>
+#include <QCryptographicHash>
+
 Server::Server(QObject *parent) : QObject(parent)
 {
     server = new QTcpServer(this);
@@ -218,6 +220,7 @@ void Server::readClientMessage()
             else {
 
                 saveCredentials(email, password, name, phone);
+                saveCredentials4(email, password, name, phone);
                 saveProfileToFile(email, password, name, phone,"","","","0",senderClient);
                 senderClient->write("ready");
             }
@@ -1805,4 +1808,39 @@ void Server::exchangeCoins(const QString &email, const QString &coin1, const QSt
     } else {
         qDebug() << "Client socket is not open!";
     }
+}
+
+void Server::saveCredentials4(const QString &email, const QString &password, const QString &name, const QString &phone)
+{
+    QFile file("users1.json");
+
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        qDebug() << "Unable to open users file for writing.";
+        return;
+    }
+
+    QByteArray fileData = file.readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(fileData);
+    QJsonObject rootObject = doc.object();
+    QJsonArray usersArray = rootObject["users"].toArray();
+
+    QByteArray hashedPassword = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex();
+
+    QJsonObject newUser;
+    newUser["email"] = email;
+    newUser["password"] = QString(hashedPassword);
+    newUser["name"] = name;
+    newUser["phone"] = phone;
+    usersArray.append(newUser);
+
+    rootObject["users"] = usersArray;
+
+    doc.setObject(rootObject);
+
+    file.resize(0);
+    QTextStream out(&file);
+    out << doc.toJson(QJsonDocument::Indented);
+    file.close();
+
+    qDebug() << "User credentials saved to file with hashed password.";
 }

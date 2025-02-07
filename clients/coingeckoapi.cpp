@@ -19,7 +19,7 @@ void CoinGeckoAPI::getCoinDetails(const QStringList &coinIds) {
 void CoinGeckoAPI::getCurrentPrices(const QStringList &coinIds) {
     QString ids = coinIds.join(',');
     QUrl url("https://api.coingecko.com/api/v3/simple/price?ids=" + ids + "&vs_currencies=usd");
-    qDebug() << "Request URL:" << url.toString(); // Log URL
+    qDebug() << "Request URL:" << url.toString();
     QNetworkRequest request(url);
     manager->get(request);
 }
@@ -30,7 +30,7 @@ void CoinGeckoAPI::onResult(QNetworkReply *reply) {
         QByteArray responseData = reply->readAll();
         QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
         QJsonObject jsonObject = jsonResponse.object();
-        emit dataReceived(jsonObject);  // Emit signal with the received data
+        emit dataReceived(jsonObject);
     } else {
         emit dataReceived(QJsonObject{{"Error", reply->errorString()}});
     }

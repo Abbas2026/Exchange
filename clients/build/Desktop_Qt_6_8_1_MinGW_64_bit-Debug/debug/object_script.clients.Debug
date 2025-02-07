@@ -2,6 +2,7 @@ debug/client.o
 debug/dashboard.o
 debug/deposit.o
 debug/exchange.o
+debug/guid.o
 debug/main.o
 debug/form.o
 debug/mywallet.o
@@ -12,11 +13,13 @@ debug/walldetails.o
 debug/coingeckoapi.o
 debug/CurrentPrice.o
 debug/withdrawal.o
+debug/transfercurrency.o
 debug/moc_client.o
 debug/moc_dashboard.o
 debug/moc_deposit.o
 debug/moc_exchange.o
 debug/moc_form.o
+debug/moc_guid.o
 debug/moc_mywallet.o
 debug/moc_priceupdater.o
 debug/moc_profile.o
@@ -25,3 +28,4 @@ debug/moc_walldetails.o
 debug/moc_coingeckoapi.o
 debug/moc_CurrentPrice.o
 debug/moc_withdrawal.o
+debug/moc_transfercurrency.o

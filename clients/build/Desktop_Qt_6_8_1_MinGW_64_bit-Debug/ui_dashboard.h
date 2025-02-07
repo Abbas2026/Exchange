@@ -37,6 +37,7 @@ public:
     QPushButton *deposit_btn;
     QPushButton *withdrawal_btn;
     QPushButton *easyexchange_btn;
+    QPushButton *backButton_2;
 
     void setupUi(QWidget *dashboard)
     {
@@ -175,6 +176,16 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: -1px;"));
+        backButton_2 = new QPushButton(widget);
+        backButton_2->setObjectName("backButton_2");
+        backButton_2->setEnabled(true);
+        backButton_2->setGeometry(QRect(30, 20, 161, 41));
+        backButton_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        backButton_2->setStyleSheet(QString::fromUtf8("          background-color: rgb(85, 0, 127);\n"
+"            color: white;\n"
+"            border-radius: 10px;\n"
+"            font-size: 16px;\n"
+"           border: none;  "));
         textEdit->raise();
         currentprice_btn->raise();
         Mywallets_btn->raise();
@@ -190,6 +201,7 @@ public:
         deposit_btn->raise();
         withdrawal_btn->raise();
         easyexchange_btn->raise();
+        backButton_2->raise();
 
         retranslateUi(dashboard);
 
@@ -216,6 +228,7 @@ public:
         deposit_btn->setText(QCoreApplication::translate("dashboard", "Deposit ", nullptr));
         withdrawal_btn->setText(QCoreApplication::translate("dashboard", " withdrawal", nullptr));
         easyexchange_btn->setText(QCoreApplication::translate("dashboard", " Exchange", nullptr));
+        backButton_2->setText(QCoreApplication::translate("dashboard", "guideline", nullptr));
     } // retranslateUi
 
 };

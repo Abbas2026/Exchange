@@ -1,5 +1,67 @@
 {
     "wallets": {
+        "abbas@gmail.com": [
+            {
+                "address": "lo071hdcoda1hyrass4sf2yp0",
+                "walletName": "abbas",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "kettle"
+                    },
+                    {
+                        "index": 2,
+                        "word": "xylophone"
+                    },
+                    {
+                        "index": 3,
+                        "word": "elephant"
+                    },
+                    {
+                        "index": 4,
+                        "word": "ball"
+                    },
+                    {
+                        "index": 5,
+                        "word": "illusion"
+                    },
+                    {
+                        "index": 6,
+                        "word": "mountain"
+                    }
+                ]
+            },
+            {
+                "address": "qvdz0407jp6tmqrxckm9v39zc",
+                "walletName": "ali",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "jewel"
+                    },
+                    {
+                        "index": 2,
+                        "word": "nebula"
+                    },
+                    {
+                        "index": 3,
+                        "word": "tree"
+                    },
+                    {
+                        "index": 4,
+                        "word": "ant"
+                    },
+                    {
+                        "index": 5,
+                        "word": "zenith"
+                    },
+                    {
+                        "index": 6,
+                        "word": "crown"
+                    }
+                ]
+            }
+        ],
         "jpdnsjhhdsj@gmail.com": [
             {
                 "address": "c8btgf7w9liwoplnrcw3vblrl",

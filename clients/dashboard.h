@@ -36,6 +36,7 @@ public slots :
 private slots:
 
 
+    void on_backButton_2_clicked();
 };
 
 #endif

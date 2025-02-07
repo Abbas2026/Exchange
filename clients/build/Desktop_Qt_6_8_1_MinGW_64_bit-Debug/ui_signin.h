@@ -105,7 +105,7 @@ public:
 "  \n"
 "background-color: rgb(85, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 "\n"
 "\n"
 ""));
@@ -116,7 +116,7 @@ public:
 "    padding: 0px 12px; \n"
 "background-color: rgb(85, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 "\n"
 ""));
         login_button = new QPushButton(signin);
@@ -136,7 +136,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #16A085   ; \n"
 "color: rgb(255, 255, 255);\n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 "\n"
 ""));
         lineEditPassword_sign->setEchoMode(QLineEdit::EchoMode::Password);
@@ -158,7 +158,7 @@ public:
 "    padding: 0px 12px; \n"
 "    background-color: #16A085   ; \n"
 "color: rgb(255, 255, 255);\n"
-"    font-size: 12px;\n"
+"    font-size: 14px;\n"
 "\n"
 ""));
         label_password_sign = new QLabel(signin);

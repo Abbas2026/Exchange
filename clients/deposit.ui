@@ -849,6 +849,9 @@ color: #6f7988;
     padding-left:  40px; 
 </string>
      </property>
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+     </property>
     </widget>
     <widget class="QLabel" name="password">
      <property name="geometry">

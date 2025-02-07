@@ -16,7 +16,7 @@ int Client::x=0;
 
 int Client::warname;
 int Client::number_wallets=0;
-QString Client::password_creator="Abbas1383";
+QString Client::password_creator="ramz";
 QString Client::user_level="0";
 QString Client::globalEmail;
 

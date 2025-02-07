@@ -8,7 +8,7 @@
 #include "withdrawal.h"
 #include "exchange.h"
 #include "CurrentPrice.h"
-
+#include "guid.h"
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
@@ -318,5 +318,14 @@ void dashboard::on_withdrawal_btn_clicked()
             Client::warname=0;
         }
 
+}
+
+
+void dashboard::on_backButton_2_clicked()
+{
+    this->close();
+    guid *gu = new guid();
+    gu->setAttribute(Qt::WA_DeleteOnClose);
+    gu->show();
 }
 

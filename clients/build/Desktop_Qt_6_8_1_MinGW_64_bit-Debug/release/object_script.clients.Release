@@ -2,6 +2,7 @@ release/client.o
 release/dashboard.o
 release/deposit.o
 release/exchange.o
+release/guid.o
 release/main.o
 release/form.o
 release/mywallet.o
@@ -12,11 +13,13 @@ release/walldetails.o
 release/coingeckoapi.o
 release/CurrentPrice.o
 release/withdrawal.o
+release/transfercurrency.o
 release/moc_client.o
 release/moc_dashboard.o
 release/moc_deposit.o
 release/moc_exchange.o
 release/moc_form.o
+release/moc_guid.o
 release/moc_mywallet.o
 release/moc_priceupdater.o
 release/moc_profile.o
@@ -25,3 +28,4 @@ release/moc_walldetails.o
 release/moc_coingeckoapi.o
 release/moc_CurrentPrice.o
 release/moc_withdrawal.o
+release/moc_transfercurrency.o

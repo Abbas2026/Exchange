@@ -1,4 +1,30 @@
 {
+    "abbas@gmail.com": {
+        "wallets": [
+            {
+                "address": "lo071hdcoda1hyrass4sf2yp0",
+                "currencies": {
+                    "Bitcoin": 1,
+                    "Ethereum": 0,
+                    "Tether": 102774.56,
+                    "Toman": 0,
+                    "Tron": 0
+                },
+                "name": "abbas"
+            },
+            {
+                "address": "qvdz0407jp6tmqrxckm9v39zc",
+                "currencies": {
+                    "Bitcoin": 0,
+                    "Ethereum": 0,
+                    "Tether": 0,
+                    "Toman": 0,
+                    "Tron": 0
+                },
+                "name": "ali"
+            }
+        ]
+    },
     "jpdnsjhhdsj@gmail.com": {
         "wallets": [
             {
