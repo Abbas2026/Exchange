@@ -184,7 +184,7 @@ void deposit::on_save_wallet_btn_clicked()
         return;
     }
     if (!amounth.toDouble()) {
-        QMessageBox::warning(this, "خطا", "ورودی نامعتبر است! لطفاً یک عدد وارد کنید.");
+        QMessageBox::warning(this, "error", "The input is invalid! Please enter a number.");
         return;
     }
 
@@ -244,4 +244,26 @@ void deposit::on_currentprice_btn_clicked()
     window->setAttribute(Qt::WA_DeleteOnClose);
     window->show();
 }
-
+void deposit::setaddress(const QString &coinname){
+    ui->wallet_address_name->setText(Client::walletactive);
+    if(coinname=="Bitcoin"){
+        on_radiobtc_clicked();
+        ui->radiobtc->setChecked(true);
+    }
+    else if(coinname=="Toman"){
+        on_radioirt_clicked();
+        ui->radioirt->setChecked(true);
+    }
+    else if(coinname=="Ethereum"){
+        on_radioeth_clicked();
+        ui->radioeth->setChecked(true);
+    }
+    else if(coinname=="Tron"){
+        on_radiotrx_clicked();
+        ui->radiotrx->setChecked(true);
+    }
+    else if(coinname=="Tether"){
+        on_radiousdt_clicked();
+        ui->radiousdt->setChecked(true);
+    }
+}

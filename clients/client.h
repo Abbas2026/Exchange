@@ -35,9 +35,11 @@ public:
     static int x;
     static int warname;
     static int number_wallets;
+    static int Activated;
     static QString user_level;
     static QString globalEmail ;
     static QString password_creator;
+    static QString walletactive;
 
 signals:
     void sendinventorytowalletdetails(const QString &coinname,const double &coinamount,const double &Currentvalue);

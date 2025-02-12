@@ -9,13 +9,17 @@
 #include "exchange.h"
 #include "CurrentPrice.h"
 #include "guid.h"
+#include "styles.h"
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon());
+
     connect(ui->backButton, &QPushButton::clicked, this, &dashboard::on_backButton_clicked);
     applyStyles();
+
 
 
 }
@@ -32,7 +36,7 @@ void dashboard::on_backButton_clicked()
 }
 void dashboard::ServerResponse(const QString &response)
 {
-    if (response.contains("خطا")) {
+    if (response.contains("error")) {
         QMessageBox::warning(this, "warning", response);
     } else {
         ui->textEdit->setText(response);
@@ -40,6 +44,7 @@ void dashboard::ServerResponse(const QString &response)
 }
 void dashboard::applyStyles()
 {
+
     const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
                               "QPushButton:hover { color: #c97940; }";
     ui->Dashboard_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
@@ -53,9 +58,6 @@ void dashboard::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
-    if(Client::warname==10){
-        on_Profile_btn_clicked();
-    }
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
                                          "QPushButton:hover { color: #c97940; }");
@@ -78,18 +80,6 @@ void dashboard::on_Mywallets_btn_clicked()
 
 void dashboard::on_Profile_btn_clicked()
 {
-
-    if(Client::warname==10){
-
-
-        extern Client client;
-        client.getuserprofile();
-        profile *prof= new profile();
-        prof->setAttribute(Qt::WA_DeleteOnClose);
-        Client::warname=0;
-        this->close();
-        return;
-    }
     Client::x=1;
 
     this->close();
@@ -101,11 +91,10 @@ void dashboard::on_Profile_btn_clicked()
     prof->show();
     if(Client::warname==1){
      prof->on_edit_information_btn_clicked();
-        QMessageBox::warning(this, "warning", "این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
+        QMessageBox::warning(this, "warning", "This username is already registered. Please choose another name");
             Client::warname=0;
     }
 }
-
 
 void dashboard::on_market_btn_clicked()
 {
@@ -119,11 +108,7 @@ void dashboard::on_easyexchange_btn_clicked()
         ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
                                               "QPushButton:hover { color: #c97940; }");
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
@@ -179,11 +164,7 @@ void dashboard::on_deposit_btn_clicked()
         ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
                                               "QPushButton:hover { color: #c97940; }");
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
@@ -199,12 +180,7 @@ void dashboard::on_deposit_btn_clicked()
     dep->show();
     if(Client::warname==1){
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
-
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText("No wallet found with this address");
@@ -215,13 +191,9 @@ void dashboard::on_deposit_btn_clicked()
     }
     else if(Client::warname==2){
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
-
-        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
+        QPixmap checkmarkIcon("./checkmark.png");
+        msgBox.setIconPixmap(checkmarkIcon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setWindowTitle("successfull");
         msgBox.setText("The deposit was made successfully");
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -237,11 +209,7 @@ void dashboard::on_withdrawal_btn_clicked()
         ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
                                               "QPushButton:hover { color: #c97940; }");
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
@@ -259,12 +227,7 @@ void dashboard::on_withdrawal_btn_clicked()
 
         if(Client::warname==1){
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
-
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText("Words do not match!");
@@ -274,12 +237,7 @@ void dashboard::on_withdrawal_btn_clicked()
         }
         else if(Client::warname==2){
             QMessageBox msgBox(this);
-            msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                                 "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                                 "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                                 "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                                 "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
-
+            msgBox.setStyleSheet(QMSSGEBOX_STYLE);
             msgBox.setIcon(QMessageBox::Warning);
             msgBox.setWindowTitle("Warning");
             msgBox.setText("Wallet not found");
@@ -289,12 +247,7 @@ void dashboard::on_withdrawal_btn_clicked()
         }
         else if(Client::warname==3){
             QMessageBox msgBox(this);
-            msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                                 "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                                 "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                                 "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                                 "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
-
+            msgBox.setStyleSheet(QMSSGEBOX_STYLE);
             msgBox.setIcon(QMessageBox::Warning);
             msgBox.setWindowTitle("Warning");
             msgBox.setText("There is not enough currency");
@@ -304,14 +257,11 @@ void dashboard::on_withdrawal_btn_clicked()
         }
         else if(Client::warname==4){
             QMessageBox msgBox(this);
-            msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                                 "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                                 "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                                 "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                                 "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+            msgBox.setStyleSheet(QMSSGEBOX_STYLE);
 
-            msgBox.setIcon(QMessageBox::Warning);
-            msgBox.setWindowTitle("Warning");
+            QPixmap checkmarkIcon("./checkmark.png");
+            msgBox.setIconPixmap(checkmarkIcon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            msgBox.setWindowTitle("successful");
             msgBox.setText("The withdrawal was successful");
             msgBox.setStandardButtons(QMessageBox::Ok);
             msgBox.exec();

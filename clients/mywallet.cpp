@@ -197,7 +197,7 @@ void mywallet::processRowData(const QString &name, const QString &address, doubl
     QString savedName = name;
     QString savedAddress = address;
     double savedBalance = balance;
-
+    Client::walletactive=address;
     PriceUpdater::balancetotether=0;
     this->close();
     Walldetails *details = new Walldetails();

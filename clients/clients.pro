@@ -37,6 +37,7 @@ HEADERS += \
     priceupdater.h \
     profile.h \
     signin.h \
+    styles.h \
     walldetails.h \
     coingeckoapi.h \
     CurrentPrice.h \

@@ -15,6 +15,7 @@ public:
     explicit deposit(QWidget *parent = nullptr);
     ~deposit();
     void applyStyles();
+    void setaddress(const QString &coinname);
 
 
 private slots:

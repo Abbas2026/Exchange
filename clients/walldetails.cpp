@@ -18,7 +18,8 @@
 #include "withdrawal.h"
 #include "CurrentPrice.h"
 #include <QMessageBox>
-
+#include <QHBoxLayout>
+#include "styles.h"
 Walldetails::Walldetails(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Walldetails)
@@ -121,6 +122,14 @@ void Walldetails::applyStyles()
         "    color: white;"
         "    border: none;"
         "}"
+        "QPushButton {"
+        "    background-color: #109a91;"
+        "    color: black;"
+        "    border: none;"
+        "    padding: 8px 6px;"
+        "    border-radius: 5px;"
+        "    font-size: 14px;"
+        "}"
         );
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(50);
@@ -182,18 +191,52 @@ void Walldetails::addcointotable(const QString &name1, const double &inventory1,
     QTableWidgetItem *inventoryItem = new QTableWidgetItem(formattedValue1);
     inventoryItem->setTextAlignment(Qt::AlignCenter);
     inventoryItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-    ui->tableWidget->setItem(rowCount, 2, inventoryItem );
+    ui->tableWidget->setItem(rowCount, 2, inventoryItem);
 
     QTableWidgetItem *Currentvaluee = new QTableWidgetItem(QString("$%1").arg(Currentvalue));
     Currentvaluee->setTextAlignment(Qt::AlignCenter);
     Currentvaluee->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     ui->tableWidget->setItem(rowCount, 3, Currentvaluee);
 
+    QWidget *buttonWidget = new QWidget();
+    QHBoxLayout *layout = new QHBoxLayout(buttonWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(20);
+
+    QPushButton *editButton = new QPushButton("Edit");
+    QPushButton *deleteButton = new QPushButton("Delete");
+deleteButton->setStyleSheet("background-color: #f26672;");
+    editButton->setCursor(Qt::PointingHandCursor);
+    deleteButton->setCursor(Qt::PointingHandCursor);
+    layout->addWidget(editButton);
+    layout->addWidget(deleteButton);
+
+
+    ui->tableWidget->setCellWidget(rowCount, 4, buttonWidget);
+
+    connect(editButton, &QPushButton::clicked, [=]() {
+        this->close();
+        deposit *dep = new deposit();
+        dep->setAttribute(Qt::WA_DeleteOnClose);
+        QString coinname = ui->tableWidget->item(rowCount, 1)->text();
+        dep->setaddress(coinname);
+        dep->show();
+    });
+    connect(deleteButton, &QPushButton::clicked, [=]() {
+        this->close();
+        withdrawal *withdrl = new withdrawal();
+        withdrl->setAttribute(Qt::WA_DeleteOnClose);
+        QString coinname = ui->tableWidget->item(rowCount, 1)->text();
+        withdrl->setaddress(coinname);
+        withdrl->show();
+    });
+
 
     ui->textEdit_totalbalnce->setText("USDT " + QString::number(PriceUpdater::balancetotether));
     QString formattedValue = QString("%1").arg(QLocale().toString(PriceUpdater::balancetotether * PriceUpdater::tetherToToman, 'f', 0));
 
     ui->textEdit_totalbalnce_2->setText(formattedValue + "  IRT");
+
 }
 
 void Walldetails::on_backtomywallet_btn_clicked()
@@ -231,11 +274,7 @@ void Walldetails::on_deposit_btn_clicked()
         ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
                                               "QPushButton:hover { color: #c97940; }");
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
@@ -258,11 +297,7 @@ void Walldetails::on_withdrawal_btn_clicked()
         ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
                                               "QPushButton:hover { color: #c97940; }");
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
@@ -294,11 +329,7 @@ void Walldetails::on_easyexchange_btn_clicked()
         ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
                                               "QPushButton:hover { color: #c97940; }");
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");

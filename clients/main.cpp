@@ -23,12 +23,14 @@ void printPrices() {
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
+
     priceUpdater = new PriceUpdater();
     QObject::connect(priceUpdater, &PriceUpdater::pricesUpdated, []() {
         qDebug() << "Prices updated!";
         printPrices();
     });
     form w;
+
     client.connectToServer("127.0.0.1", 1234);
    extern Client client;
 

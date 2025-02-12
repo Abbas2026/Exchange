@@ -44,7 +44,7 @@
                     "Bitcoin": 0,
                     "Ethereum": 0,
                     "Tether": 0,
-                    "Toman": 0,
+                    "Toman": 100000,
                     "Tron": 90
                 },
                 "name": "ali"
@@ -54,9 +54,9 @@
                 "currencies": {
                     "Bitcoin": 0,
                     "Ethereum": 0,
-                    "Tether": 0,
+                    "Tether": 123,
                     "Toman": 0,
-                    "Tron": 0
+                    "Tron": 10
                 },
                 "name": "mom"
             }

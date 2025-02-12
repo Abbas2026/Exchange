@@ -42,10 +42,11 @@ void signin::on_login_button_clicked()
     QString password = ui->lineEditPassword_sign->text();
 
     if (email.isEmpty() || password.isEmpty()) {
-        QMessageBox::warning(this, "خطا", "لطفاً ایمیل و رمز عبور خود را وارد کنید.");
+        QMessageBox::warning(this, "erre", "Please enter your email and username");
         return;
     }
 
+    Client::globalEmail = email;
 
     emit sendservertologin(email, password);
 }
@@ -75,7 +76,7 @@ void signin::on_forgotbtnsend_clicked()
     QString username = ui->lineEditName_sign->text();
 
     if (email.isEmpty() || username.isEmpty()) {
-        QMessageBox::warning(this, "خطا", "لطفاً ایمیل و نام کاربری خود را وارد کنید.");
+        QMessageBox::warning(this, "error", "Please enter your email and username.");
         return;
     }
     extern Client client;

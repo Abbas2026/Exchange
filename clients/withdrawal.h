@@ -15,7 +15,7 @@ public:
     explicit withdrawal(QWidget *parent = nullptr);
     ~withdrawal();
     void applyStyles();
-
+    void setaddress(const QString &coinname);
 private slots:
     void on_radiobtc_clicked();
 

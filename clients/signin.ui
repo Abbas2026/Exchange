@@ -10,6 +10,18 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>HELIACAL EXCHANGE</string>
   </property>
@@ -61,8 +73,8 @@
   <widget class="QPushButton" name="forgot_password">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>290</y>
+     <x>710</x>
+     <y>300</y>
      <width>231</width>
      <height>31</height>
     </rect>
@@ -108,7 +120,7 @@
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>190</y>
+     <y>200</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -170,9 +182,9 @@ color: rgb(255, 255, 255);
    <property name="geometry">
     <rect>
      <x>720</x>
-     <y>430</y>
-     <width>201</width>
-     <height>28</height>
+     <y>420</y>
+     <width>211</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -192,8 +204,8 @@ color: rgb(0, 0, 0);
     <rect>
      <x>720</x>
      <y>480</y>
-     <width>201</width>
-     <height>28</height>
+     <width>211</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -212,8 +224,8 @@ color: rgb(0, 0, 0);
    </property>
    <property name="geometry">
     <rect>
-     <x>740</x>
-     <y>330</y>
+     <x>750</x>
+     <y>340</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -237,8 +249,8 @@ color: rgb(0, 0, 0);
     <rect>
      <x>720</x>
      <y>250</y>
-     <width>201</width>
-     <height>28</height>
+     <width>211</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -261,7 +273,7 @@ color: rgb(255, 255, 255);
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>530</y>
+     <y>540</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -286,8 +298,8 @@ background-color: rgb(170, 85, 127);
     <rect>
      <x>720</x>
      <y>190</y>
-     <width>201</width>
-     <height>28</height>
+     <width>211</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -307,7 +319,7 @@ color: rgb(255, 255, 255);
    <property name="geometry">
     <rect>
      <x>620</x>
-     <y>250</y>
+     <y>260</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -328,7 +340,7 @@ color: rgb(255, 255, 255);
    <property name="geometry">
     <rect>
      <x>610</x>
-     <y>480</y>
+     <y>490</y>
      <width>91</width>
      <height>20</height>
     </rect>

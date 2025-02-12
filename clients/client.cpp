@@ -11,14 +11,16 @@
 #include <QtConcurrent>
 #include "priceupdater.h"
 #include "withdrawal.h"
+
 int Client::bb=0;
 int Client::x=0;
-
 int Client::warname;
 int Client::number_wallets=0;
+int Client::Activated;
 QString Client::password_creator="ramz";
 QString Client::user_level="0";
-QString Client::globalEmail;
+QString Client::globalEmail="jpdnsjhhdsj@gmail.com";
+QString Client::walletactive;
 
 Client::Client(QObject *parent) : QObject(parent)
 {
@@ -31,7 +33,6 @@ Client::Client(QObject *parent) : QObject(parent)
 
     connect(socket, &QTcpSocket::readyRead, this, &Client::readServerResponse);
 }
-
 void Client::connectToServer(const QString &host, quint16 port)
 {
     connect(socket, &QTcpSocket::connected, this, &Client::onConnected);
@@ -42,27 +43,23 @@ void Client::onConnected()
     qDebug() << "Connected to the server";
 
 }
-
-
 void Client::sendMessage(const QString &message)
 {
     if (socket->state() == QTcpSocket::ConnectedState) {
         socket->write(message.toUtf8());
     }
 }
-
-
 void Client::sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone)
 {
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
+        json["type"] = "signup";
         json["email"] = email;
         json["password"] = password;
         json["name"] = name;
         json["phone"] = phone;
         QJsonDocument doc(json);
         QByteArray data = doc.toJson();
-
         socket->write(data);
     }
 }
@@ -70,11 +67,11 @@ void Client::sendservertologin(const QString &email, const QString &password)
 {
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
+        json["type"] = "signin";
         json["email"] = email;
         json["password"] = password;
         QJsonDocument doc(json);
         QByteArray data = doc.toJson();
-
         socket->write(data);
     }
 }
@@ -93,7 +90,6 @@ void Client::readServerResponse() {
                 return;
             }
 
-
             if (buffer.trimmed().startsWith("{") && buffer.trimmed().endsWith("}")) {
                 processResponse(buffer);
                 buffer.clear();
@@ -110,11 +106,9 @@ void Client::readServerResponse() {
             buffer.remove(0, index + 2);
         }
 
-
         if (buffer.size() >= expectedLength) {
             QByteArray message = buffer.left(expectedLength);
             buffer.remove(0, expectedLength);
-            //qDebug() << "Structured message: " << message;
             processResponse(message);
             expectedLength = 0;
         } else {
@@ -167,8 +161,16 @@ void Client::processResponse(const QByteArray& message) {
             QString address = userObject["addresshome"].toString() ;
             QString firstname= userObject["fname"].toString();
             QString lastname= userObject["lname"].toString();
-            qDebug()<<"1111"<<email<<name<<password<<phone<<user_level<<lastname;
+            if(Client::warname==10){
+                Client::warname=0;
+                dashboard *da = new dashboard();
+                da->setAttribute(Qt::WA_DeleteOnClose);
+                da->show();
+                return;
+                }
             emit sendusertoprofile(email,name,password,phone,address,firstname,lastname);
+
+            return;
         } else if (type == "saveuserprofile") {
             if(response["status"].toString()=="success"){
                 dashboard *da = new dashboard();
@@ -191,7 +193,7 @@ void Client::processResponse(const QByteArray& message) {
 
         else if (type == "WalletExists") {
             QtConcurrent::run([=]() {
-                emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
+                emit receivedMessage("error: This username is already registered. Please choose another name");
             });
             dashboard *da = new dashboard();
             da->setAttribute(Qt::WA_DeleteOnClose);
@@ -373,12 +375,12 @@ void Client::processSimpleResponse(const QString& responseStr) {
     if (responseStr == "ready") {
         qDebug() << "Registration successful!";
         emit registrationSuccessful();
-    } else if (responseStr == "این نام کاربری قبلاً ثبت شده است") {
-        emit receivedMessage("خطا: این نام کاربری قبلاً ثبت شده است. لطفاً نام دیگری انتخاب کنید.");
+    } else if (responseStr == "This username is already registered") {
+        emit receivedMessage("error: This username is already registered. Please choose another name");
     } else if (responseStr == "Login successful") {
         qDebug() << "Login successful";
         emit triggerSigninSlot();
-        emit loginSuccessful();
+        emit loginSuccessful();        
     } else if (responseStr == "Password forgotten confirmed") {
         qDebug() << "Password forgotten confirmed";
         emit triggerSigninSlot();
@@ -448,7 +450,7 @@ void Client::walletsdata(const QString &email){
 
         QJsonObject json;
         json["type"] = "walletInfo";
-        json["email"] = Client::globalEmail;
+        json["email"] = email;
         QJsonDocument doc(json);
         socket->write(doc.toJson());
     } else {
@@ -468,10 +470,9 @@ void Client::Walletassets(const QString &email,const QString &namewallet){
     }
 }
 void Client::getuserprofile(){
+
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
-        qDebug()<<"ppppp";
-
         json["type"] = "userprofile";
         json["email"] = Client::globalEmail;
         QJsonDocument doc(json);
