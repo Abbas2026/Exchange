@@ -79,7 +79,7 @@ public:
         tableWidget = new QTableWidget(widget);
         tableWidget->setObjectName("tableWidget");
         tableWidget->setEnabled(true);
-        tableWidget->setGeometry(QRect(10, 140, 1021, 761));
+        tableWidget->setGeometry(QRect(0, 130, 1031, 781));
         tableWidget->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
         tableWidget->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color: #1e2026;"));
@@ -90,7 +90,7 @@ public:
         tokens_btn = new QPushButton(widget_3);
         tokens_btn->setObjectName("tokens_btn");
         tokens_btn->setEnabled(false);
-        tokens_btn->setGeometry(QRect(870, 10, 161, 41));
+        tokens_btn->setGeometry(QRect(860, 10, 161, 41));
         tokens_btn->setStyleSheet(QString::fromUtf8("          background-color: #2e3847 ;\n"
 "            color: white;\n"
 "            border-radius: 10px;\n"
@@ -99,7 +99,7 @@ public:
         history_btn = new QPushButton(widget_3);
         history_btn->setObjectName("history_btn");
         history_btn->setEnabled(true);
-        history_btn->setGeometry(QRect(870, 70, 161, 41));
+        history_btn->setGeometry(QRect(860, 70, 161, 41));
         history_btn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         history_btn->setStyleSheet(QString::fromUtf8("          background-color:#171f2b ;\n"
 "            color: white;\n"
@@ -239,7 +239,7 @@ public:
         textEdit_totalbalnce_2->setReadOnly(true);
         widget_2 = new QWidget(Walldetails);
         widget_2->setObjectName("widget_2");
-        widget_2->setGeometry(QRect(1040, 0, 251, 904));
+        widget_2->setGeometry(QRect(1030, 0, 251, 904));
         widget_2->setStyleSheet(QString::fromUtf8("background-color:#d9d8d4  ;"));
         Mywallets_btn = new QPushButton(widget_2);
         Mywallets_btn->setObjectName("Mywallets_btn");

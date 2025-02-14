@@ -84,6 +84,7 @@ void form::onRegistrationSuccessful() {
         this->show();
     });
     da->show();
+    da->hide();
 }
 void form::loginSuccessful() {
     this->hide();

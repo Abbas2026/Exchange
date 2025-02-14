@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "client.h"
 QT_BEGIN_NAMESPACE
+
 namespace Ui {
 class form;
 }
@@ -19,13 +20,17 @@ public:
     ~form();        
 
 signals:
+
     void sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone);
 
 public slots:
+
     void displayServerResponse(const QString &response);
     void onRegistrationSuccessful();
     void loginSuccessful();
+
 private slots:
+
     void on_pushButton_clicked();
 
 
@@ -33,6 +38,7 @@ private slots:
     void on_pushButton_gosignin_clicked();
 
 private:
+
     Ui::form *ui;
     Client *client;
 };

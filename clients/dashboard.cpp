@@ -20,8 +20,6 @@ dashboard::dashboard(QWidget *parent) :
     connect(ui->backButton, &QPushButton::clicked, this, &dashboard::on_backButton_clicked);
     applyStyles();
 
-
-
 }
 
 dashboard::~dashboard()
@@ -32,7 +30,7 @@ dashboard::~dashboard()
 void dashboard::on_backButton_clicked()
 {
     emit backToFormRequested();
-    this->close();
+    this->hide();
 }
 void dashboard::ServerResponse(const QString &response)
 {
@@ -44,11 +42,7 @@ void dashboard::ServerResponse(const QString &response)
 }
 void dashboard::applyStyles()
 {
-
-    const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                              "QPushButton:hover { color: #c97940; }";
-    ui->Dashboard_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
-                                     "QPushButton:hover { color: #c97940; }");
+    ui->Dashboard_btn->setStyleSheet(active_baseStyle);
     ui->Mywallets_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -59,14 +53,12 @@ void dashboard::applyStyles()
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
-                                         "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_1);
     }
 }
 
 void dashboard::on_Mywallets_btn_clicked()
 {
-
     this->close();
     mywallet *wallets = new mywallet();
     wallets->setAttribute(Qt::WA_DeleteOnClose);
@@ -76,7 +68,6 @@ void dashboard::on_Mywallets_btn_clicked()
     client.walletsdata(Client::globalEmail);
     wallets->show();
 }
-
 
 void dashboard::on_Profile_btn_clicked()
 {
@@ -101,21 +92,19 @@ void dashboard::on_market_btn_clicked()
 
 }
 
-
 void dashboard::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
         msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
+        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
 
@@ -129,12 +118,10 @@ void dashboard::on_easyexchange_btn_clicked()
 
 }
 
-
 void dashboard::on_Transmission_btn_clicked()
 {
 
 }
-
 
 void dashboard::on_currentprice_btn_clicked()
 {
@@ -157,21 +144,19 @@ void dashboard::on_Authentication_btn_clicked()
     prof->on_edit_information_btn_clicked();
 }
 
-
 void dashboard::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
         msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
+        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
     this->close();
@@ -181,7 +166,8 @@ void dashboard::on_deposit_btn_clicked()
     if(Client::warname==1){
         QMessageBox msgBox(this);
         msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
+        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setWindowTitle("Warning");
         msgBox.setText("No wallet found with this address");
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -206,17 +192,16 @@ void dashboard::on_deposit_btn_clicked()
 void dashboard::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
         msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
+        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
 
@@ -228,7 +213,8 @@ void dashboard::on_withdrawal_btn_clicked()
         if(Client::warname==1){
         QMessageBox msgBox(this);
         msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
+        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setWindowTitle("Warning");
         msgBox.setText("Words do not match!");
         msgBox.setStandardButtons(QMessageBox::Ok);
@@ -238,7 +224,8 @@ void dashboard::on_withdrawal_btn_clicked()
         else if(Client::warname==2){
             QMessageBox msgBox(this);
             msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-            msgBox.setIcon(QMessageBox::Warning);
+            QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+            msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             msgBox.setWindowTitle("Warning");
             msgBox.setText("Wallet not found");
             msgBox.setStandardButtons(QMessageBox::Ok);
@@ -248,7 +235,8 @@ void dashboard::on_withdrawal_btn_clicked()
         else if(Client::warname==3){
             QMessageBox msgBox(this);
             msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-            msgBox.setIcon(QMessageBox::Warning);
+            QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+            msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             msgBox.setWindowTitle("Warning");
             msgBox.setText("There is not enough currency");
             msgBox.setStandardButtons(QMessageBox::Ok);
@@ -269,7 +257,6 @@ void dashboard::on_withdrawal_btn_clicked()
         }
 
 }
-
 
 void dashboard::on_backButton_2_clicked()
 {

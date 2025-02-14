@@ -12,14 +12,17 @@ class signin : public QWidget
     Q_OBJECT
 
 public:
+
     explicit signin(QWidget *parent = nullptr);
     ~signin();
 
 public slots :
+
     void Responsetosignin(const QString &response);
     void closewindow();
 
 private slots:
+
     void on_pushButton_gosignin_clicked();
     void on_login_button_clicked();
     void on_forgot_password_clicked();
@@ -27,7 +30,9 @@ private slots:
 
 
 private:
+
     Ui::signin *ui;
+
 signals:
 
     void sendservertologin(const QString &email, const QString &password);

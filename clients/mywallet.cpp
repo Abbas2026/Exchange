@@ -22,6 +22,8 @@
 #include "deposit.h"
 #include "withdrawal.h"
 #include "CurrentPrice.h"
+#include "styles.h"
+
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::mywallet)
@@ -37,11 +39,7 @@ mywallet::~mywallet()
 }
 void mywallet::applyStyles()
 {
-    const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                              "QPushButton:hover { color: #c97940; }";
 
-    ui->Mywallets_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
-                                     "QPushButton:hover { color: #c97940; }");
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -52,49 +50,9 @@ void mywallet::applyStyles()
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_1);
     }
-     ui->tableWidget->setStyleSheet(
-        "QTableWidget {"
-        "    background-color: #2980b9;"
-        "    color: white;"
-        "    font-family: Arial, sans-serif;"
-        "    font-size: 14px;"
-        "    border: none;"
-        "    gridline-color: #34495e;"
-        "}"
-        "QHeaderView::section {"
-        "    background-color: #34495e;"
-        "    color: white;"
-        "    font-weight: bold;"
-        "    font-size: 16px;"
-        "    padding: 8px;"
-        "    border: none;"
-        "}"
-        "QTableWidget::item {"
-        "    background-color: #2980b9;"
-        "    border: none;"
-        "    padding: 10px;"
-        "    font-size: 14px;"
-        "}"
-        "QTableWidget::item:selected {"
-        "    color: white;"
-        "    border: none;"
-        "}"
-        "QPushButton {"
-        "    background-color: #85fe87;"
-        "    color: black;"
-        "    border: none;"
-        "    padding: 8px 6px;"
-        "    border-radius: 5px;"
-        "    font-size: 14px;"
-        "    margin: 0px 56px;"
-        "}"
-         "QPushButton:hover {"
-         "    background-color: #70e16d;"
-         "}"
-         );
+     ui->tableWidget->setStyleSheet(table_mywallet);
 
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(50);
@@ -155,11 +113,9 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
 }
 void mywallet::on_creatwallet_btn_clicked() {
     if(Client::number_wallets==1 &&Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
-                                         "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
          QMessageBox::warning(this, "warning", "To create a wallet, you must first authenticate yourself");
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
     QStringList words;
@@ -307,21 +263,15 @@ void mywallet::on_Profile_btn_clicked()
 void mywallet::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
     this->close();
@@ -334,21 +284,15 @@ void mywallet::on_deposit_btn_clicked()
 void mywallet::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
     this->close();
@@ -370,21 +314,15 @@ void mywallet::on_Authentication_btn_clicked()
 void mywallet::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
     this->close();

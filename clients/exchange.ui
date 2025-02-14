@@ -952,7 +952,7 @@ border:none;</string>
      <property name="styleSheet">
       <string notr="true">background-color: #1e2026;</string>
      </property>
-     <widget class="QLabel" name="lb_icon_ethereum_3">
+     <widget class="QLabel" name="lb_icon_ethereum_2">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -1020,7 +1020,7 @@ border:none;</string>
      <property name="styleSheet">
       <string notr="true">background-color: #1e2026;</string>
      </property>
-     <widget class="QLabel" name="lb_icon_ton_3">
+     <widget class="QLabel" name="lb_icon_ton_2">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -1215,6 +1215,26 @@ color: #6f7988;
       <string>to :</string>
      </property>
     </widget>
+    <zorder>exchange_btn</zorder>
+    <zorder>change_text</zorder>
+    <zorder>widget_ethereum</zorder>
+    <zorder>widget_ton</zorder>
+    <zorder>widget_tether</zorder>
+    <zorder>widget_toman</zorder>
+    <zorder>coin_from</zorder>
+    <zorder>wallet_address_name</zorder>
+    <zorder>coin_choice</zorder>
+    <zorder>wallet_address</zorder>
+    <zorder>widget_bitcoin_2</zorder>
+    <zorder>widget_toman_2</zorder>
+    <zorder>widget_ethereum_2</zorder>
+    <zorder>widget_ton_2</zorder>
+    <zorder>widget_tether_2</zorder>
+    <zorder>coin_to</zorder>
+    <zorder>coin_choice_2</zorder>
+    <zorder>text_from</zorder>
+    <zorder>text_to</zorder>
+    <zorder>widget_bitcoin</zorder>
    </widget>
    <widget class="QWidget" name="widget_4" native="true">
     <property name="geometry">
@@ -1517,6 +1537,8 @@ color: #6f7988;
      <zorder>text_to_4</zorder>
     </widget>
    </widget>
+   <zorder>widget_4</zorder>
+   <zorder>widget_3</zorder>
   </widget>
   <zorder>widget</zorder>
   <zorder>widget_2</zorder>

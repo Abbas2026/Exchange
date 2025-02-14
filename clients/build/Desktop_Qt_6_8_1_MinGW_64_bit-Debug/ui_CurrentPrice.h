@@ -103,7 +103,7 @@ public:
         Mywallets_btn_2->setGeometry(QRect(30, 280, 171, 41));
         Mywallets_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         Mywallets_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
-"color: #c97940;\n"
+"color: rgb(0, 0, 0);\n"
 "font: 28pt \"Bangers\";\n"
 "letter-spacing: 1px;"));
         Transmission_btn_2 = new QPushButton(widget_2);
@@ -162,10 +162,12 @@ public:
         currentprice_btn_2->setObjectName("currentprice_btn_2");
         currentprice_btn_2->setGeometry(QRect(10, 630, 221, 41));
         currentprice_btn_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        currentprice_btn_2->setStyleSheet(QString::fromUtf8("border:none;\n"
-"color: rgb(0, 0, 0);\n"
-"font: 28pt \"Bangers\";\n"
-"letter-spacing: 1px;"));
+        currentprice_btn_2->setStyleSheet(QString::fromUtf8("font: 28pt \"Bangers\";\n"
+"letter-spacing: 1px;\n"
+"border:none;\n"
+"color: #c97940;\n"
+"\n"
+""));
         deposit_btn_2 = new QPushButton(widget_2);
         deposit_btn_2->setObjectName("deposit_btn_2");
         deposit_btn_2->setGeometry(QRect(40, 770, 171, 41));

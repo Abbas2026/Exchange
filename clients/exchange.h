@@ -12,6 +12,7 @@ class exchange : public QWidget
     Q_OBJECT
 
 public:
+
     explicit exchange(QWidget *parent = nullptr);
     ~exchange();
     void applyStyles();
@@ -21,9 +22,11 @@ private:
 
 
 public slots:
+
     void setsupply(const QMap<QString, double>& walletCurrencies);
 
 private slots:
+
     void on_radiobtc_clicked();
     void on_radioirt_clicked();
     void on_radioeth_clicked();
@@ -45,4 +48,4 @@ private slots:
     void on_currentprice_btn_clicked();
 };
 
-#endif // EXCHANGE_H
+#endif

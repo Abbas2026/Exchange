@@ -11,9 +11,9 @@ class PriceUpdater : public QObject {
     Q_OBJECT
 
 public:
+
     explicit PriceUpdater(QObject* parent = nullptr);
     ~PriceUpdater();
-
     static double bitcoinToTether;
     static double ethereumToTether;
     static double tronToTether;
@@ -23,15 +23,18 @@ public:
     static double TomanToTether;
 
 signals:
+
     void pricesUpdated();
 
 private slots:
+
     void fetchPrices();
     void handleNetworkReply(QNetworkReply* reply);
 
 private:
+
     QNetworkAccessManager* networkManager;
     QTimer* timer;
 };
 
-#endif // PRICEUPDATER_H
+#endif

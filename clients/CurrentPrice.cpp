@@ -7,7 +7,7 @@
 #include "deposit.h"
 #include "withdrawal.h"
 #include <QMessageBox>
-
+#include "styles.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -22,11 +22,8 @@ MainWindow::~MainWindow() {
 }
 void MainWindow::applyStyles()
 {
-    const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                              "QPushButton:hover { color: #c97940; }";
 
-    ui->currentprice_btn_2->setStyleSheet("QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
-                                     "QPushButton:hover { color: #c97940; }");
+
     ui->Dashboard_btn_2->setStyleSheet(baseStyle);
     ui->Profile_btn_2->setStyleSheet(baseStyle);
     ui->market_btn_2->setStyleSheet(baseStyle);
@@ -37,8 +34,7 @@ void MainWindow::applyStyles()
     ui->deposit_btn_2->setStyleSheet(baseStyle);
     ui->withdrawal_btn_2->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(user_level_1);
     }
 
 }
@@ -188,21 +184,15 @@ void MainWindow::on_Profile_btn_2_clicked()
 void MainWindow::on_easyexchange_btn_2_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(baseStyle);
         return;
     }
     this->close();
@@ -224,21 +214,15 @@ void MainWindow::on_Authentication_btn_2_clicked()
 void MainWindow::on_deposit_btn_2_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(baseStyle);
         return;
     }
     this->close();
@@ -251,21 +235,15 @@ void MainWindow::on_deposit_btn_2_clicked()
 void MainWindow::on_withdrawal_btn_2_clicked()
 {
     if(Client::user_level=="0"){
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(user_level_0);
         QMessageBox msgBox(this);
-        msgBox.setStyleSheet("QMessageBox { background-color: #2E3440; border-radius: 10px; }"
-                             "QMessageBox QLabel {background-color: #2E3440; color: white; font-size: 14px; }"
-                             "QMessageBox QPushButton { background-color: #88C0D0; color: black; font-weight: bold; border: 1px solid #5E81AC; border-radius: 5px; padding: 5px 10px; }"
-                             "QMessageBox QPushButton:hover { background-color: #81A1C1; }"
-                             "QMessageBox QPushButton:pressed { background-color: #5E81AC; }");
+        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle("Warning");
         msgBox.setText(" you must first authenticate yourself");
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-        ui->Authentication_btn_2->setStyleSheet("QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                                              "QPushButton:hover { color: #c97940; }");
+        ui->Authentication_btn_2->setStyleSheet(baseStyle);
         return;
     }
     this->close();

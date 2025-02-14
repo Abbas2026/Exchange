@@ -19,7 +19,7 @@ int Client::number_wallets=0;
 int Client::Activated;
 QString Client::password_creator="ramz";
 QString Client::user_level="0";
-QString Client::globalEmail="jpdnsjhhdsj@gmail.com";
+QString Client::globalEmail;
 QString Client::walletactive;
 
 Client::Client(QObject *parent) : QObject(parent)

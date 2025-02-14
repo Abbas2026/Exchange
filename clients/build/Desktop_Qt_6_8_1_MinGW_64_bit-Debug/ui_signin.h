@@ -52,7 +52,7 @@ public:
         label->setScaledContents(true);
         pushButton_gosignin = new QPushButton(signin);
         pushButton_gosignin->setObjectName("pushButton_gosignin");
-        pushButton_gosignin->setGeometry(QRect(860, 130, 61, 31));
+        pushButton_gosignin->setGeometry(QRect(870, 130, 61, 31));
         pushButton_gosignin->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_gosignin->setStyleSheet(QString::fromUtf8("          background-color: #BF360C;\n"
 "            color: white;\n"
@@ -104,9 +104,8 @@ public:
         lineEditEmail_sign_2->setGeometry(QRect(720, 420, 211, 41));
         lineEditEmail_sign_2->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
-"  \n"
-"background-color: rgb(85, 255, 255);\n"
-"color: rgb(0, 0, 0);\n"
+"	background-color: #48b099;\n"
+"	color: rgb(0, 0, 0);\n"
 "    font-size: 14px;\n"
 "\n"
 "\n"
@@ -116,7 +115,7 @@ public:
         lineEditName_sign->setGeometry(QRect(720, 480, 211, 41));
         lineEditName_sign->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
-"background-color: rgb(85, 255, 255);\n"
+"background-color:#48b099;\n"
 "color: rgb(0, 0, 0);\n"
 "    font-size: 14px;\n"
 "\n"
@@ -136,7 +135,7 @@ public:
         lineEditPassword_sign->setGeometry(QRect(720, 250, 211, 41));
         lineEditPassword_sign->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
-"    background-color: #16A085   ; \n"
+"    background-color: #48b099  ; \n"
 "color: rgb(255, 255, 255);\n"
 "    font-size: 14px;\n"
 "\n"
@@ -145,10 +144,9 @@ public:
         forgotbtnsend = new QPushButton(signin);
         forgotbtnsend->setObjectName("forgotbtnsend");
         forgotbtnsend->setEnabled(true);
-        forgotbtnsend->setGeometry(QRect(740, 540, 161, 41));
+        forgotbtnsend->setGeometry(QRect(750, 540, 161, 41));
         forgotbtnsend->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        forgotbtnsend->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(170, 85, 127);\n"
+        forgotbtnsend->setStyleSheet(QString::fromUtf8("			background-color: #102723;\n"
 "            color: white;\n"
 "            border-radius: 10px;\n"
 "            font-size: 16px;\n"
@@ -158,7 +156,7 @@ public:
         lineEditEmail_sign->setGeometry(QRect(720, 190, 211, 41));
         lineEditEmail_sign->setStyleSheet(QString::fromUtf8("    border-radius: 8px; \n"
 "    padding: 0px 12px; \n"
-"    background-color: #16A085   ; \n"
+"    background-color: #48b099   ; \n"
 "color: rgb(255, 255, 255);\n"
 "    font-size: 14px;\n"
 "\n"
@@ -193,6 +191,7 @@ public:
         label_email_sign->setText(QCoreApplication::translate("signin", "email :", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("signin", "Sign in", nullptr));
         lineEdit->setText(QCoreApplication::translate("signin", "Don't have an account? Create one now", nullptr));
+        lineEditEmail_sign_2->setText(QString());
         login_button->setText(QCoreApplication::translate("signin", "login", nullptr));
         forgotbtnsend->setText(QCoreApplication::translate("signin", "login", nullptr));
         label_password_sign->setText(QCoreApplication::translate("signin", "password :", nullptr));

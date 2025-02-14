@@ -360,7 +360,8 @@ public:
         password_creator->setStyleSheet(QString::fromUtf8("background-color:#1d2633;\n"
 "    padding-left:  40px; \n"
 ""));
-        password_creator->setEchoMode(QLineEdit::EchoMode::PasswordEchoOnEdit);
+        password_creator->setEchoMode(QLineEdit::EchoMode::Password);
+        password_creator->setCursorPosition(0);
         password = new QLabel(widget_3);
         password->setObjectName("password");
         password->setGeometry(QRect(50, 480, 121, 41));

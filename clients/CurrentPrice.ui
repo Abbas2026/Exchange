@@ -161,7 +161,7 @@ padding-left:20px;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border:none;
-color: #c97940;
+color: rgb(0, 0, 0);
 font: 28pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
      </property>
@@ -324,10 +324,12 @@ letter-spacing: 1px;</string>
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">border:none;
-color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
-letter-spacing: 1px;</string>
+      <string notr="true">font: 28pt &quot;Bangers&quot;;
+letter-spacing: 1px;
+border:none;
+color: #c97940;
+
+</string>
      </property>
      <property name="text">
       <string>Current price</string>

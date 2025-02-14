@@ -56,10 +56,10 @@ background-color: #171f2b;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>140</y>
-      <width>1021</width>
-      <height>761</height>
+      <x>0</x>
+      <y>130</y>
+      <width>1031</width>
+      <height>781</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -88,7 +88,7 @@ background-color: #1e2026;</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>870</x>
+       <x>860</x>
        <y>10</y>
        <width>161</width>
        <height>41</height>
@@ -111,7 +111,7 @@ background-color: #1e2026;</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>870</x>
+       <x>860</x>
        <y>70</y>
        <width>161</width>
        <height>41</height>
@@ -522,7 +522,7 @@ border:none
   <widget class="QWidget" name="widget_2" native="true">
    <property name="geometry">
     <rect>
-     <x>1040</x>
+     <x>1030</x>
      <y>0</y>
      <width>251</width>
      <height>904</height>

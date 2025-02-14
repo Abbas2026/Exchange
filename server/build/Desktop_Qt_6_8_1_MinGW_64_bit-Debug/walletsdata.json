@@ -25,6 +25,21 @@
             }
         ]
     },
+    "jafar2@gmai.com": {
+        "wallets": [
+            {
+                "address": "eftafta9lrc6onlyi7pgpl8cg",
+                "currencies": {
+                    "Bitcoin": 0,
+                    "Ethereum": 0,
+                    "Tether": 90,
+                    "Toman": 1568000,
+                    "Tron": 0
+                },
+                "name": "jafar"
+            }
+        ]
+    },
     "jpdnsjhhdsj@gmail.com": {
         "wallets": [
             {

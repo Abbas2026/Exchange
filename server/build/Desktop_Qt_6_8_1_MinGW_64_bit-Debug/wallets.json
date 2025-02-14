@@ -62,6 +62,38 @@
                 ]
             }
         ],
+        "jafar2@gmai.com": [
+            {
+                "address": "eftafta9lrc6onlyi7pgpl8cg",
+                "walletName": "jafar",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "crown"
+                    },
+                    {
+                        "index": 2,
+                        "word": "jewel"
+                    },
+                    {
+                        "index": 3,
+                        "word": "ink"
+                    },
+                    {
+                        "index": 4,
+                        "word": "magic"
+                    },
+                    {
+                        "index": 5,
+                        "word": "parrot"
+                    },
+                    {
+                        "index": 6,
+                        "word": "rain"
+                    }
+                ]
+            }
+        ],
         "jpdnsjhhdsj@gmail.com": [
             {
                 "address": "c8btgf7w9liwoplnrcw3vblrl",

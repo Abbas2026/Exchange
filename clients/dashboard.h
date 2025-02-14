@@ -12,15 +12,20 @@ class dashboard : public QWidget
     Q_OBJECT
 
 public:
+
     explicit dashboard(QWidget *parent = nullptr);
     ~dashboard();
     void applyStyles();
 
 private:
+
     Ui::dashboard *ui;
 signals:
+
     void backToFormRequested();
+
 public slots :
+
     void ServerResponse(const QString &response);
     void on_Mywallets_btn_clicked();
     void on_backButton_clicked();
@@ -34,7 +39,6 @@ public slots :
     void on_withdrawal_btn_clicked();
 
 private slots:
-
 
     void on_backButton_2_clicked();
 };

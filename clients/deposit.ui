@@ -850,7 +850,10 @@ color: #6f7988;
 </string>
      </property>
      <property name="echoMode">
-      <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+      <enum>QLineEdit::EchoMode::Password</enum>
+     </property>
+     <property name="cursorPosition">
+      <number>0</number>
      </property>
     </widget>
     <widget class="QLabel" name="password">
