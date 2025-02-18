@@ -4,7 +4,10 @@
 This project is a cryptocurrency management system built with Qt and C++, where users can buy and sell cryptocurrencies.
 
 #Program environment:
-![Screenshot](https://i.imgur.com/JGu2fa9.png)
+<a href="https://i.imgur.com/JGu2fa9.png">
+    <img src="https://i.imgur.com/JGu2fa9.png" width="300">
+</a>
+
 ![Screenshot](https://i.imgur.com/ALoHEuM.png)
 ![Screenshot](https://i.imgur.com/THCmXUU.png)
 ![Screenshot](https://i.imgur.com/HPvgkri.png)
