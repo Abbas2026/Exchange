@@ -29,17 +29,17 @@ int main(int argc, char *argv[]) {
         printPrices();
     });
 
-    form w;
+    form *w=new form();
     client.connectToServer("127.0.0.1", 1234);
     extern Client client;
     Client::warname=10;
 
-    QObject::connect(&w, &form::sendCredentials, &client, &Client::sendCredentials);
-    QObject::connect(&client, &Client::receivedMessage, &w, &form::displayServerResponse);
-    QObject::connect(&client, &Client::registrationSuccessful, &w, &form::onRegistrationSuccessful);
-    QObject::connect(&client, &Client::loginSuccessful, &w, &form::loginSuccessful);
+    QObject::connect(w, &form::sendCredentials, &client, &Client::sendCredentials);
+    QObject::connect(&client, &Client::receivedMessage, w, &form::displayServerResponse);
+    QObject::connect(&client, &Client::registrationSuccessful, w, &form::onRegistrationSuccessful);
+    QObject::connect(&client, &Client::loginSuccessful, w, &form::loginSuccessful);
 
-    w.show();
+    w->show();
 
     return a.exec();
 

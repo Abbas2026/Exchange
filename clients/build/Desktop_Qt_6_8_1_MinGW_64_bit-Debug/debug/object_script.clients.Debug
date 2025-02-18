@@ -10,7 +10,6 @@ debug/priceupdater.o
 debug/profile.o
 debug/signin.o
 debug/walldetails.o
-debug/coingeckoapi.o
 debug/CurrentPrice.o
 debug/withdrawal.o
 debug/moc_client.o
@@ -24,6 +23,5 @@ debug/moc_priceupdater.o
 debug/moc_profile.o
 debug/moc_signin.o
 debug/moc_walldetails.o
-debug/moc_coingeckoapi.o
 debug/moc_CurrentPrice.o
 debug/moc_withdrawal.o

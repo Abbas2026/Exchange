@@ -6,6 +6,10 @@
 #include <QMessageBox>
 #include "signin.h"
 #include "dashboard.h"
+#include <QWidget>
+#include <QLineEdit>
+#include <QKeyEvent>
+#include <QList>
 
 form::form(QWidget *parent)
     : QMainWindow(parent)
@@ -15,6 +19,17 @@ form::form(QWidget *parent)
     this->setWindowIcon(QIcon());
     client = new Client(this);
     connect(client, &Client::registrationSuccessful, this, &form::onRegistrationSuccessful);
+    QList<QLineEdit*> lineEdits = {ui->lineEditEmail, ui->lineEditName, ui->lineEditPassword, ui->confirmpassword, ui->lineEditPhone, ui->invitationcode};
+
+    for (int i = 0; i < lineEdits.size() - 1; ++i) {
+        connect(lineEdits[i], &QLineEdit::returnPressed, this, [=]() { lineEdits[i + 1]->setFocus(); });
+    }
+    QList<QLineEdit*> lineEdits1 = {ui->lineEditEmail, ui->lineEditName, ui->lineEditPassword, ui->confirmpassword, ui->lineEditPhone, ui->invitationcode};
+
+    for (QLineEdit* lineEdit : lineEdits1) {
+        lineEdit->installEventFilter(this);
+    }
+
 }
 form::~form()
 {
@@ -78,7 +93,6 @@ void form::onRegistrationSuccessful() {
     Client::warname=10;
     client.getuserprofile();
     dashboard *da = new dashboard();
-    da->setAttribute(Qt::WA_DeleteOnClose);
 
     connect(da, &dashboard::backToFormRequested, this, [this]() {
         this->show();
@@ -116,3 +130,34 @@ void form::on_pushButton_gosignin_clicked()
     connect(&client, &Client::triggerSigninSlot, sign, &signin::closewindow);
     sign->show();
 }
+void form::showEvent(QShowEvent *event) {
+    QWidget::showEvent(event);
+    ui->lineEditEmail->setFocus();
+}
+
+bool form::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        QLineEdit *currentLineEdit = qobject_cast<QLineEdit*>(obj);
+
+        if (currentLineEdit) {
+            QList<QLineEdit*> lineEdits = {ui->lineEditEmail, ui->lineEditName, ui->lineEditPassword, ui->confirmpassword, ui->lineEditPhone, ui->invitationcode};
+            int index = lineEdits.indexOf(currentLineEdit);
+
+            if (keyEvent->key() == Qt::Key_Down) {
+                if (index < lineEdits.size() - 1) {
+                    lineEdits[index + 1]->setFocus();
+                    return true;
+                }
+            } else if (keyEvent->key() == Qt::Key_Up) {
+                if (index > 0) {
+                    lineEdits[index - 1]->setFocus();
+                    return true;
+                }
+            }
+        }
+    }
+    return QWidget::eventFilter(obj, event);
+}
+

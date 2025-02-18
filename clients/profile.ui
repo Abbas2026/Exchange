@@ -558,9 +558,9 @@ border:none;
     </property>
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>810</x>
       <y>240</y>
-      <width>181</width>
+      <width>201</width>
       <height>41</height>
      </rect>
     </property>

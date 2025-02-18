@@ -106,6 +106,7 @@ public:
 "    font-size: 14px;\n"
 "\n"
 ""));
+        lineEditEmail->setCursorPosition(0);
         lineEdit_2 = new QLineEdit(centralwidget);
         lineEdit_2->setObjectName("lineEdit_2");
         lineEdit_2->setEnabled(false);

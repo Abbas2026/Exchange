@@ -333,7 +333,7 @@ public:
         textEdit_username_value = new QTextEdit(widget);
         textEdit_username_value->setObjectName("textEdit_username_value");
         textEdit_username_value->setEnabled(false);
-        textEdit_username_value->setGeometry(QRect(830, 240, 181, 41));
+        textEdit_username_value->setGeometry(QRect(810, 240, 201, 41));
         textEdit_username_value->setStyleSheet(QString::fromUtf8("background-color: #10161f;\n"
 "font: 16pt \"Orienta\";\n"
 "color: #6f7988;\n"

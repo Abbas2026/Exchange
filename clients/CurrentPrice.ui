@@ -50,90 +50,6 @@
     <property name="styleSheet">
      <string notr="true">background-color: #040609;</string>
     </property>
-    <widget class="QLineEdit" name="coinInput">
-     <property name="geometry">
-      <rect>
-       <x>280</x>
-       <y>130</y>
-       <width>391</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #10161f;
-            color: white;
-            border-radius: 18px;
-            font-size: 16px;
-           border: none;  
-padding-left:20px;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>Enter coin ID</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="detailsButton">
-     <property name="geometry">
-      <rect>
-       <x>300</x>
-       <y>550</y>
-       <width>151</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">          background-color: #45aef5 ;
-            color: white;
-            border-radius: 10px;
-            font-size: 16px;
-           border: none;  </string>
-     </property>
-     <property name="text">
-      <string>Get coin details</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="resultDisplay">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>230</y>
-       <width>561</width>
-       <height>251</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #10161f;
-            color: white;
-            border-radius: 18px;
-            font-size: 16px;
-           border: none;  </string>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="priceButton">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>550</y>
-       <width>151</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">          background-color: #45aef5 ;
-            color: white;
-            border-radius: 10px;
-            font-size: 16px;
-           border: none;  </string>
-     </property>
-     <property name="text">
-      <string>Get coin Price</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
@@ -147,7 +63,7 @@ padding-left:20px;</string>
     <property name="styleSheet">
      <string notr="true">background-color:#d9d8d4  ;</string>
     </property>
-    <widget class="QPushButton" name="Mywallets_btn_2">
+    <widget class="QPushButton" name="Mywallets_btn">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -169,7 +85,7 @@ letter-spacing: 1px;</string>
       <string>My wallets</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Transmission_btn_2">
+    <widget class="QPushButton" name="Transmission_btn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -216,7 +132,7 @@ letter-spacing: 1px;</string>
       <number>-6</number>
      </property>
     </widget>
-    <widget class="QPushButton" name="Dashboard_btn_2">
+    <widget class="QPushButton" name="Dashboard_btn">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -239,7 +155,7 @@ color: rgb(0, 0, 0);
       <string>Dashboard</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Authentication_btn_2">
+    <widget class="QPushButton" name="Authentication_btn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -289,7 +205,7 @@ word-spacing: 3px;
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="Profile_btn_2">
+    <widget class="QPushButton" name="Profile_btn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -311,7 +227,7 @@ letter-spacing: 1px;</string>
       <string>Profile</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="currentprice_btn_2">
+    <widget class="QPushButton" name="currentprice_btn">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -335,7 +251,7 @@ color: #c97940;
       <string>Current price</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="deposit_btn_2">
+    <widget class="QPushButton" name="deposit_btn">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -357,7 +273,7 @@ letter-spacing: 1px;</string>
       <string>Deposit </string>
      </property>
     </widget>
-    <widget class="QPushButton" name="market_btn_2">
+    <widget class="QPushButton" name="market_btn">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -379,7 +295,7 @@ letter-spacing: 1px;</string>
       <string>market</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="withdrawal_btn_2">
+    <widget class="QPushButton" name="withdrawal_btn">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -401,7 +317,7 @@ letter-spacing: 1px;</string>
       <string> withdrawal</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="easyexchange_btn_2">
+    <widget class="QPushButton" name="easyexchange_btn">
      <property name="geometry">
       <rect>
        <x>40</x>

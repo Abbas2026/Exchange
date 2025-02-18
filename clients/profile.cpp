@@ -90,10 +90,10 @@ void profile::applyStyles()
 
     ui->textEdit_userlevel_value->setText("level  " + Client::user_level);
     ui->textEdit_email_value->setText( Client::globalEmail);
-    ui->textEdit_numberphone_value->setText("empty");
-    ui->textEdit_address_value->setText("empty");
-    ui->textEdit_firstname_value->setText("empty");
-    ui->textEdit_lastname_value->setText("empty");
+    // ui->textEdit_numberphone_value->setText("empty");
+    // ui->textEdit_address_value->setText("empty");
+    // ui->textEdit_firstname_value->setText("empty");
+    // ui->textEdit_lastname_value->setText("empty");
     ui->textEdit_30->setText("Change Password");
     captchaText = generateCaptcha(5);
     ui->captchaLabel->setPixmap(generateCaptchaImage(captchaText));
@@ -279,8 +279,7 @@ QPixmap profile::generateCaptchaImage(const QString &captchaText) {
         painter.setPen(color);
         int angle = QRandomGenerator::global()->bounded(-30, 30);
         painter.save();
-        painter.translate(xOffset + i * 40, yOffset + QRandomGenerator::global()->bounded(-10, 10));  // موقعیت یابی بهتر
-        painter.rotate(angle);
+        painter.translate(xOffset + i * 40, yOffset + QRandomGenerator::global()->bounded(-10, 10));
         painter.drawText(0, 0, QString(captchaText[i]));
         painter.restore();
     }

@@ -22,7 +22,6 @@ SOURCES += \
     profile.cpp \
     signin.cpp \
     walldetails.cpp \
-    coingeckoapi.cpp \
     CurrentPrice.cpp \
     withdrawal.cpp
 
@@ -39,7 +38,6 @@ HEADERS += \
     signin.h \
     styles.h \
     walldetails.h \
-    coingeckoapi.h \
     CurrentPrice.h \
     withdrawal.h
 
@@ -54,7 +52,6 @@ FORMS += \
     profile.ui \
     signin.ui \
     walldetails.ui \
-    coingeckoapi.ui \
     CurrentPrice.ui \
     withdrawal.ui \
     exchange.ui

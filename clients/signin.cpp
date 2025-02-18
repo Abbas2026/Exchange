@@ -19,7 +19,11 @@ signin::signin(QWidget *parent)
     ui->forgotbtnsend->setVisible(false);
 
 
+    QList<QLineEdit*> lineEdits = {ui->lineEditEmail_sign, ui->lineEditPassword_sign};
 
+    for (int i = 0; i < lineEdits.size() - 1; ++i) {
+        connect(lineEdits[i], &QLineEdit::returnPressed, this, [=]() { lineEdits[i + 1]->setFocus(); });
+    }
 }
 
 signin::~signin()
@@ -85,4 +89,7 @@ void signin::on_forgotbtnsend_clicked()
 void signin:: closewindow(){
     this->close();
 }
-
+void signin::showEvent(QShowEvent *event) {
+    QWidget::showEvent(event);
+    ui->lineEditEmail_sign->setFocus();
+}

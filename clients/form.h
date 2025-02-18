@@ -6,8 +6,10 @@
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
-class form;
+
+    class form;
 }
+
 QT_END_NAMESPACE
 class Client;
 class form : public QMainWindow
@@ -15,9 +17,11 @@ class form : public QMainWindow
     Q_OBJECT
 
 public:
-    form(QWidget *parent = nullptr);
 
-    ~form();        
+    form(QWidget *parent = nullptr);
+    ~form();
+    void showEvent(QShowEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event);
 
 signals:
 
@@ -32,9 +36,6 @@ public slots:
 private slots:
 
     void on_pushButton_clicked();
-
-
-
     void on_pushButton_gosignin_clicked();
 
 private:
@@ -42,4 +43,5 @@ private:
     Ui::form *ui;
     Client *client;
 };
+
 #endif

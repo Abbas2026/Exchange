@@ -10,6 +10,7 @@
 #include "CurrentPrice.h"
 #include "guid.h"
 #include "styles.h"
+#include "form.h"
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
@@ -17,7 +18,6 @@ dashboard::dashboard(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon());
 
-    connect(ui->backButton, &QPushButton::clicked, this, &dashboard::on_backButton_clicked);
     applyStyles();
 
 }
@@ -29,8 +29,9 @@ dashboard::~dashboard()
 
 void dashboard::on_backButton_clicked()
 {
-    emit backToFormRequested();
-    this->hide();
+    form *frm = new form();
+    frm->show();
+    this->close();
 }
 void dashboard::ServerResponse(const QString &response)
 {

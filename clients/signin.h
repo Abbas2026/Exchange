@@ -15,6 +15,8 @@ public:
 
     explicit signin(QWidget *parent = nullptr);
     ~signin();
+    void showEvent(QShowEvent *event);
+
 
 public slots :
 

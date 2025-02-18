@@ -45,16 +45,12 @@ void withdrawal::applyStyles()
 
     ui->lb_icon_toman->setPixmap(getTomanIcon(100, 100));
     ui->lb_icon_toman->setFixedSize(30, 30);
-
     ui->lb_icon_tether->setPixmap(getTetherIcon(100, 100));
     ui->lb_icon_tether->setFixedSize(30, 30);
-
     ui->lb_icon_bitcoin->setPixmap(getBitcoinIcon(100, 100));
     ui->lb_icon_bitcoin->setFixedSize(30, 30);
-
     ui->lb_icon_ethereum->setPixmap(getEthereumIcon(100, 100));
     ui->lb_icon_ethereum->setFixedSize(30, 30);
-
     ui->lb_icon_ton->setPixmap(getTonIcon(100, 100));
     ui->lb_icon_ton->setFixedSize(30, 30);
 
