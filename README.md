@@ -7,10 +7,16 @@ This project is a cryptocurrency management system built with Qt and C++, where 
 <a href="https://i.imgur.com/JGu2fa9.png">
     <img src="https://i.imgur.com/JGu2fa9.png" width="300">
 </a>
+<a href="https://i.imgur.com/ALoHEuM.png">
+    <img src="https://i.imgur.com/ALoHEuM.png" width="300">
+</a>
+<a href="https://i.imgur.com/THCmXUU.png">
+    <img src="https://i.imgur.com/THCmXUU.png" width="300">
+</a>
+<a href="https://i.imgur.com/HPvgkri.png">
+    <img src="https://i.imgur.com/HPvgkri.png" width="300">
+</a>
 
-![Screenshot](https://i.imgur.com/ALoHEuM.png)
-![Screenshot](https://i.imgur.com/THCmXUU.png)
-![Screenshot](https://i.imgur.com/HPvgkri.png)
 
 
 #Features:
