@@ -36,7 +36,7 @@ This project is a cryptocurrency management system built with Qt and C++, where 
 
  ## Developer:
 👤 **abbas khorsand**
-📧 Email: avavav060@gmail.com
+📧 Email: khorsandabbas265@gmail.com
 🔗 GitHub: (https://github.com/Abbas2026)
 
 ## How to Collaborate
