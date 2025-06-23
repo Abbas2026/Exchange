@@ -1,25 +1,14 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
-#include <QMessageBox>
-#include "mywallet.h"
-#include "client.h"
-#include "profile.h"
-#include "deposit.h"
-#include "withdrawal.h"
-#include "exchange.h"
-#include "CurrentPrice.h"
-#include "guid.h"
-#include "styles.h"
-#include "form.h"
+
 dashboard::dashboard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dashboard)
 {
     ui->setupUi(this);
+    ui->label->setPixmap(QPixmap(":/image/dashboard.png"));
     this->setWindowIcon(QIcon());
-
     applyStyles();
-
 }
 
 dashboard::~dashboard()
@@ -29,18 +18,23 @@ dashboard::~dashboard()
 
 void dashboard::on_backButton_clicked()
 {
+     extern Client client;
+    Client::warname=10;
     form *frm = new form();
-    frm->show();
-    this->close();
+    frm->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
+
 void dashboard::ServerResponse(const QString &response)
 {
     if (response.contains("error")) {
-        QMessageBox::warning(this, "warning", response);
-    } else {
+       styles::showWarning(this,response);
+    }
+    else {
         ui->textEdit->setText(response);
     }
 }
+
 void dashboard::applyStyles()
 {
     ui->Dashboard_btn->setStyleSheet(active_baseStyle);
@@ -53,6 +47,7 @@ void dashboard::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet(user_level_1);
     }
@@ -60,31 +55,30 @@ void dashboard::applyStyles()
 
 void dashboard::on_Mywallets_btn_clicked()
 {
-    this->close();
     mywallet *wallets = new mywallet();
     wallets->setAttribute(Qt::WA_DeleteOnClose);
     extern Client client;
     QObject::connect(&client, &Client::sendWalletToMywallet, wallets, &mywallet::addWalletToTable);
     Client::number_wallets=0;
     client.walletsdata(Client::globalEmail);
-    wallets->show();
+    wallets->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void dashboard::on_Profile_btn_clicked()
 {
     Client::x=1;
-
-    this->close();
     extern Client client;
     client.getuserprofile();
     profile *prof= new profile();
     connect(&client, &Client::sendusertoprofile, prof, &profile::receiveduserprofile);
     prof->setAttribute(Qt::WA_DeleteOnClose);
-    prof->show();
+    prof->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
     if(Client::warname==1){
-     prof->on_edit_information_btn_clicked();
-        QMessageBox::warning(this, "warning", "This username is already registered. Please choose another name");
-            Client::warname=0;
+    prof->on_edit_information_btn_clicked();
+    styles::showWarning(this, "This username is already registered. Please choose another name");
+     Client::warname=0;
     }
 }
 
@@ -97,26 +91,17 @@ void dashboard::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this, "you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
 
-    this->close();
     exchange *exch = new exchange();
     exch->setAttribute(Qt::WA_DeleteOnClose);
     extern Client client;
     QObject::connect(&client, &Client::sendsupplytootherfile, exch, &exchange::setsupply);
-
-    exch->show();
-
+    exch->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void dashboard::on_Transmission_btn_clicked()
@@ -126,22 +111,21 @@ void dashboard::on_Transmission_btn_clicked()
 
 void dashboard::on_currentprice_btn_clicked()
 {
-       this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void dashboard::on_Authentication_btn_clicked()
 {
-    this->close();
     extern Client client;
     client.getuserprofile();
     profile *prof= new profile();
     connect(&client, &Client::sendusertoprofile, prof, &profile::receiveduserprofile);
     prof->setAttribute(Qt::WA_DeleteOnClose);
-    prof->show();
+    prof->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
     prof->on_edit_information_btn_clicked();
 }
 
@@ -149,44 +133,22 @@ void dashboard::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
     this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
-    dep->show();
-    if(Client::warname==1){
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText("No wallet found with this address");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
-        Client::warname=0;
+    dep->showFullScreen();
 
+    if(Client::warname==1){
+        styles::showWarning(this,"No wallet found with this address");
+        Client::warname=0;
     }
     else if(Client::warname==2){
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        QPixmap checkmarkIcon("./checkmark.png");
-        msgBox.setIconPixmap(checkmarkIcon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setWindowTitle("successfull");
-        msgBox.setText("The deposit was made successfully");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showsuccessfull(this,"The deposit was made successfully");
         Client::warname=0;
-
     }
 }
 
@@ -194,76 +156,43 @@ void dashboard::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-
     this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
-    withdrl->show();
+    withdrl->showFullScreen();
 
         if(Client::warname==1){
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-        msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText("Words do not match!");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"Words do not match!");
         Client::warname=0;
         }
         else if(Client::warname==2){
-            QMessageBox msgBox(this);
-            msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-            QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-            msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            msgBox.setWindowTitle("Warning");
-            msgBox.setText("Wallet not found");
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.exec();
+            styles::showWarning(this,"Wallet not found");
             Client::warname=0;
         }
         else if(Client::warname==3){
-            QMessageBox msgBox(this);
-            msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-            QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
-            msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            msgBox.setWindowTitle("Warning");
-            msgBox.setText("There is not enough currency");
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.exec();
+            styles::showWarning(this,"There is not enough currency");
             Client::warname=0;
         }
         else if(Client::warname==4){
-            QMessageBox msgBox(this);
-            msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-
-            QPixmap checkmarkIcon("./checkmark.png");
-            msgBox.setIconPixmap(checkmarkIcon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            msgBox.setWindowTitle("successful");
-            msgBox.setText("The withdrawal was successful");
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.exec();
+            styles::showsuccessfull(this,"The withdrawal was successful");
             Client::warname=0;
         }
-
 }
 
 void dashboard::on_backButton_2_clicked()
 {
-    this->close();
     guid *gu = new guid();
     gu->setAttribute(Qt::WA_DeleteOnClose);
-    gu->show();
+    gu->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+}
+
+void dashboard::on_exit_btn_clicked()
+{
+    this->close();
 }
 

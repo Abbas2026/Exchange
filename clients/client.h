@@ -4,7 +4,17 @@
 #include <QObject>
 #include <QTcpSocket>
 #include "form.h"
-
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include "dashboard.h"
+#include <QMessageBox>
+#include "signin.h"
+#include "mywallet.h"
+#include "walldetails.h"
+#include <QtConcurrent>
+#include "priceupdater.h"
+#include "withdrawal.h"
 class Client : public QObject
 {
     Q_OBJECT
@@ -12,6 +22,7 @@ class Client : public QObject
 public:
 
     explicit Client(QObject *parent = nullptr);
+    ~Client();
     void connectToServer(const QString &host, quint16 port);
     void onConnected();
     void sendForgotPasswordRequest(const QString &email, const QString &username);
@@ -47,8 +58,6 @@ signals:
     void receivedMessage(const QString &message);
     void receivedMessagetodash(const QString &message);
     void receivedMessagetosign(const QString &message);
-    void registrationSuccessful();
-    void loginSuccessful();
     void triggerSigninSlot();
     void sendWalletToMywallet(const QString &name, const QString &address, double balance);
     void sendusertoprofile(const QString email,const QString name,const QString password,const QString phone,const QString address,const QString firstname,const QString lastname);

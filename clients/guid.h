@@ -2,6 +2,7 @@
 #define GUID_H
 
 #include <QWidget>
+#include "dashboard.h"
 
 namespace Ui {
 class guid;

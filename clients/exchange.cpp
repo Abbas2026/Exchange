@@ -1,20 +1,6 @@
 #include "exchange.h"
 #include "ui_exchange.h"
-#include <QSvgRenderer>
-#include <QPixmap>
-#include <QPainter>
-#include <QLabel>
-#include <QRadioButton>
-#include <QButtonGroup>
-#include "dashboard.h"
-#include <QMessageBox>
-#include "client.h"
-#include "withdrawal.h"
-#include "deposit.h"
-#include "priceupdater.h"
-#include <QRegularExpression>
-#include "CurrentPrice.h"
-#include "styles.h"
+
 
 exchange::exchange(QWidget *parent)
     : QWidget(parent)
@@ -28,9 +14,10 @@ exchange::~exchange()
 {
     delete ui;
 }
+
 void exchange::applyStyles()
 {
-
+    ui->easyexchange_btn->setStyleSheet(active_baseStyle);
     ui->Mywallets_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -40,6 +27,7 @@ void exchange::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet(user_level_1);
     }
@@ -89,9 +77,6 @@ void exchange::applyStyles()
     ui->radioeth->setStyleSheet(ui->radiobtc->styleSheet());
     ui->radiotrx->setStyleSheet(ui->radiobtc->styleSheet());
     ui->radiousdt->setStyleSheet(ui->radiobtc->styleSheet());
-
-
-
 
     ui->lb_icon_toman_2->setPixmap(getTomanIcon(100, 100));
     ui->lb_icon_toman_2->setFixedSize(30, 30);
@@ -176,9 +161,7 @@ void exchange::applyStyles()
         }
     });
     ui->widget_4->hide();
-
 }
-
 
 void exchange::on_radiobtc_clicked()
 {
@@ -230,85 +213,65 @@ void exchange::on_radiousdt_2_clicked()
     ui->coin_to->setText("USDT");
 }
 
-
 void exchange::on_Dashboard_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
-    da->show();
+    da->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void exchange::on_Mywallets_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Mywallets_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void exchange::on_Profile_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Profile_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void exchange::on_Authentication_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Authentication_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void exchange::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
-    dep->show();
+    dep->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void exchange::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
-    withdrl->show();
+    withdrl->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
-
 
 void exchange::on_exchange_btn_clicked()
 {
@@ -317,15 +280,13 @@ void exchange::on_exchange_btn_clicked()
     QString address=ui->wallet_address_name->text();
 
     if(coinfrom.isEmpty() || cointo.isEmpty()){
-        QMessageBox::warning(this, "error", "First, select the currency you want to exchange");
+        styles::showWarning(this,"First select the currency you want to exchange");
         return;
     }
     if(address.isEmpty()){
-        QMessageBox::warning(this, "error", "Please enter all values");
+        styles::showWarning(this,"Please enter all values");
         return;
     }
-
-
     if(coinfrom=="BTC"){
         coinfrom="Bitcoin";
     }
@@ -341,7 +302,6 @@ void exchange::on_exchange_btn_clicked()
     else if(coinfrom=="USDT"){
         coinfrom="Tether";
     }
-
     if(cointo=="BTC"){
         cointo="Bitcoin";
     }
@@ -360,18 +320,13 @@ void exchange::on_exchange_btn_clicked()
     ui->coin_from_2->setText(coinfrom);
     ui->coin_to_2->setText(cointo);
     ui->wallet_address_name_2->setText(address);
-    //ui->widget_3->hide();
 
     extern Client client;
     client.getsupplyfromserver(address);
 }
 
-
-
 void exchange::setsupply(const QMap<QString, double>& walletCurrencies){
     ui->widget_4->show();
-
-    qDebug() << "Processing wallet currencies:";
     QString coinfrom=ui->coin_from_2->toPlainText();
     if(coinfrom=="BTC"){
         coinfrom="Bitcoin";
@@ -402,7 +357,7 @@ void exchange::on_send_exchange_clicked()
     QString amounth=ui->coin_amounth_number->text();
 
     if (!amounth.toDouble()) {
-        QMessageBox::warning(this, "erre", "The input is invalid! Please enter a number");
+        styles::showWarning(this,"The input is invalid! Please enter a number");
         return;
     }
     QString supply=ui->supply->toPlainText();
@@ -410,14 +365,13 @@ void exchange::on_send_exchange_clicked()
     double supplyValue = supply.toDouble();
 
     if (amountValue > supplyValue) {
-        QMessageBox::warning(this, "erre", "The amount you entered is greater than the currency supply.");
+        styles::showWarning(this,"The amount you entered is greater than the currency supply");
         return;
     }
     double amounthDouble = amounth.toDouble();
     double price1, price2;
     QString coinfrom=ui->coin_from_2->toPlainText();
     QString cointo=ui->coin_to_2->toPlainText();
-    qDebug()<<"ff"<<coinfrom<<cointo;
     if(coinfrom=="Bitcoin"){
         price1=PriceUpdater::bitcoinToTether;
     }
@@ -433,8 +387,6 @@ void exchange::on_send_exchange_clicked()
     else if(coinfrom=="Tether"){
         price1=PriceUpdater::TetherToTether;
     }
-
-
     if(cointo=="Bitcoin"){
         price2=PriceUpdater::bitcoinToTether;
     }
@@ -450,8 +402,6 @@ void exchange::on_send_exchange_clicked()
     else if(cointo=="Tether"){
         price2=PriceUpdater::TetherToTether;
     }
-    qDebug() <<"2dd"<<price1<<price2<<amounthDouble;
-
     if (price1 > 0 && price2 > 0) {
         double tax = amounthDouble * (price1 / price2) * 0.02;
         double amount2 = amounthDouble * (price1 / price2) - tax;
@@ -464,27 +414,29 @@ void exchange::on_send_exchange_clicked()
 
         client.exchangeCoins(coinfrom, cointo, amounth, result, address);
         qDebug() << "Converted amount in " << cointo << ": " << result;
-        this->hide();
+        QTimer::singleShot(1000, this, [this]() {this->hide();});
         dashboard *da = new dashboard();
         da->setAttribute(Qt::WA_DeleteOnClose);
         da->on_easyexchange_btn_clicked();
         QMessageBox::warning(this, "Successfully", "Successfully completed.");
-
-
     }
-
     else {
         qDebug() << "Error: Invalid price for the selected currencies.";
     }
 
 }
 
-
 void exchange::on_currentprice_btn_clicked()
 {
-    this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+}
+
+
+void exchange::on_exit_btn_clicked()
+{
+    this->close();
 }
 

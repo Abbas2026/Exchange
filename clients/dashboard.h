@@ -2,6 +2,17 @@
 #define DASHBOARD_H
 
 #include <QWidget>
+#include <QMessageBox>
+#include "mywallet.h"
+#include "client.h"
+#include "profile.h"
+#include "deposit.h"
+#include "withdrawal.h"
+#include "exchange.h"
+#include "CurrentPrice.h"
+#include "guid.h"
+#include "styles.h"
+#include "form.h"
 
 namespace Ui {
 class dashboard;
@@ -41,6 +52,7 @@ public slots :
 private slots:
 
     void on_backButton_2_clicked();
+    void on_exit_btn_clicked();
 };
 
 #endif

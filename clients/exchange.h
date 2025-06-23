@@ -2,7 +2,21 @@
 #define EXCHANGE_H
 
 #include <QWidget>
-
+#include <QSvgRenderer>
+#include <QPixmap>
+#include <QPainter>
+#include <QLabel>
+#include <QRadioButton>
+#include <QButtonGroup>
+#include "dashboard.h"
+#include <QMessageBox>
+#include "client.h"
+#include "withdrawal.h"
+#include "deposit.h"
+#include "priceupdater.h"
+#include <QRegularExpression>
+#include "CurrentPrice.h"
+#include "styles.h"
 namespace Ui {
 class exchange;
 }
@@ -46,6 +60,7 @@ private slots:
     void on_withdrawal_btn_clicked();
     void on_send_exchange_clicked();
     void on_currentprice_btn_clicked();
+    void on_exit_btn_clicked();
 };
 
 #endif

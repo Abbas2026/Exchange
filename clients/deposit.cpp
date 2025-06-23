@@ -1,17 +1,5 @@
 #include "deposit.h"
 #include "ui_deposit.h"
-#include <QSvgRenderer>
-#include <QPixmap>
-#include <QPainter>
-#include <QLabel>
-#include <QRadioButton>
-#include <QButtonGroup>
-#include "dashboard.h"
-#include <QMessageBox>
-#include "client.h"
-#include "withdrawal.h"
-#include "CurrentPrice.h"
-#include "styles.h"
 
 deposit::deposit(QWidget *parent)
     : QWidget(parent)
@@ -25,9 +13,10 @@ deposit::~deposit()
 {
     delete ui;
 }
+
 void deposit::applyStyles()
 {
-
+    ui->deposit_btn->setStyleSheet(active_baseStyle);
     ui->Mywallets_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -37,6 +26,7 @@ void deposit::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet(user_level_1);
     }
@@ -107,26 +97,27 @@ void deposit::on_radiousdt_clicked()
 
 void deposit::on_Dashboard_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
-    da->show();
+    da->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+
 }
 
 void deposit::on_Mywallets_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Mywallets_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void deposit::on_Profile_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Profile_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void deposit::on_save_wallet_btn_clicked()
@@ -137,23 +128,21 @@ void deposit::on_save_wallet_btn_clicked()
     QString password=ui->password_creator->text();
 
     if(coin.isEmpty()){
-        QMessageBox::warning(this, "error", "First, select the currency you want to deposit");
+        styles::showWarning(this,"First, select the currency you want to deposit");
         return;
     }
     if(amounth.isEmpty()||address.isEmpty()||password.isEmpty()){
-         QMessageBox::warning(this, "error", "Please enter all values");
+        styles::showWarning(this,"Please enter all values");
         return;
     }
     if(password!=Client::password_creator){
-        QMessageBox::warning(this, "error", "Password is wrong");
+        styles::showWarning(this,"Password is wrong");
         return;
     }
     if (!amounth.toDouble()) {
-        QMessageBox::warning(this, "error", "The input is invalid! Please enter a number.");
+        styles::showWarning(this,"The input is invalid! Please enter a number");
         return;
     }
-
-
     if(coin=="BTC"){
         coin="Bitcoin";
     }
@@ -171,44 +160,42 @@ void deposit::on_save_wallet_btn_clicked()
     }
     extern Client client;
     client.depositcheckserver(coin,address,amounth);
-    this->hide();
+    QTimer::singleShot(1000, this, [this]() {this->hide();});
 }
-
 
 void deposit::on_withdrawal_btn_clicked()
 {
-    this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
-    withdrl->show();
-}
+    withdrl->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 
+}
 
 void deposit::on_Authentication_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Authentication_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void deposit::on_easyexchange_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_easyexchange_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void deposit::on_currentprice_btn_clicked()
 {
-    this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
+
 void deposit::setaddress(const QString &coinname){
     ui->wallet_address_name->setText(Client::walletactive);
     if(coinname=="Bitcoin"){
@@ -232,3 +219,9 @@ void deposit::setaddress(const QString &coinname){
         ui->radiousdt->setChecked(true);
     }
 }
+
+void deposit::on_exit_btn_clicked()
+{
+    this->close();
+}
+

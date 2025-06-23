@@ -53,8 +53,9 @@ private:
     void buycoin(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket);
     void sellcoin(const QString &email, const QString &coin, const QString &addresswal, const QString &amounth, QTcpSocket *clientSocket);
     void exchangeCoins(const QString &email, const QString &coin1, const QString &coin2, const QString &addresswal, const QString &amount1, const QString &amount2, QTcpSocket *clientSocket);
-    void saveCredentials4(const QString &email, const QString &password, const QString &name, const QString &phone);
-
+    void saveProfileToFile2(const QString &email, const QString &password, const QString &name,
+                           const QString &phone, const QString &address, const QString &firstname,
+                           const QString &lastname, const QString &user_level);
 };
 
 #endif

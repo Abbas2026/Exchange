@@ -1,28 +1,6 @@
 #include "mywallet.h"
 #include "ui_mywallet.h"
-#include <QPushButton>
-#include <QTableWidgetItem>
-#include <QClipboard>
-#include <QTableWidget>
-#include "dashboard.h"
-#include <QMessageBox>
-#include <qfile.h>
-#include <QTime>
-#include <QtGlobal>
-#include <string>
-#include <random>
-#include <QDebug>
-#include "client.h"
-#include "form.h"
-#include <QIcon>
-#include "walldetails.h"
-#include "client.h"
-#include "priceupdater.h"
-#include "profile.h"
-#include "deposit.h"
-#include "withdrawal.h"
-#include "CurrentPrice.h"
-#include "styles.h"
+
 
 mywallet::mywallet(QWidget *parent)
     : QWidget(parent)
@@ -37,9 +15,10 @@ mywallet::~mywallet()
 {
     delete ui;
 }
+
 void mywallet::applyStyles()
 {
-
+    ui->Mywallets_btn->setStyleSheet(active_baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -49,6 +28,7 @@ void mywallet::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet(user_level_1);
     }
@@ -57,6 +37,7 @@ void mywallet::applyStyles()
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(50);
 }
+
 void mywallet::populateTable()
 {
     ui->tableWidget->setRowCount(0);
@@ -73,6 +54,7 @@ void mywallet::populateTable()
     ui->textEdit_24->setText("Name your wallet to easily identify it while using the wallets.");
 
 }
+
 void mywallet::addtotable(const QString &name1, const QString &address1, double balance1) {
     int rowCount = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(rowCount);
@@ -111,7 +93,9 @@ void mywallet::addtotable(const QString &name1, const QString &address1, double 
 
 
 }
+
 void mywallet::on_creatwallet_btn_clicked() {
+
     if(Client::number_wallets==1 &&Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
          QMessageBox::warning(this, "warning", "To create a wallet, you must first authenticate yourself");
@@ -119,6 +103,7 @@ void mywallet::on_creatwallet_btn_clicked() {
         return;
     }
     QStringList words;
+
     QFile file("words.txt");
     if (file.open(QIODevice::ReadOnly)) {
         while (!file.atEnd()) {
@@ -138,6 +123,7 @@ void mywallet::on_creatwallet_btn_clicked() {
             selectedWords.append(words[randomIndex]);
         }
     }
+
     ui->textEdit_rand1->setText(selectedWords[0]);
     ui->textEdit_rand2->setText(selectedWords[1]);
     ui->textEdit_rand3->setText(selectedWords[2]);
@@ -145,9 +131,10 @@ void mywallet::on_creatwallet_btn_clicked() {
     ui->textEdit_rand5->setText(selectedWords[4]);
     ui->textEdit_rand6->setText(selectedWords[5]);
 
-
+    ui->widget_4->hide();
     ui->createwallet_widget->show();
 }
+
 void mywallet::processRowData(const QString &name, const QString &address, double balance) {
 
     QString savedName = name;
@@ -155,29 +142,29 @@ void mywallet::processRowData(const QString &name, const QString &address, doubl
     double savedBalance = balance;
     Client::walletactive=address;
     PriceUpdater::balancetotether=0;
-    this->close();
     Walldetails *details = new Walldetails();
     details->setAttribute(Qt::WA_DeleteOnClose);
     extern Client client;
     client.Walletassets(Client::globalEmail,savedName);
-    details->show();
+    details->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
     QObject::connect(&client, &Client::sendinventorytowalletdetails, details, &Walldetails::addcointotable);
-
 }
+
 void mywallet::on_continue_btn_clicked()
 {
     ui->createwallet_widget->hide();
     ui->createwallet_widget_2->show();
      ui->namewallet_lineedit->setFocus();
-
-    extern Client client;
-
 }
+
 void mywallet::on_save_wallet_btn_clicked()
 {
     QString name=  ui->namewallet_lineedit->text();
 
-    if(name.isEmpty()){ QMessageBox::warning(this, "warning", "Choose a name for the wallet.");return;}
+    if(name.isEmpty()){
+        styles::showWarning(this,"Choose a name for the wallet");
+        return;}
 
     QList<QString> selectedWords;
 
@@ -205,34 +192,37 @@ void mywallet::on_save_wallet_btn_clicked()
     qDebug()<<address;
     sendWalletToServer(selectedWords,name,address);
 }
+
 void mywallet::sendWalletToServer(const QStringList &words,const QString namewallet, const QString addresswallet)
 {
     extern Client client;
     QString name=namewallet;
     QString address= addresswallet;
-    qDebug()<<"323"<< name;
         client.sendWallet(words,name,address);
     this->hide();
-
 }
+
 void mywallet::on_backtowords_btn_clicked()
 {
     ui->createwallet_widget_2->hide();
     ui->createwallet_widget->show();
-
-
-
 }
+
 void mywallet::on_close_btn_clicked()
 {
     ui->createwallet_widget_2->close();
     ui->createwallet_widget->close();
+    ui->widget_4->show();
+
 }
+
 void mywallet::on_close_btn_2_clicked()
 {
     ui->createwallet_widget_2->close();
     ui->createwallet_widget->close();
+    ui->widget_4->show();
 }
+
 void mywallet::on_tableWidget_cellClicked(int row, int column)
 {
     if (column == 1) {
@@ -241,102 +231,88 @@ void mywallet::on_tableWidget_cellClicked(int row, int column)
         clipboard->setText(text);
     }
 }
+
 void mywallet::addWalletToTable(const QString &name, const QString &address, double balance) {
     addtotable(name, address, balance);
 }
+
 void mywallet::on_Dashboard_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
-    da->show();
+    da->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+
 }
 
 void mywallet::on_Profile_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Profile_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void mywallet::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
-    dep->show();
+    dep->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void mywallet::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
-    withdrl->show();
-}
+    withdrl->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 
+}
 
 void mywallet::on_Authentication_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Authentication_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void mywallet::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_easyexchange_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void mywallet::on_currentprice_btn_clicked()
 {
-    this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+}
+
+void mywallet::on_exit_btn_clicked()
+{
+    this->close();
 }
 

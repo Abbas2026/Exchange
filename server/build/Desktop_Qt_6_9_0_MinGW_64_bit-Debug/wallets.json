@@ -1,0 +1,68 @@
+{
+    "wallets": {
+        "avavav060@gmail.com": [
+            {
+                "address": "3mht399hq5jqktxvqusb9wycv",
+                "walletName": "abbas",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "elephant"
+                    },
+                    {
+                        "index": 2,
+                        "word": "illusion"
+                    },
+                    {
+                        "index": 3,
+                        "word": "whale"
+                    },
+                    {
+                        "index": 4,
+                        "word": "cherry"
+                    },
+                    {
+                        "index": 5,
+                        "word": "nest"
+                    },
+                    {
+                        "index": 6,
+                        "word": "vase"
+                    }
+                ]
+            }
+        ],
+        "avavav069@gmail.com": [
+            {
+                "address": "43snx2hzyj9agd4brbokvglkx",
+                "walletName": "abbas",
+                "words": [
+                    {
+                        "index": 1,
+                        "word": "dolphin"
+                    },
+                    {
+                        "index": 2,
+                        "word": "rocket"
+                    },
+                    {
+                        "index": 3,
+                        "word": "water"
+                    },
+                    {
+                        "index": 4,
+                        "word": "jar"
+                    },
+                    {
+                        "index": 5,
+                        "word": "kangaroo"
+                    },
+                    {
+                        "index": 6,
+                        "word": "treasure"
+                    }
+                ]
+            }
+        ]
+    }
+}

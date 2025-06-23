@@ -1,16 +1,5 @@
 #include "client.h"
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-#include "form.h"
-#include "dashboard.h"
-#include <QMessageBox>
-#include "signin.h"
-#include "mywallet.h"
-#include "walldetails.h"
-#include <QtConcurrent>
-#include "priceupdater.h"
-#include "withdrawal.h"
+
 
 int Client::bb=0;
 int Client::x=0;
@@ -33,6 +22,11 @@ Client::Client(QObject *parent) : QObject(parent)
 
     connect(socket, &QTcpSocket::readyRead, this, &Client::readServerResponse);
 }
+Client::~Client()
+{
+    qDebug() << "socket deleted";
+    delete socket;
+}
 void Client::connectToServer(const QString &host, quint16 port)
 {
     connect(socket, &QTcpSocket::connected, this, &Client::onConnected);
@@ -52,6 +46,8 @@ void Client::sendMessage(const QString &message)
 void Client::sendCredentials(const QString &email, const QString &password, const QString &name, const QString &phone)
 {
     if (socket->state() == QTcpSocket::ConnectedState) {
+        qDebug() << "Registration send to server";
+
         QJsonObject json;
         json["type"] = "signup";
         json["email"] = email;
@@ -61,6 +57,10 @@ void Client::sendCredentials(const QString &email, const QString &password, cons
         QJsonDocument doc(json);
         QByteArray data = doc.toJson();
         socket->write(data);
+    }
+    else{
+        qDebug() << "disconected";
+
     }
 }
 void Client::sendservertologin(const QString &email, const QString &password)
@@ -165,7 +165,9 @@ void Client::processResponse(const QByteArray& message) {
                 Client::warname=0;
                 dashboard *da = new dashboard();
                 da->setAttribute(Qt::WA_DeleteOnClose);
-                da->show();
+                da->showFullScreen();
+                extern Client client;
+                connect(&client, &Client::receivedMessagetodash, da, &dashboard::ServerResponse);
                 return;
                 }
             emit sendusertoprofile(email,name,password,phone,address,firstname,lastname);
@@ -372,27 +374,39 @@ void Client::processResponse(const QByteArray& message) {
     }
 }
 void Client::processSimpleResponse(const QString& responseStr) {
+    extern Client client;
     if (responseStr == "ready") {
         qDebug() << "Registration successful!";
-        emit registrationSuccessful();
-    } else if (responseStr == "This username is already registered") {
+        Client::warname=10;
+        client.getuserprofile();
+    } else if (responseStr == "repeatuser") {
+        qDebug() <<"This username is already registered";
+
+        form *frm = new form();
+        frm->showFullScreen();
         emit receivedMessage("error: This username is already registered. Please choose another name");
-    } else if (responseStr == "Login successful") {
+    }
+    else if (responseStr == "repeatemail") {
+        qDebug() <<"This email has already been registered";
+        form *frm = new form();
+        frm->showFullScreen();
+        emit receivedMessage("error: This email is already registered. Please choose another email");
+    }
+    else if (responseStr == "Login successful") {
         qDebug() << "Login successful";
         emit triggerSigninSlot();
-        emit loginSuccessful();        
+        Client::warname=10;
+        client.getuserprofile();
     } else if (responseStr == "Password forgotten confirmed") {
         qDebug() << "Password forgotten confirmed";
         emit triggerSigninSlot();
-        emit loginSuccessful();
+        Client::warname=10;
+        client.getuserprofile();
     } else {
         qDebug() << "Unknown response: " << responseStr;
         emit receivedMessagetosign(responseStr);
     }
 }
-
-
-
 
 void Client::sendForgotPasswordRequest(const QString &email, const QString &username)
 {
@@ -424,7 +438,6 @@ void Client::sendWallet(const QStringList &words, const QString &name , const QS
             wordObj["word"] = words[i];
             jsonWords.append(wordObj);
         }
-
         json["words"] = jsonWords;
 
         QJsonDocument doc(json);
@@ -475,8 +488,9 @@ void Client::getuserprofile(){
         QJsonObject json;
         json["type"] = "userprofile";
         json["email"] = Client::globalEmail;
+
         QJsonDocument doc(json);
-        socket->write(doc.toJson());
+            socket->write(doc.toJson());
     } else {
         qDebug() << "Socket is not connected.";
     }
@@ -560,7 +574,6 @@ void Client::getsupplyfromserver(QString &address){
 void Client::buycoin(const QString &coin, const QString &amounth, const QString &address){
     if (socket->state() == QTcpSocket::ConnectedState) {
         QJsonObject json;
-        qDebug()<<"ddd";
         json["type"] = "buycoin";
         json["email"] = Client::globalEmail;
         json["address"] = address;

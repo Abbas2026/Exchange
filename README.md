@@ -1,23 +1,7 @@
-#Cryptocurrency Exchange System
+# AP Project - Cryptocurrency Exchange System
 
 #Project introduction:
 This project is a cryptocurrency management system built with Qt and C++, where users can buy and sell cryptocurrencies.
-
-#Program environment:
-
-<a href="https://i.imgur.com/JGu2fa9.png">
-    <img src="https://i.imgur.com/JGu2fa9.png" width="300">
-</a>
-<a href="https://i.imgur.com/ALoHEuM.png">
-    <img src="https://i.imgur.com/ALoHEuM.png" width="300">
-</a>
-<a href="https://i.imgur.com/THCmXUU.png">
-    <img src="https://i.imgur.com/THCmXUU.png" width="300">
-</a>
-<a href="https://i.imgur.com/HPvgkri.png">
-    <img src="https://i.imgur.com/HPvgkri.png" width="300">
-</a>
-
 
 #Features:
 ✔️ User authentication with secure password storage (SHA-256)
@@ -34,10 +18,13 @@ This project is a cryptocurrency management system built with Qt and C++, where 
  ┣ 📂 images/
  ┣ 📂 fonts/
 
- ## Developer:
-👤 **abbas khorsand**
-📧 Email: khorsandabbas265@gmail.com
+ ## Developers:
+👤 **abbas khorsand** - Lead Developer
+📧 Email: avavav060@gmail.com
 🔗 GitHub: (https://github.com/Abbas2026)
+
+👤 *SinaMohammadi002*
+👤 Amirnajafi83
 
 ## How to Collaborate
 1. Fork the project.

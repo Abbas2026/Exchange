@@ -2,6 +2,23 @@
 #define PROFILE_H
 
 #include <QWidget>
+#include <QSvgRenderer>
+#include <QPixmap>
+#include <QPainter>
+#include <QLabel>
+#include "client.h"
+#include <QDebug>
+#include "dashboard.h"
+#include "mywallet.h"
+#include <QMessageBox>
+#include <QRegularExpression>
+#include "deposit.h"
+#include <QRandomGenerator>
+#include <QPixmap>
+#include <QPainter>
+#include "withdrawal.h"
+#include "CurrentPrice.h"
+#include "styles.h"
 
 namespace Ui {
 class profile;
@@ -41,6 +58,8 @@ private slots:
     void on_Authentication_btn_clicked();
     void on_easyexchange_btn_clicked();
     void on_currentprice_btn_clicked();
+
+    void on_exit_btn_clicked();
 
 private:
 

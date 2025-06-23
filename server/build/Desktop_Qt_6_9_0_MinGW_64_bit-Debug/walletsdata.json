@@ -1,0 +1,32 @@
+{
+    "avavav060@gmail.com": {
+        "wallets": [
+            {
+                "address": "3mht399hq5jqktxvqusb9wycv",
+                "currencies": {
+                    "Bitcoin": 0,
+                    "Ethereum": 0,
+                    "Tether": 0,
+                    "Toman": 0,
+                    "Tron": 0
+                },
+                "name": "abbas"
+            }
+        ]
+    },
+    "avavav069@gmail.com": {
+        "wallets": [
+            {
+                "address": "43snx2hzyj9agd4brbokvglkx",
+                "currencies": {
+                    "Bitcoin": 10,
+                    "Ethereum": 2,
+                    "Tether": 10,
+                    "Toman": 10000000,
+                    "Tron": 101
+                },
+                "name": "abbas"
+            }
+        ]
+    }
+}

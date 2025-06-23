@@ -6,42 +6,43 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>1920</width>
+    <height>1080</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>1920</width>
+    <height>1080</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>1920</width>
+    <height>1080</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>HELIACAL EXCHANGE</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:#0A0C0E  ;</string>
+   <string notr="true">background-color: #10161f;
+color: white;</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>80</y>
-     <width>471</width>
-     <height>461</height>
+     <y>60</y>
+     <width>881</width>
+     <height>701</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>image/Jowhareh_galleries_8_poster_7cf4646d-dfc0-4736-9780-c4c43bb850eb.jpeg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -50,9 +51,9 @@
   <widget class="QPushButton" name="pushButton_gosignin">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>130</y>
-     <width>61</width>
+     <x>1290</x>
+     <y>120</y>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
@@ -60,11 +61,11 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">          background-color: #BF360C;
-            color: white;
+    <string notr="true">            color: white;
             border-radius: 10px;
             font-size: 16px;
-           border: none;  </string>
+           border: none;  
+background-color: rgb(0, 170, 0);</string>
    </property>
    <property name="text">
     <string>Sign up</string>
@@ -73,8 +74,8 @@
   <widget class="QPushButton" name="forgot_password">
    <property name="geometry">
     <rect>
-     <x>710</x>
-     <y>300</y>
+     <x>1090</x>
+     <y>330</y>
      <width>231</width>
      <height>31</height>
     </rect>
@@ -98,19 +99,24 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>430</y>
-     <width>51</width>
-     <height>20</height>
+     <x>1010</x>
+     <y>470</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    font-size: 16px;
-    font-weight: bold;
+    <string notr="true">font-size: 16px;
+font-weight: bold;
+background-color:#1d2633;
+color: white;
+border-radius: 22px; 
+padding: 0px 12px; 
+
 </string>
    </property>
    <property name="text">
-    <string>email :</string>
+    <string>        Email :</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_email_sign">
@@ -119,81 +125,64 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>200</y>
-     <width>51</width>
-     <height>20</height>
+     <x>1010</x>
+     <y>170</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    font-size: 16px;
-    font-weight: bold;
+    <string notr="true">font-size: 16px;
+font-weight: bold;
+background-color:#1d2633;
+color: white;
+border-radius: 22px; 
+padding: 0px 12px; 
+
 </string>
    </property>
    <property name="text">
-    <string>email :</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>770</x>
-     <y>50</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">            color: white;
-            border-radius: 10px;
-            font-size: 26px;
-           border: none;  </string>
-   </property>
-   <property name="text">
-    <string>Sign in</string>
+    <string>        Email :</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>130</y>
-     <width>311</width>
+     <x>970</x>
+     <y>120</y>
+     <width>321</width>
      <height>28</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
 color: rgb(255, 255, 255);
+    font-size: 18px;
 
-
-    font-size: 16px;
-    font-weight: bold;
 </string>
    </property>
    <property name="text">
     <string>Don't have an account? Create one now</string>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEditEmail_sign_2">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>420</y>
-     <width>211</width>
-     <height>41</height>
+     <x>1100</x>
+     <y>470</y>
+     <width>301</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    border-radius: 8px; 
-    padding: 0px 12px; 
-	background-color: #48b099;
-	color: rgb(0, 0, 0);
-    font-size: 14px;
-
+    <string notr="true">border-radius: 22px; 
+   padding-left:60px; 
+background-color:#1d2633;
+color: rgb(255, 255, 255);
+font-size: 14px;
 
 </string>
    </property>
@@ -204,18 +193,18 @@ color: rgb(255, 255, 255);
   <widget class="QLineEdit" name="lineEditName_sign">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>480</y>
-     <width>211</width>
-     <height>41</height>
+     <x>1100</x>
+     <y>550</y>
+     <width>301</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    border-radius: 8px; 
-    padding: 0px 12px; 
-background-color:#48b099;
-color: rgb(0, 0, 0);
-    font-size: 14px;
+    <string notr="true">border-radius: 22px; 
+   padding-left:60px; 
+background-color:#1d2633;
+color: rgb(255, 255, 255);
+font-size: 14px;
 
 </string>
    </property>
@@ -226,21 +215,21 @@ color: rgb(0, 0, 0);
    </property>
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>340</y>
-     <width>161</width>
-     <height>41</height>
+     <x>1100</x>
+     <y>390</y>
+     <width>211</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">          background-color: #27AE60 ;
-            color: white;
+    <string notr="true">            color: white;
             border-radius: 10px;
             font-size: 16px;
-           border: none;  </string>
+           border: none;  
+background-color: rgb(85, 170, 255);</string>
    </property>
    <property name="text">
     <string>login</string>
@@ -249,20 +238,21 @@ color: rgb(0, 0, 0);
   <widget class="QLineEdit" name="lineEditPassword_sign">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>1100</x>
      <y>250</y>
-     <width>211</width>
-     <height>41</height>
+     <width>301</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    border-radius: 8px; 
-    padding: 0px 12px; 
-    background-color: #48b099  ; 
+    <string notr="true">border-radius: 22px; 
+   padding-left:60px; 
+background-color:#1d2633;
 color: rgb(255, 255, 255);
-    font-size: 14px;
-
-</string>
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>Abbas1383</string>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::EchoMode::Password</enum>
@@ -274,21 +264,21 @@ color: rgb(255, 255, 255);
    </property>
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>540</y>
-     <width>161</width>
-     <height>41</height>
+     <x>1100</x>
+     <y>630</y>
+     <width>211</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">			background-color: #102723;
-            color: white;
+    <string notr="true">            color: white;
             border-radius: 10px;
             font-size: 16px;
-           border: none;  </string>
+           border: none;  
+background-color: rgb(20, 102, 255);</string>
    </property>
    <property name="text">
     <string>login</string>
@@ -297,20 +287,21 @@ color: rgb(255, 255, 255);
   <widget class="QLineEdit" name="lineEditEmail_sign">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>190</y>
-     <width>211</width>
-     <height>41</height>
+     <x>1100</x>
+     <y>170</y>
+     <width>301</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    border-radius: 8px; 
-    padding: 0px 12px; 
-    background-color: #48b099   ; 
+    <string notr="true">border-radius: 22px; 
+   padding-left:60px; 
+background-color:#1d2633;
 color: rgb(255, 255, 255);
-    font-size: 14px;
-
-</string>
+font-size: 14px;</string>
+   </property>
+   <property name="text">
+    <string>avavav069@gmail.com</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_password_sign">
@@ -319,19 +310,24 @@ color: rgb(255, 255, 255);
    </property>
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>260</y>
-     <width>81</width>
-     <height>20</height>
+     <x>1010</x>
+     <y>250</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    font-size: 16px;
-    font-weight: bold;
+    <string notr="true">font-size: 16px;
+font-weight: bold;
+background-color:#1d2633;
+color: white;
+border-radius: 22px; 
+padding: 0px 12px; 
+
 </string>
    </property>
    <property name="text">
-    <string>password :</string>
+    <string> Password :</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_name_sign">
@@ -340,22 +336,106 @@ color: rgb(255, 255, 255);
    </property>
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>490</y>
-     <width>91</width>
-     <height>20</height>
+     <x>1010</x>
+     <y>550</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    font-size: 16px;
-    font-weight: bold;
+    <string notr="true">font-size: 16px;
+font-weight: bold;
+background-color:#1d2633;
+color: white;
+border-radius: 22px; 
+padding: 0px 12px; 
+
 </string>
    </property>
    <property name="text">
-    <string>user name :  </string>
+    <string>User Name :  </string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="lineEdit_3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>30</y>
+     <width>111</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">            color: white;
+            font-size: 36px;
+           border: none;  </string>
+   </property>
+   <property name="text">
+    <string>Sign in</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exit_btn">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>790</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+           border: none;  
+background-color: rgb(125, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>EXIT</string>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>pushButton_gosignin</zorder>
+  <zorder>forgot_password</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>lineEditEmail_sign_2</zorder>
+  <zorder>lineEditName_sign</zorder>
+  <zorder>login_button</zorder>
+  <zorder>lineEditPassword_sign</zorder>
+  <zorder>forgotbtnsend</zorder>
+  <zorder>lineEditEmail_sign</zorder>
+  <zorder>lineEdit_3</zorder>
+  <zorder>label_email_sign</zorder>
+  <zorder>label_password_sign</zorder>
+  <zorder>label_email_sign_2</zorder>
+  <zorder>label_name_sign</zorder>
+  <zorder>exit_btn</zorder>
  </widget>
+ <tabstops>
+  <tabstop>lineEditEmail_sign</tabstop>
+  <tabstop>lineEditPassword_sign</tabstop>
+  <tabstop>forgot_password</tabstop>
+  <tabstop>login_button</tabstop>
+  <tabstop>lineEditEmail_sign_2</tabstop>
+  <tabstop>lineEditName_sign</tabstop>
+  <tabstop>forgotbtnsend</tabstop>
+  <tabstop>pushButton_gosignin</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>exit_btn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

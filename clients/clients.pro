@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     client.cpp \
+    currentprice.cpp \
     dashboard.cpp \
     deposit.cpp \
     exchange.cpp \
@@ -22,11 +23,11 @@ SOURCES += \
     profile.cpp \
     signin.cpp \
     walldetails.cpp \
-    CurrentPrice.cpp \
     withdrawal.cpp
 
 HEADERS += \
     client.h \
+    currentprice.h \
     dashboard.h \
     deposit.h \
     exchange.h \
@@ -38,11 +39,11 @@ HEADERS += \
     signin.h \
     styles.h \
     walldetails.h \
-    CurrentPrice.h \
     withdrawal.h
 
 
 FORMS += \
+    currentprice.ui \
     dashboard.ui \
     deposit.ui \
     exchange.ui \
@@ -52,7 +53,6 @@ FORMS += \
     profile.ui \
     signin.ui \
     walldetails.ui \
-    CurrentPrice.ui \
     withdrawal.ui \
     exchange.ui
 
@@ -60,3 +60,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

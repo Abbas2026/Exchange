@@ -14,13 +14,14 @@ const QString QMSSGEBOX_STYLE =
     "QMessageBox QPushButton:pressed { background-color: #5E81AC; }";
 
 const QString baseStyle = "QPushButton { color: black; border: none; font: 28pt 'Bangers'; border: none; }"
-                          "QPushButton:hover { color: #c97940; }";
+                          "QPushButton:hover { color: #c97940;font: 30pt 'Bangers'; }";
 
-const QString active_baseStyle = "QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }";
+const QString active_baseStyle = "QPushButton { color: #c97940; border: none; font: 28pt 'Bangers'; border: none; }"
+                                "QPushButton:hover { color: #c97940;font: 30pt 'Bangers'; }";
 const QString  user_level_1 = "QPushButton { color:  #4fee93; border: none; font: 28pt 'Bangers'; border: none; }"
-                           "QPushButton:hover { color: #c97940; }";
+                           "QPushButton:hover { color: #4fee93;font: 30pt 'Bangers'; }";
 const QString  user_level_0 = "QPushButton { color: rgb(170, 0, 0); border: none; font: 28pt 'Bangers'; border: none; }"
-                             "QPushButton:hover { color: #c97940; }";
+                             "QPushButton:hover { color: #c97940;font: 30pt 'Bangers'; }";
 
 
 inline QPixmap getTomanIcon(int width = 100, int height = 100) {
@@ -95,6 +96,7 @@ const QString table_mywallet =
                                 "    font-size: 16px;"
                                 "    padding: 8px;"
                                 "    border: none;"
+                                "    width: 20px;   "
                                 "}"
                                 "QTableWidget::item {"
                                 "    background-color: #2980b9;"
@@ -165,5 +167,32 @@ inline QPixmap getproficon(int width = 100, int height = 100) {
     renderer.render(&painter);
     return pixmap;
 }
+class styles {
+
+public:
+
+static void showWarning(QWidget *parent, const QString &message) {
+    QMessageBox msgBox(parent);
+    msgBox.setStyleSheet(QMSSGEBOX_STYLE);
+    QPixmap Unsuccessfulicon("./Unsuccessful-icon.png");
+    msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setWindowTitle("successfull");
+    msgBox.setText(message);
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+    }
+
+static void showsuccessfull(QWidget *parent, const QString &message) {
+    QMessageBox msgBox(parent);
+    msgBox.setStyleSheet(QMSSGEBOX_STYLE);
+    QPixmap Unsuccessfulicon("./checkmark.png");
+    msgBox.setIconPixmap(Unsuccessfulicon.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setWindowTitle("Warning");
+    msgBox.setText(message);
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+    }
+
+};
 
 #endif

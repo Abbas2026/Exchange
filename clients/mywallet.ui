@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1278</width>
-    <height>904</height>
+    <width>1920</width>
+    <height>1080</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1278</width>
-    <height>904</height>
+    <width>1920</width>
+    <height>1080</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -31,10 +31,10 @@
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>1030</x>
+     <x>1290</x>
      <y>0</y>
      <width>251</width>
-     <height>904</height>
+     <height>1081</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>280</y>
+      <y>270</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -55,7 +55,7 @@
     <property name="styleSheet">
      <string notr="true">border:none;
 color: #c97940;
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -66,7 +66,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>560</y>
+      <y>510</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -77,7 +77,7 @@ letter-spacing: 1px;</string>
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -123,10 +123,9 @@ letter-spacing: 1px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">border:none;
-font: 28pt &quot;Bangers&quot;;
 color: rgb(0, 0, 0);
-
-</string>
+font: 24pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
     </property>
     <property name="text">
      <string>Dashboard</string>
@@ -136,7 +135,7 @@ color: rgb(0, 0, 0);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>700</y>
+      <y>630</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -146,9 +145,9 @@ color: rgb(0, 0, 0);
     </property>
     <property name="styleSheet">
      <string notr="true">border:none;
-color: #4fee93;
-font: 28pt &quot;Bangers&quot;;
-letter-spacing: -1px;</string>
+color: rgb(0, 0, 0);
+font: 24pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
     </property>
     <property name="text">
      <string>Authentication</string>
@@ -167,16 +166,16 @@ letter-spacing: -1px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">           border: none;  
+     <string notr="true">  border: none;  
 color: #344b90;
 background-color: #d9d8d4;
-font: 22pt &quot;Rubik Wet Paint&quot;;
+font: 20pt &quot;Rubik Wet Paint&quot;;
 letter-spacing: -2px;
 word-spacing: 3px;
 </string>
     </property>
     <property name="text">
-     <string>heliacal exchange</string>
+     <string>Spiral exchange</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -186,7 +185,7 @@ word-spacing: 3px;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>350</y>
+      <y>330</y>
       <width>211</width>
       <height>41</height>
      </rect>
@@ -197,7 +196,7 @@ word-spacing: 3px;
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -208,7 +207,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>630</y>
+      <y>570</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -219,7 +218,7 @@ letter-spacing: 1px;</string>
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -230,7 +229,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>770</y>
+      <y>690</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -241,7 +240,7 @@ letter-spacing: 1px;</string>
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -252,7 +251,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>420</y>
+      <y>390</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -263,7 +262,7 @@ letter-spacing: 1px;</string>
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -274,7 +273,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>840</y>
+      <y>750</y>
       <width>201</width>
       <height>41</height>
      </rect>
@@ -285,7 +284,7 @@ letter-spacing: 1px;</string>
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
+font: 24pt &quot;Bangers&quot;;
 letter-spacing: 1px;</string>
     </property>
     <property name="text">
@@ -296,7 +295,7 @@ letter-spacing: 1px;</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>490</y>
+      <y>450</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -307,69 +306,363 @@ letter-spacing: 1px;</string>
     <property name="styleSheet">
      <string notr="true">border:none;
 color: rgb(0, 0, 0);
-font: 28pt &quot;Bangers&quot;;
-letter-spacing: -1px;</string>
+font: 24pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
     </property>
     <property name="text">
      <string> Exchange</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="exit_btn">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>810</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color: rgb(0, 0, 0);
+font: 24pt &quot;Bangers&quot;;
+letter-spacing: 1px;</string>
+    </property>
+    <property name="text">
+     <string>exit</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QPushButton" name="creatwallet_btn">
+  <widget class="QWidget" name="createwallet_widget_2" native="true">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>10</y>
-     <width>201</width>
-     <height>41</height>
+     <x>-1</x>
+     <y>0</y>
+     <width>1921</width>
+     <height>1080</height>
     </rect>
    </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
    <property name="styleSheet">
-    <string notr="true">border:none;
-color:rgb(255, 255, 255);
-font: 18pt &quot;Rubik Vinyl&quot;;
- border-radius: 10px;
-background-color: #10161f;</string>
+    <string notr="true">background-color:#040609;</string>
    </property>
-   <property name="text">
-    <string>Create a wallet</string>
-   </property>
+   <widget class="QWidget" name="widget_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>200</y>
+      <width>601</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #10161f;
+            color: white;
+            border-radius: 18px;
+            font-size: 16px;
+           border: none;  </string>
+    </property>
+    <widget class="QPushButton" name="save_wallet_btn">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>270</y>
+       <width>161</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">          background-color: #45aef5 ;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+           border: none;  </string>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_20">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>180</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #6f7988;
+background-color: rgb(29, 38, 51);</string>
+     </property>
+     <property name="text">
+      <string>Wallet name</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_24">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>90</y>
+       <width>341</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:#6f7988;
+padding-left:10px;
+</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QTextEdit::LineWrapMode::WidgetWidth</enum>
+     </property>
+     <property name="lineWrapColumnOrWidth">
+      <number>10</number>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="overwriteMode">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_30">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>50</y>
+       <width>171</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding-left:10px;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:16px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="namewallet_lineedit">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>180</y>
+       <width>371</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">    border-radius: 8px; 
+    padding: 0px 20px; 
+    background-color: #1d2633   ; 
+color: rgb(255, 255, 255);
+    font-size: 12px;
+
+</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>180</y>
+       <width>81</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #6f7988;
+background-color: rgb(29, 38, 51);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="backtowords_btn">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>20</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #10161f;
+color: #6f7988;
+            border-radius: 10px;
+            font-size: 30px;
+           border: none;  </string>
+     </property>
+     <property name="text">
+      <string>←</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="close_btn_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>10</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #10161f;
+color: #6f7988;
+            border-radius: 10px;
+            font-size: 30px;
+           border: none;  </string>
+     </property>
+     <property name="text">
+      <string>×</string>
+     </property>
+    </widget>
+    <zorder>save_wallet_btn</zorder>
+    <zorder>textEdit_24</zorder>
+    <zorder>textEdit_30</zorder>
+    <zorder>namewallet_lineedit</zorder>
+    <zorder>label_20</zorder>
+    <zorder>label_21</zorder>
+    <zorder>backtowords_btn</zorder>
+    <zorder>close_btn_2</zorder>
+   </widget>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>1011</width>
-     <height>851</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::RightToLeft</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="dragEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="cornerButtonEnabled">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QWidget" name="createwallet_widget" native="true">
+  <widget class="QWidget" name="widget_4" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1031</width>
-     <height>911</height>
+     <width>1921</width>
+     <height>1080</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#040609;</string>
+   </property>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>1011</width>
+      <height>701</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="dragEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>true</bool>
+    </property>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+   </widget>
+   <widget class="QPushButton" name="creatwallet_btn">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>40</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color:rgb(255, 255, 255);
+font: 16pt &quot;Rubik Vinyl&quot;;
+ border-radius: 10px;
+background-color: #10161f;</string>
+    </property>
+    <property name="text">
+     <string>Create a wallet</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="createwallet_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>-140</x>
+     <y>-60</y>
+     <width>2061</width>
+     <height>1080</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -378,7 +671,7 @@ background-color: #10161f;</string>
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>580</x>
       <y>200</y>
       <width>601</width>
       <height>531</height>
@@ -580,6 +873,12 @@ padding-left:10px;
 padding-left:10px;
 </string>
      </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
      <property name="lineWrapMode">
       <enum>QTextEdit::LineWrapMode::WidgetWidth</enum>
      </property>
@@ -769,255 +1068,10 @@ color: #6f7988;
     </widget>
    </widget>
   </widget>
-  <widget class="QWidget" name="createwallet_widget_2" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1031</width>
-     <height>911</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:#040609;</string>
-   </property>
-   <widget class="QWidget" name="widget_3" native="true">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>200</y>
-      <width>601</width>
-      <height>351</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #10161f;
-            color: white;
-            border-radius: 18px;
-            font-size: 16px;
-           border: none;  </string>
-    </property>
-    <widget class="QPushButton" name="save_wallet_btn">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>270</y>
-       <width>161</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">          background-color: #45aef5 ;
-            color: white;
-            border-radius: 10px;
-            font-size: 16px;
-           border: none;  </string>
-     </property>
-     <property name="text">
-      <string>Save</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_20">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>180</y>
-       <width>111</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #6f7988;
-background-color: rgb(29, 38, 51);</string>
-     </property>
-     <property name="text">
-      <string>Wallet name</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_24">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>90</y>
-       <width>341</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color:#6f7988;
-padding-left:10px;
-</string>
-     </property>
-     <property name="lineWrapMode">
-      <enum>QTextEdit::LineWrapMode::WidgetWidth</enum>
-     </property>
-     <property name="lineWrapColumnOrWidth">
-      <number>10</number>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="overwriteMode">
-      <bool>true</bool>
-     </property>
-     <property name="placeholderText">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_30">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>50</y>
-       <width>171</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">padding-left:10px;
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:16px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="namewallet_lineedit">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>180</y>
-       <width>371</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">    border-radius: 8px; 
-    padding: 0px 20px; 
-    background-color: #1d2633   ; 
-color: rgb(255, 255, 255);
-    font-size: 12px;
-
-</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_21">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>180</y>
-       <width>81</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #6f7988;
-background-color: rgb(29, 38, 51);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="backtowords_btn">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>20</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #10161f;
-color: #6f7988;
-            border-radius: 10px;
-            font-size: 30px;
-           border: none;  </string>
-     </property>
-     <property name="text">
-      <string>←</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="close_btn_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>560</x>
-       <y>10</y>
-       <width>31</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #10161f;
-color: #6f7988;
-            border-radius: 10px;
-            font-size: 30px;
-           border: none;  </string>
-     </property>
-     <property name="text">
-      <string>×</string>
-     </property>
-    </widget>
-    <zorder>save_wallet_btn</zorder>
-    <zorder>textEdit_24</zorder>
-    <zorder>textEdit_30</zorder>
-    <zorder>namewallet_lineedit</zorder>
-    <zorder>label_20</zorder>
-    <zorder>label_21</zorder>
-    <zorder>backtowords_btn</zorder>
-    <zorder>close_btn_2</zorder>
-   </widget>
-  </widget>
-  <zorder>tableWidget</zorder>
-  <zorder>creatwallet_btn</zorder>
-  <zorder>widget</zorder>
   <zorder>createwallet_widget_2</zorder>
   <zorder>createwallet_widget</zorder>
+  <zorder>widget_4</zorder>
+  <zorder>widget</zorder>
  </widget>
  <resources/>
  <connections/>

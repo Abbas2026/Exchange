@@ -1,22 +1,6 @@
 #include "profile.h"
 #include "ui_profile.h"
-#include <QSvgRenderer>
-#include <QPixmap>
-#include <QPainter>
-#include <QLabel>
-#include "client.h"
-#include <QDebug>
-#include "dashboard.h"
-#include "mywallet.h"
-#include <QMessageBox>
-#include <QRegularExpression>
-#include "deposit.h"
-#include <QRandomGenerator>
-#include <QPixmap>
-#include <QPainter>
-#include "withdrawal.h"
-#include "CurrentPrice.h"
-#include "styles.h"
+
 
 profile::profile(QWidget *parent)
     : QWidget(parent)
@@ -30,6 +14,7 @@ profile::~profile()
 {
     delete ui;
 }
+
 bool profile::isValidPassword(const QString &password) {
     if (password.length() < 8) {
         return false;
@@ -42,11 +27,12 @@ bool profile::isValidPassword(const QString &password) {
            hasLowerCase.match(password).hasMatch() &&
            hasDigit.match(password).hasMatch();
 }
+
 void profile::applyStyles()
 {
     ui->profile_icon->setPixmap(getproficon(100,100));
     ui->profile_icon->setFixedSize(60, 60);
-
+    ui->Profile_btn->setStyleSheet(active_baseStyle);
     ui->Mywallets_btn->setStyleSheet(baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -56,6 +42,7 @@ void profile::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
 
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet(user_level_1);
@@ -73,7 +60,6 @@ void profile::applyStyles()
     ui->textEdit_Transactionfees_value->setText("Base");
     ui->widget_3->hide();
     ui->paswidget->hide();
-
     ui->textEdit_userlevel_4->setText("User Level :");
     ui->textEdit_email_4->setText("Email :");
     ui->textEdit_username_4->setText("Username :");
@@ -87,17 +73,13 @@ void profile::applyStyles()
     ui->textEdit_captcha->setText("captcha :");
     ui->textEdit_userlevel_value_4->setText("level  " + Client::user_level);
     ui->textEdit_email_value_4->setText( Client::globalEmail);
-
     ui->textEdit_userlevel_value->setText("level  " + Client::user_level);
     ui->textEdit_email_value->setText( Client::globalEmail);
-    // ui->textEdit_numberphone_value->setText("empty");
-    // ui->textEdit_address_value->setText("empty");
-    // ui->textEdit_firstname_value->setText("empty");
-    // ui->textEdit_lastname_value->setText("empty");
     ui->textEdit_30->setText("Change Password");
     captchaText = generateCaptcha(5);
     ui->captchaLabel->setPixmap(generateCaptchaImage(captchaText));
 }
+
 void profile::receiveduserprofile(const QString email,const QString name,const QString password,const QString phone,const QString address,const QString firstname,const QString lastname){
     ui->textEdit_userlevel_value->setText("level  " + Client::user_level);
     ui->textEdit_email_value->setText(email);
@@ -132,18 +114,18 @@ void profile::receiveduserprofile(const QString email,const QString name,const Q
 
 void profile::on_Dashboard_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
-    da->show();
+    da->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void profile::on_Mywallets_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Mywallets_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 
 }
 
@@ -157,11 +139,13 @@ void profile::on_recordchange_btn_clicked()
 {
     QString userCaptchaInput = ui->inputField->text();
     if (userCaptchaInput.isEmpty()) {
-        QMessageBox::warning(this, "Error", "Please enter the captcha.");
+        styles::showWarning(this,"Please enter the captcha");
+
         return;
     }
     if (!verifyCaptcha(userCaptchaInput, captchaText)) {
-        QMessageBox::warning(this, "Error", "Captcha Incorrect! Try Again.");
+        styles::showWarning(this,"Captcha Incorrect! Try Again");
+
         return;
     }
      QString name = ui->lineEdit_username_4->text();
@@ -171,9 +155,15 @@ void profile::on_recordchange_btn_clicked()
      QString lastname = ui->lineEdit_lastname_4->text();
      QString password = ui->lineEdit_password_4->text();
 
-     if (!name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty()) {
-         Client::user_level="1";
+     if (!name.trimmed().isEmpty() &&
+         !address.trimmed().isEmpty() &&
+         !phone.trimmed().isEmpty() &&
+         !firstname.trimmed().isEmpty() &&
+         !lastname.trimmed().isEmpty()) {
+
+         Client::user_level = "1";
      }
+
 
      extern Client client;
      client.senduserprofiletoserver(name,address,phone,firstname,lastname,password,Client::user_level);
@@ -205,19 +195,25 @@ void profile::on_confirm_pas_btn_clicked()
     QString repeat_password = ui->reppas_lineEdit->text();
 
     if (!isValidPassword(password)) {
-        QMessageBox::warning(this, "warning", "The password is invalid. The password must be at least 8 characters long, including one uppercase letter, one lowercase letter, and one number");
+        styles::showWarning(this,"The password is invalid. The password must be at least 8 characters long, including one uppercase letter, one lowercase letter, and one number");
         return;
     }
     if(password!=repeat_password){
-        QMessageBox::warning(this, "warning", "the password and its repetition are not the same");return;
+        styles::showWarning(this,"the password and its repetition are not the same");
+        return;
     }
     QString name = ui->lineEdit_username_4->text();
     QString address = ui->lineEdit_address_4->text();
     QString phone = ui->lineEdit_numberphone_4->text();
     QString firstname = ui->lineEdit_firstname_4->text();
     QString lastname = ui->lineEdit_lastname_4->text();
-    if (!name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !firstname.isEmpty() && !lastname.isEmpty() && !password.isEmpty()) {
-        Client::user_level="1";
+    if (!name.trimmed().isEmpty() &&
+        !address.trimmed().isEmpty() &&
+        !phone.trimmed().isEmpty() &&
+        !firstname.trimmed().isEmpty() &&
+        !lastname.trimmed().isEmpty()) {
+
+        Client::user_level = "1";
     }
     extern Client client;
     client.senduserprofiletoserver(name,address,phone,firstname,lastname,password,Client::user_level);
@@ -234,20 +230,14 @@ void profile::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
-    dep->show();
+    dep->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 QString profile::generateCaptcha(int length = 5) {
@@ -259,6 +249,7 @@ QString profile::generateCaptcha(int length = 5) {
     }
     return captcha;
 }
+
 QPixmap profile::generateCaptchaImage(const QString &captchaText) {
     int width = 250;
     int height = 80;
@@ -303,6 +294,7 @@ QPixmap profile::generateCaptchaImage(const QString &captchaText) {
     }
     return pixmap;
 }
+
 bool profile::verifyCaptcha(const QString &input, const QString &correctCaptcha) {
     return input == correctCaptcha;
 }
@@ -311,55 +303,49 @@ void profile::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
-    withdrl->show();
+    withdrl->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void profile::on_Authentication_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Authentication_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void profile::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_easyexchange_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void profile::on_currentprice_btn_clicked()
 {
-    this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+}
+
+
+void profile::on_exit_btn_clicked()
+{
+    this->close();
 }
 

@@ -1,15 +1,11 @@
 #include "priceupdater.h"
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QUrl>
-#include <QNetworkRequest>
-#include <QDebug>
+
 
 double PriceUpdater::bitcoinToTether = 102000.0;
 double PriceUpdater::ethereumToTether = 3288.0;
 double PriceUpdater::tronToTether = 0.24;
 double PriceUpdater::TetherToTether = 1.0;
-double PriceUpdater::tetherToToman = 90000.0;
+double PriceUpdater::tetherToToman = 93000.0;
 double PriceUpdater::TomanToTether=0.0000125;
 double PriceUpdater::balancetotether=0.0;
 
@@ -63,7 +59,7 @@ void PriceUpdater::handleNetworkReply(QNetworkReply* reply) {
             emit pricesUpdated();
         }
     } else {
-        qDebug() << "Error in network reply:" << reply->errorString();
+        //qDebug() << "Error in network reply:" << reply->errorString();
     }
     reply->deleteLater();
 }

@@ -6,7 +6,11 @@
 #include <QTimer>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QUrl>
+#include <QNetworkRequest>
+#include <QDebug>
 class PriceUpdater : public QObject {
     Q_OBJECT
 

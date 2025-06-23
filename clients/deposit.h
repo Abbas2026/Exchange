@@ -2,6 +2,18 @@
 #define DEPOSIT_H
 
 #include <QWidget>
+#include <QSvgRenderer>
+#include <QPixmap>
+#include <QPainter>
+#include <QLabel>
+#include <QRadioButton>
+#include <QButtonGroup>
+#include "dashboard.h"
+#include <QMessageBox>
+#include "client.h"
+#include "withdrawal.h"
+#include "CurrentPrice.h"
+#include "styles.h"
 
 namespace Ui {
 class deposit;
@@ -34,6 +46,8 @@ private slots:
     void on_Authentication_btn_clicked();
     void on_easyexchange_btn_clicked();
     void on_currentprice_btn_clicked();
+
+    void on_exit_btn_clicked();
 
 private:
     Ui::deposit *ui;

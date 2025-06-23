@@ -1,17 +1,6 @@
 #include "withdrawal.h"
 #include "ui_withdrawal.h"
-#include <QSvgRenderer>
-#include <QPixmap>
-#include <QPainter>
-#include <QLabel>
-#include <QRadioButton>
-#include <QButtonGroup>
-#include "dashboard.h"
-#include <QMessageBox>
-#include "client.h"
-#include "deposit.h"
-#include "CurrentPrice.h"
-#include "styles.h"
+
 
 withdrawal::withdrawal(QWidget *parent)
     : QWidget(parent)
@@ -25,9 +14,10 @@ withdrawal::~withdrawal()
 {
     delete ui;
 }
+
 void withdrawal::applyStyles()
 {
-
+    ui->withdrawal_btn->setStyleSheet(active_baseStyle);
     ui->Mywallets_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -37,6 +27,7 @@ void withdrawal::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
     if(Client::user_level=="1"){
         ui->Authentication_btn->setStyleSheet(user_level_1);
     }
@@ -112,30 +103,27 @@ void withdrawal::on_radiousdt_clicked()
 
 void withdrawal::on_Dashboard_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
-    da->show();
+    da->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void withdrawal::on_Mywallets_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Mywallets_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void withdrawal::on_Profile_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Profile_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void withdrawal::on_withdrawal_coin_clicked()
 {
@@ -144,15 +132,15 @@ void withdrawal::on_withdrawal_coin_clicked()
     QString address=ui->wallet_address_name->text();
 
     if(coin.isEmpty()){
-        QMessageBox::warning(this, "error", "First, select the currency you want to deposit");
+        styles::showWarning(this,"First select the currency you want to deposit");
         return;
     }
     if(amounth.isEmpty()||address.isEmpty()){
-        QMessageBox::warning(this, "error", "Please enter all values");
+        styles::showWarning(this,"Please enter all values");
         return;
     }
     if (!amounth.toDouble()) {
-        QMessageBox::warning(this, "error", "Invalid entry! Please enter a number");
+        styles::showWarning(this,"Invalid entry! Please enter a number");
         return;
 }
     QList<QString> selectedWords;
@@ -172,7 +160,7 @@ void withdrawal::on_withdrawal_coin_clicked()
     }
 
     if (!allFieldsFilled) {
-        QMessageBox::warning(this, "error", "Please enter all values");
+        styles::showWarning(this,"Please enter all values");
         return;
     }
 
@@ -201,60 +189,46 @@ void withdrawal::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
-    dep->show();
+    dep->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void withdrawal::on_Authentication_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Authentication_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void withdrawal::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this,"you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_easyexchange_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
-
 
 void withdrawal::on_currentprice_btn_clicked()
 {
-    this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
+
 void withdrawal::setaddress(const QString &coinname){
     ui->wallet_address_name->setText(Client::walletactive);
     if(coinname=="Bitcoin"){
@@ -278,3 +252,9 @@ void withdrawal::setaddress(const QString &coinname){
         ui->radiousdt->setChecked(true);
     }
 }
+
+void withdrawal::on_exit_btn_clicked()
+{
+    this->close();
+}
+

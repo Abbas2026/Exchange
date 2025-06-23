@@ -1,25 +1,5 @@
 #include "walldetails.h"
 #include "ui_walldetails.h"
-#include <QTableWidgetItem>
-#include <QTableWidget>
-#include <QPushButton>
-#include <QSvgRenderer>
-#include <QPixmap>
-#include <QPainter>
-#include <QLabel>
-#include "mywallet.h"
-#include "client.h"
-#include "form.h"
-#include "dashboard.h"
-#include "priceupdater.h"
-#include <QLocale>
-#include "profile.h"
-#include "deposit.h"
-#include "withdrawal.h"
-#include "CurrentPrice.h"
-#include <QMessageBox>
-#include <QHBoxLayout>
-#include "styles.h"
 
 Walldetails::Walldetails(QWidget *parent)
     : QWidget(parent)
@@ -46,6 +26,7 @@ void Walldetails::applyStyles()
     ui->lb_icon_ton->setPixmap(getTonIcon(100, 100));
     ui->lb_icon_ton->setFixedSize(30, 30);
 
+    ui->Mywallets_btn->setStyleSheet(active_baseStyle);
     ui->Dashboard_btn->setStyleSheet(baseStyle);
     ui->Profile_btn->setStyleSheet(baseStyle);
     ui->market_btn->setStyleSheet(baseStyle);
@@ -55,6 +36,7 @@ void Walldetails::applyStyles()
     ui->Authentication_btn->setStyleSheet(baseStyle);
     ui->deposit_btn->setStyleSheet(baseStyle);
     ui->withdrawal_btn->setStyleSheet(baseStyle);
+    ui->exit_btn->setStyleSheet(baseStyle);
     ui->history_btn->setStyleSheet("QPushButton { color: #fff; border: none;  border: none;  border-radius: 10px; font-size:20px; background-color: #242d3b; }"
                                    "QPushButton:hover { background-color: #2e3847; }");
     if(Client::user_level=="1"){
@@ -73,11 +55,11 @@ void Walldetails::populateTable()
     QStringList headers = {"symbol","Cryptocurrency","inventory", "Current value", "Operation"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
-    ui->tableWidget->setColumnWidth(0, 121);
-    ui->tableWidget->setColumnWidth(1, 200);
-    ui->tableWidget->setColumnWidth(2, 200);
-    ui->tableWidget->setColumnWidth(3, 200);
-    ui->tableWidget->setColumnWidth(4, 300);
+    ui->tableWidget->setColumnWidth(0, 141);
+    ui->tableWidget->setColumnWidth(1, 250);
+    ui->tableWidget->setColumnWidth(2, 250);
+    ui->tableWidget->setColumnWidth(3, 250);
+    ui->tableWidget->setColumnWidth(4, 400);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
     ui->symbol_toman->setText("IRT");
@@ -90,6 +72,7 @@ void Walldetails::populateTable()
     ui->tableWidget->horizontalHeader()->setStretchLastSection(false);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
+
 void Walldetails::addcointotable(const QString &name1, const double &inventory1,const double &Currentvalue1) {
     int rowCount = ui->tableWidget->rowCount();
     ui->tableWidget->insertRow(rowCount);
@@ -140,24 +123,23 @@ deleteButton->setStyleSheet("background-color: #f26672;");
     layout->addWidget(editButton);
     layout->addWidget(deleteButton);
 
-
     ui->tableWidget->setCellWidget(rowCount, 4, buttonWidget);
 
     connect(editButton, &QPushButton::clicked, [=]() {
-        this->close();
         deposit *dep = new deposit();
         dep->setAttribute(Qt::WA_DeleteOnClose);
         QString coinname = ui->tableWidget->item(rowCount, 1)->text();
         dep->setaddress(coinname);
-        dep->show();
+        dep->showFullScreen();
+        QTimer::singleShot(1000, this, [this]() {this->close();});
     });
     connect(deleteButton, &QPushButton::clicked, [=]() {
-        this->close();
         withdrawal *withdrl = new withdrawal();
         withdrl->setAttribute(Qt::WA_DeleteOnClose);
         QString coinname = ui->tableWidget->item(rowCount, 1)->text();
         withdrl->setaddress(coinname);
-        withdrl->show();
+        withdrl->showFullScreen();
+        QTimer::singleShot(1000, this, [this]() {this->close();});
     });
 
     ui->textEdit_totalbalnce->setText("USDT " + QString::number(PriceUpdater::balancetotether));
@@ -176,95 +158,82 @@ void Walldetails::on_backtomywallet_btn_clicked()
 
 void Walldetails::on_Profile_btn_clicked()
 {
-    this->close();
     extern Client client;
     client.getuserprofile();
     profile *prof= new profile();
     prof->setAttribute(Qt::WA_DeleteOnClose);
-    prof->show();
+    prof->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void Walldetails::on_Dashboard_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
-    da->show();
+    da->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void Walldetails::on_deposit_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     deposit *dep = new deposit();
     dep->setAttribute(Qt::WA_DeleteOnClose);
-    dep->show();
+    dep->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void Walldetails::on_withdrawal_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     withdrawal *withdrl = new withdrawal();
     withdrl->setAttribute(Qt::WA_DeleteOnClose);
-    withdrl->show();
+    withdrl->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void Walldetails::on_Authentication_btn_clicked()
 {
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_Authentication_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void Walldetails::on_easyexchange_btn_clicked()
 {
     if(Client::user_level=="0"){
         ui->Authentication_btn->setStyleSheet(user_level_0);
-        QMessageBox msgBox(this);
-        msgBox.setStyleSheet(QMSSGEBOX_STYLE);
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle("Warning");
-        msgBox.setText(" you must first authenticate yourself");
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
+        styles::showWarning(this," you must first authenticate yourself");
         ui->Authentication_btn->setStyleSheet(baseStyle);
         return;
     }
-    this->close();
     dashboard *da = new dashboard();
     da->setAttribute(Qt::WA_DeleteOnClose);
     da->on_easyexchange_btn_clicked();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
 }
 
 void Walldetails::on_currentprice_btn_clicked()
 {
-    this->close();
-    MainWindow *window = new MainWindow();
+    currentprice *window = new currentprice();
     window->setAttribute(Qt::WA_DeleteOnClose);
-    window->show();
+    window->showFullScreen();
+    QTimer::singleShot(1000, this, [this]() {this->close();});
+}
+
+void Walldetails::on_exit_btn_clicked()
+{
+    this->close();
 }
 

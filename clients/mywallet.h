@@ -2,7 +2,29 @@
 #define MYWALLET_H
 
 #include <QWidget>
-
+#include <QPushButton>
+#include <QTableWidgetItem>
+#include <QClipboard>
+#include <QTableWidget>
+#include "dashboard.h"
+#include <QMessageBox>
+#include <qfile.h>
+#include <QTime>
+#include <QtGlobal>
+#include <string>
+#include <random>
+#include <QDebug>
+#include "client.h"
+#include "form.h"
+#include <QIcon>
+#include "walldetails.h"
+#include "client.h"
+#include "priceupdater.h"
+#include "profile.h"
+#include "deposit.h"
+#include "withdrawal.h"
+#include "CurrentPrice.h"
+#include "styles.h"
 namespace Ui {
 class mywallet;
 }
@@ -42,6 +64,8 @@ private slots:
     void on_Authentication_btn_clicked();
     void on_easyexchange_btn_clicked();
     void on_currentprice_btn_clicked();
+
+    void on_exit_btn_clicked();
 
 private:
 

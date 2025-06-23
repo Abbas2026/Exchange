@@ -1,6 +1,5 @@
 #include "guid.h"
 #include "ui_guid.h"
-#include "dashboard.h"
 guid::guid(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::guid)

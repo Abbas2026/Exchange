@@ -2,6 +2,12 @@
 #define SIGNIN_H
 
 #include <QWidget>
+#include <QTimer>
+#include "form.h"
+#include <QDebug>
+#include "client.h"
+#include <QMessageBox>
+#include "styles.h"
 
 namespace Ui {
 class signin;
@@ -29,7 +35,7 @@ private slots:
     void on_login_button_clicked();
     void on_forgot_password_clicked();
     void on_forgotbtnsend_clicked();
-
+    void on_exit_btn_clicked();
 
 private:
 
@@ -38,7 +44,6 @@ private:
 signals:
 
     void sendservertologin(const QString &email, const QString &password);
-    void backToFormRequested();
 };
 
 #endif

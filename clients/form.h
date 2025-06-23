@@ -3,6 +3,17 @@
 
 #include <QMainWindow>
 #include "client.h"
+#include <QTimer>
+#include <QDebug>
+#include <QRegularExpression>
+#include <QMessageBox>
+#include "signin.h"
+#include "dashboard.h"
+#include <QWidget>
+#include <QLineEdit>
+#include <QKeyEvent>
+#include <QList>
+#include "styles.h"
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
@@ -30,18 +41,19 @@ signals:
 public slots:
 
     void displayServerResponse(const QString &response);
-    void onRegistrationSuccessful();
-    void loginSuccessful();
+    void closewindow();
 
 private slots:
 
     void on_pushButton_clicked();
     void on_pushButton_gosignin_clicked();
+    void on_exit_btn_clicked();
 
 private:
 
     Ui::form *ui;
     Client *client;
+
 };
 
 #endif

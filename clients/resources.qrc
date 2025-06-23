@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/form.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>image/signin.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>image/dashboard.png</file>
+    </qresource>
+</RCC>
